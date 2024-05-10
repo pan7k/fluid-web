@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+		{
+			"name": "Storybook",
+			"type": "node-terminal",
+			"request": "launch",
+			"cwd": "${workspaceRoot}",
+			"command": "bun start",
+		}
+	]
+}

@@ -1,0 +1,31 @@
+{
+  "bracketLine": false,
+  "endOfLine": "lf",
+  "trailingComma": "all",
+  "singleQuote": false,
+  "parser": "typescript",
+  "overrides": [
+    {
+      "files": [
+        "package.json",
+        "tsconfig.json",
+        "tsconfig.*.json"
+      ],
+      "options": {
+        "parser": "json"
+      }
+    },
+    {
+      "files": "*.md",
+      "options": {
+        "parser": "markdown"
+      }
+    },
+    {
+      "files": ["*.svg"],
+      "options": {
+        "parser": "html"
+      }
+    }
+  ]
+}

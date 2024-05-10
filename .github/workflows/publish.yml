@@ -1,0 +1,42 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com/
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v1
+      - name: Install dependences
+        run: |
+          bun i -g rollup
+          bun i
+      - name: Build
+        run: |
+          rollup -c
+      - name: Copy files
+        run: |
+          cp package.json dist/package.json
+          cp docs/package.md dist/readme.md
+      - name: Publish package
+        run: |
+          cd dist
+          npm pkg set main=index.js
+          npm pkg set module=index.esm.js
+          npm pkg set types=index.d.ts
+          npm pkg delete devDependencies
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
