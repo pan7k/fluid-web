@@ -1,25 +1,28 @@
+import React, { FC, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "../buttons/Button";
+import { createParameters } from "../storybook/createParameters";
+import { Button, ButtonProps } from "../buttons/Button";
 
 export default {
   title: "Buttons/Button",
   component: Button,
 } satisfies Meta<typeof Button>;
 
-const source = "<SkButton />";
+const ButtonWithHooks: FC<ButtonProps> = ({ label }) => {
+  const [count, setCount] = useState(0);
+  const handleClick = () => {
+    setCount(count + 1);
+  };
+
+  const text = `${label} clicked ${count} times`;
+  return <Button label={text} onClick={handleClick} />;
+};
 
 export const Default: StoryObj<typeof Button> = {
   name: "Button",
-  args: {},
-  parameters: {
-    docs: {
-      source: {
-        language: "tsx",
-        code: source,
-      },
-    },
-    storySource: {
-      source,
-    },
+  args: {
+    label: "Button",
   },
+  render: (args) => <ButtonWithHooks {...args} />,
+  parameters: createParameters("<Button />", "Button component"),
 };

@@ -1,4 +1,6 @@
+import React from "react";
 import { Preview } from "@storybook/react";
+import { App } from "../core/storybook/decorators";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
@@ -36,7 +38,13 @@ const preview: Preview = {
       },
     },
   },
-  decorators: [],
+  decorators: [
+    (Story, args) => (
+      <App>
+        <Story {...args} />
+      </App>
+    ),
+  ],
 };
 
 export default preview;
