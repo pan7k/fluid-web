@@ -15,13 +15,14 @@ export const Base = styled("button")<Props>(({ theme, $sx }) => ({
   color: `${theme.palette.text.inverted}`,
   background: `${theme.palette.primary}`,
   fontSize: `${theme.typography.body.fontSize}`,
+  cursor: "pointer",
   border: "none",
   ...$sx,
 }));
 
 export const Button: FC<ButtonProps> = ({ label, sx, ...rest }) => {
   return (
-    <Base $sx={{ ...sx }} {...rest}>
+    <Base $sx={sx} {...rest}>
       {label}
     </Base>
   );
