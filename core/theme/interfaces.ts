@@ -18,16 +18,40 @@ export interface Breakpoints {
 
 export interface Theme {
   palette: {
-    primary: string;
-    secondary: string;
-    success: string;
-    danger: string;
-    warning: string;
-    info: string;
     text: {
       primary: string;
       secondary: string;
       inverted: string;
+    };
+    primary: {
+      main: string;
+      10: string;
+      20: string;
+    };
+    secondary: {
+      main: string;
+      10: string;
+      20: string;
+    };
+    success: {
+      main: string;
+      10: string;
+      20: string;
+    };
+    danger: {
+      main: string;
+      10: string;
+      20: string;
+    };
+    warning: {
+      main: string;
+      10: string;
+      20: string;
+    };
+    info: {
+      main: string;
+      10: string;
+      20: string;
     };
   };
   color: {
@@ -44,6 +68,7 @@ export interface Theme {
   };
   surface: {
     blank: string;
+    focus: string;
     10: string;
     20: string;
     30: string;
@@ -61,4 +86,39 @@ export interface Theme {
   };
   spacing: Spacing;
   breakpoints: Breakpoints;
+  components?: {
+    button?: {
+      root?: CSSObject;
+      variant?: {
+        filled?: {
+          root?: CSSObject;
+          primary?: CSSObject;
+          secondary?: CSSObject;
+          success?: CSSObject;
+          danger?: CSSObject;
+        };
+        outline?: {
+          root?: CSSObject;
+          primary?: CSSObject;
+          secondary?: CSSObject;
+          success?: CSSObject;
+          danger?: CSSObject;
+        };
+        ghost?: {
+          root?: CSSObject;
+          primary?: CSSObject;
+          secondary?: CSSObject;
+          success?: CSSObject;
+          danger?: CSSObject;
+        };
+      };
+      size?: {
+        xs?: CSSObject;
+        sm?: CSSObject;
+        md?: CSSObject;
+        lg?: CSSObject;
+        xl?: CSSObject;
+      };
+    };
+  };
 }

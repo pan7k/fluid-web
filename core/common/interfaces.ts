@@ -6,12 +6,10 @@ export interface EventProps {
   onFocus?: (event: FocusEvent<HTMLElement>) => void;
 }
 
-export interface BaseProps extends EventProps {
-  label?: string;
-  sx?: CSSObject;
+export interface InputProps {
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export interface InputProps extends BaseProps {
-  required?: boolean;
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+export interface SxProps {
+  sx?: CSSObject;
 }
