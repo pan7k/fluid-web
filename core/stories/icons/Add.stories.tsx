@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { createParameters } from "../../storybook/createParameters";
+import { parameters } from "../../storybook/parameters";
 import { Add } from "@carbon/icons-react";
 
 export default {
@@ -13,5 +13,5 @@ export const Default: StoryObj<typeof Add> = {
     size: 24,
     color: "black",
   },
-  parameters: createParameters("<Add />", "Carbon icon"),
+  parameters: parameters("<Add />", "Carbon icon"),
 };

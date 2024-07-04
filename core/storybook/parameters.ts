@@ -1,4 +1,4 @@
-export const createParameters = (source: string, description?: string) => {
+export const parameters = (source: string, description?: string) => {
   return {
     docs: {
       description: {

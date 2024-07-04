@@ -104,6 +104,13 @@ export interface Theme {
           success?: CSSObject;
           danger?: CSSObject;
         };
+        light?: {
+          root?: CSSObject;
+          primary?: CSSObject;
+          secondary?: CSSObject;
+          success?: CSSObject;
+          danger?: CSSObject;
+        };
         ghost?: {
           root?: CSSObject;
           primary?: CSSObject;
