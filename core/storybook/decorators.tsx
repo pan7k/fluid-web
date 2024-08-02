@@ -2,6 +2,10 @@ import React, { ReactNode } from "react";
 import { ThemeProvider } from "../theme/ThemeProvider";
 import { defaultTheme } from "../theme/defaultTheme";
 
-export const App = ({ children }: { children: ReactNode }) => {
+interface AppProps {
+  children: ReactNode;
+}
+
+export const App = ({ children }: AppProps) => {
   return <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>;
 };

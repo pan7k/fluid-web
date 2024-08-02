@@ -1,5 +1,5 @@
 /* Theme */
-export type { Theme } from "./theme/interfaces";
+export type { Theme } from "./theme/interfaces/theme";
 export { createBreakpoints } from "./theme/createBreakpoints";
 export { createSpacing } from "./theme/createSpacing";
 export { createTheme } from "./theme/createTheme";

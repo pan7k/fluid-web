@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import { ThemeProvider as Provider } from "styled-components";
-import { Theme } from "./interfaces";
+import { Theme } from "./interfaces/theme";
 
 export interface ThemeProviderProps {
   theme: Theme;

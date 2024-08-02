@@ -14,9 +14,6 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
-    core: {
-      disableTelemetry: true,
-    },
     options: {
       storySort: {
         order: [],

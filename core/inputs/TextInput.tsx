@@ -1,20 +1,20 @@
 import React, { FC, ReactNode } from "react";
 import styled from "styled-components";
-import { Theme } from "../theme/interfaces";
-import { ComponentSize, TextInputVariant } from "../common/types";
+import { Theme } from "../theme/interfaces/theme";
 import { InputEventProps } from "../common/interfaces";
+import { TextInputSize, TextInputVariant } from "../common/types";
 
 export interface TextInputProps extends InputEventProps {
   label: string;
   variant?: TextInputVariant;
-  size?: Omit<ComponentSize, "xs" | "xl">;
+  size?: TextInputSize;
   icon?: ReactNode;
 }
 
 interface BaseProps {
   theme?: Theme;
   $variant: TextInputVariant;
-  $size: Omit<ComponentSize, "xs" | "xl">;
+  $size: TextInputSize;
 }
 
 const Base = styled("div")<BaseProps>(({ theme, $variant, $size }) => ({

@@ -1,9 +1,17 @@
-import { Theme } from "./interfaces";
+import { CSSObject } from "styled-components";
+import { Theme } from "./interfaces/theme";
+import {
+  Color,
+  Palette,
+  Spacing,
+  Surface,
+  Typography,
+} from "./interfaces/common";
 import { colors } from "./colors";
 import { createBreakpoints } from "./createBreakpoints";
 import { createSpacing } from "./createSpacing";
 
-const palette = {
+const palette: Palette = {
   text: {
     primary: colors.black,
     secondary: colors.gray[80],
@@ -41,7 +49,7 @@ const palette = {
   },
 };
 
-const color = {
+const color: Color = {
   blue: colors.blue[60],
   cyan: colors.cyan[50],
   green: colors.green[60],
@@ -54,7 +62,7 @@ const color = {
   purple: colors.purple[60],
 };
 
-const surface = {
+const surface: Surface = {
   blank: colors.white,
   focus: colors.gray[80],
   10: colors.gray[10],
@@ -63,7 +71,7 @@ const surface = {
   40: colors.gray[40],
 };
 
-const typography = {
+const typography: Typography = {
   root: {
     fontFamily: "Inter, sans-serif",
     fontSize: "0.875rem",
@@ -105,14 +113,14 @@ const typography = {
   },
 };
 
-const focus = {
+const focus: CSSObject = {
   "&:focus": {
     outline: `2px solid ${colors.gray[80]}`,
     outlineOffset: "1px",
   },
 };
 
-const spacing = createSpacing(4);
+const spacing: Spacing = createSpacing(4);
 
 const breakpoints = createBreakpoints({
   xs: 320,
@@ -383,14 +391,6 @@ export const defaultTheme: Theme = {
         2: {
           zIndex: 20,
           background: surface[20],
-        },
-        3: {
-          zIndex: 30,
-          background: surface[30],
-        },
-        last: {
-          zIndex: 40,
-          background: surface[40],
         },
       },
     },

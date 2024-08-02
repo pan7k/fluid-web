@@ -1,5 +1,5 @@
 import { defaultTheme as defaults } from "./defaultTheme";
-import { Theme } from "./interfaces";
+import { Theme } from "./interfaces/theme";
 
 export const createTheme = (overrides?: Partial<Theme>): Theme => ({
   ...defaults,

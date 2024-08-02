@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import styled from "styled-components";
-import { Theme } from "../theme/interfaces";
+import { Theme } from "../theme/interfaces/theme";
 import { EventProps } from "../common/interfaces";
 import { ButtonColor, ButtonVariant, ComponentSize } from "../common/types";
 
