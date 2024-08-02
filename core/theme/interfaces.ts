@@ -1,3 +1,4 @@
+import { R } from "@storybook/react/dist/types-bf5e6555";
 import { CSSObject } from "styled-components";
 
 export interface Spacing {
@@ -15,6 +16,58 @@ export interface Breakpoints {
   between: (start: keyof Values, end: keyof Values) => string;
   only: (key: keyof Values) => string;
 }
+
+// Component variants
+
+interface Root {
+  root?: CSSObject;
+}
+
+interface Button extends Root {
+  icon?: CSSObject;
+  color?: ButtonColor;
+  size?: ButtonSize;
+}
+
+interface ButtonColor {
+  primary?: CSSObject;
+  secondary?: CSSObject;
+  success?: CSSObject;
+  danger?: CSSObject;
+}
+
+interface ButtonSize {
+  xs?: CSSObject;
+  sm?: CSSObject;
+  md?: CSSObject;
+  lg?: CSSObject;
+  xl?: CSSObject;
+}
+
+interface ButtonVariant {
+  filled?: {};
+  outline?: Button;
+  light?: Button;
+  ghost?: Button;
+}
+
+interface Input extends Root {
+  label?: CSSObject;
+  input?: CSSObject;
+  icon?: CSSObject;
+  helperText?: CSSObject;
+  invalidText?: CSSObject;
+  disabled?: {
+    root?: CSSObject;
+    label?: CSSObject;
+    input?: CSSObject;
+    icon?: CSSObject;
+    helperText?: CSSObject;
+    invalidText?: CSSObject;
+  };
+}
+
+// Theme interface
 
 export interface Theme {
   palette: {
@@ -89,35 +142,12 @@ export interface Theme {
   components?: {
     button?: {
       root?: CSSObject;
-      variant?: {
-        filled?: {
-          root?: CSSObject;
-          primary?: CSSObject;
-          secondary?: CSSObject;
-          success?: CSSObject;
-          danger?: CSSObject;
-        };
-        outline?: {
-          root?: CSSObject;
-          primary?: CSSObject;
-          secondary?: CSSObject;
-          success?: CSSObject;
-          danger?: CSSObject;
-        };
-        light?: {
-          root?: CSSObject;
-          primary?: CSSObject;
-          secondary?: CSSObject;
-          success?: CSSObject;
-          danger?: CSSObject;
-        };
-        ghost?: {
-          root?: CSSObject;
-          primary?: CSSObject;
-          secondary?: CSSObject;
-          success?: CSSObject;
-          danger?: CSSObject;
-        };
+      icon?: CSSObject;
+      color?: {
+        primary?: CSSObject;
+        secondary?: CSSObject;
+        success?: CSSObject;
+        danger?: CSSObject;
       };
       size?: {
         xs?: CSSObject;
@@ -125,6 +155,112 @@ export interface Theme {
         md?: CSSObject;
         lg?: CSSObject;
         xl?: CSSObject;
+      };
+      variant?: {
+        filled?: {
+          root?: CSSObject;
+          icon?: CSSObject;
+          color?: {
+            primary?: CSSObject;
+            secondary?: CSSObject;
+            success?: CSSObject;
+            danger?: CSSObject;
+          };
+        };
+        outline?: {
+          root?: CSSObject;
+          icon?: CSSObject;
+          color?: {
+            primary?: CSSObject;
+            secondary?: CSSObject;
+            success?: CSSObject;
+            danger?: CSSObject;
+          };
+        };
+        light?: {
+          root?: CSSObject;
+          icon?: CSSObject;
+          color?: {
+            primary?: CSSObject;
+            secondary?: CSSObject;
+            success?: CSSObject;
+            danger?: CSSObject;
+          };
+        };
+        ghost?: {
+          root?: CSSObject;
+          icon?: CSSObject;
+          color?: {
+            primary?: CSSObject;
+            secondary?: CSSObject;
+            success?: CSSObject;
+            danger?: CSSObject;
+          };
+        };
+      };
+    };
+    layer?: {
+      root?: CSSObject;
+      level?: {
+        1?: CSSObject;
+        2?: CSSObject;
+        3?: CSSObject;
+        last?: CSSObject;
+      };
+    };
+    input?: {
+      root?: CSSObject;
+      label?: CSSObject;
+      input?: CSSObject;
+      icon?: CSSObject;
+      helperText?: CSSObject;
+      invalidText?: CSSObject;
+      disabled?: {
+        root?: CSSObject;
+        label?: CSSObject;
+        input?: CSSObject;
+        icon?: CSSObject;
+        helperText?: CSSObject;
+        invalidText?: CSSObject;
+      };
+      size?: {
+        sm?: CSSObject;
+        md?: CSSObject;
+        lg?: CSSObject;
+      };
+      variant?: {
+        normal?: {
+          root?: CSSObject;
+          label?: CSSObject;
+          input?: CSSObject;
+          icon?: CSSObject;
+          helperText?: CSSObject;
+          invalidText?: CSSObject;
+          disabled?: {
+            root?: CSSObject;
+            label?: CSSObject;
+            input?: CSSObject;
+            icon?: CSSObject;
+            helperText?: CSSObject;
+            invalidText?: CSSObject;
+          };
+        };
+        fluid?: {
+          root?: CSSObject;
+          label?: CSSObject;
+          input?: CSSObject;
+          icon?: CSSObject;
+          helperText?: CSSObject;
+          invalidText?: CSSObject;
+          disabled?: {
+            root?: CSSObject;
+            label?: CSSObject;
+            input?: CSSObject;
+            icon?: CSSObject;
+            helperText?: CSSObject;
+            invalidText?: CSSObject;
+          };
+        };
       };
     };
   };

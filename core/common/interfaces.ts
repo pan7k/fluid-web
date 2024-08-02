@@ -6,7 +6,7 @@ export interface EventProps {
   onFocus?: (event: FocusEvent<HTMLElement>) => void;
 }
 
-export interface InputProps {
+export interface InputEventProps {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 

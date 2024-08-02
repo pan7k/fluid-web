@@ -54,6 +54,15 @@ const color = {
   purple: colors.purple[60],
 };
 
+const surface = {
+  blank: colors.white,
+  focus: colors.gray[80],
+  10: colors.gray[10],
+  20: colors.gray[20],
+  30: colors.gray[30],
+  40: colors.gray[40],
+};
+
 const typography = {
   root: {
     fontFamily: "Inter, sans-serif",
@@ -96,15 +105,6 @@ const typography = {
   },
 };
 
-const surface = {
-  blank: colors.white,
-  focus: colors.gray[80],
-  10: colors.gray[10],
-  20: colors.gray[20],
-  30: colors.gray[30],
-  40: colors.gray[40],
-};
-
 const focus = {
   "&:focus": {
     outline: `2px solid ${colors.gray[80]}`,
@@ -112,19 +112,23 @@ const focus = {
   },
 };
 
+const spacing = createSpacing(4);
+
+const breakpoints = createBreakpoints({
+  xs: 320,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+});
+
 export const defaultTheme: Theme = {
   palette,
   color,
   surface,
   typography,
-  spacing: createSpacing(4),
-  breakpoints: createBreakpoints({
-    xs: 320,
-    sm: 576,
-    md: 768,
-    lg: 992,
-    xl: 1200,
-  }),
+  spacing,
+  breakpoints,
   components: {
     button: {
       root: {
@@ -137,56 +141,58 @@ export const defaultTheme: Theme = {
         position: "relative",
         cursor: "pointer",
         border: "1px solid",
-        "& svg": {
-          position: "absolute",
-          insetInlineEnd: "1rem",
-          flexShrink: 0,
-        },
         ...focus,
+      },
+      icon: {
+        position: "absolute",
+        insetInlineEnd: "1rem",
+        flexShrink: 0,
       },
       variant: {
         filled: {
           root: {
             color: palette.text.inverted,
           },
-          primary: {
-            background: palette.primary.main,
-            borderColor: palette.primary.main,
-            "&:hover": {
-              background: palette.primary[10],
+          color: {
+            primary: {
+              background: palette.primary.main,
+              borderColor: palette.primary.main,
+              "&:hover": {
+                background: palette.primary[10],
+              },
+              "&:active": {
+                background: palette.primary[20],
+              },
             },
-            "&:active": {
-              background: palette.primary[20],
+            secondary: {
+              background: palette.secondary.main,
+              borderColor: palette.secondary.main,
+              "&:hover": {
+                background: palette.secondary[10],
+              },
+              "&:active": {
+                background: palette.secondary[20],
+              },
             },
-          },
-          secondary: {
-            background: palette.secondary.main,
-            borderColor: palette.secondary.main,
-            "&:hover": {
-              background: palette.secondary[10],
+            success: {
+              background: palette.success.main,
+              borderColor: palette.success.main,
+              "&:hover": {
+                background: palette.success[10],
+              },
+              "&:active": {
+                background: palette.success[20],
+              },
             },
-            "&:active": {
-              background: palette.secondary[20],
-            },
-          },
-          success: {
-            background: palette.success.main,
-            borderColor: palette.success.main,
-            "&:hover": {
-              background: palette.success[10],
-            },
-            "&:active": {
-              background: palette.success[20],
-            },
-          },
-          danger: {
-            background: palette.danger.main,
-            borderColor: palette.danger.main,
-            "&:hover": {
-              background: palette.danger[10],
-            },
-            "&:active": {
-              background: palette.danger[20],
+            danger: {
+              background: palette.danger.main,
+              borderColor: palette.danger.main,
+              "&:hover": {
+                background: palette.danger[10],
+              },
+              "&:active": {
+                background: palette.danger[20],
+              },
             },
           },
         },
@@ -194,52 +200,54 @@ export const defaultTheme: Theme = {
           root: {
             background: "transparent",
           },
-          primary: {
-            borderColor: palette.primary.main,
-            color: palette.primary.main,
-            "&:hover": {
-              color: surface.blank,
-              background: palette.primary.main,
+          color: {
+            primary: {
+              borderColor: palette.primary.main,
+              color: palette.primary.main,
+              "&:hover": {
+                color: surface.blank,
+                background: palette.primary.main,
+              },
+              "&:active": {
+                color: surface.blank,
+                background: palette.primary[10],
+              },
             },
-            "&:active": {
-              color: surface.blank,
-              background: palette.primary[10],
+            secondary: {
+              borderColor: palette.secondary.main,
+              color: palette.secondary.main,
+              "&:hover": {
+                color: surface.blank,
+                background: palette.secondary.main,
+              },
+              "&:active": {
+                color: surface.blank,
+                background: palette.secondary[10],
+              },
             },
-          },
-          secondary: {
-            borderColor: palette.secondary.main,
-            color: palette.secondary.main,
-            "&:hover": {
-              color: surface.blank,
-              background: palette.secondary.main,
+            success: {
+              borderColor: palette.success.main,
+              color: palette.success.main,
+              "&:hover": {
+                color: surface.blank,
+                background: palette.success.main,
+              },
+              "&:active": {
+                color: surface.blank,
+                background: palette.success[10],
+              },
             },
-            "&:active": {
-              color: surface.blank,
-              background: palette.secondary[10],
-            },
-          },
-          success: {
-            borderColor: palette.success.main,
-            color: palette.success.main,
-            "&:hover": {
-              color: surface.blank,
-              background: palette.success.main,
-            },
-            "&:active": {
-              color: surface.blank,
-              background: palette.success[10],
-            },
-          },
-          danger: {
-            borderColor: palette.danger.main,
-            color: palette.danger.main,
-            "&:hover": {
-              color: surface.blank,
-              background: palette.danger.main,
-            },
-            "&:active": {
-              color: surface.blank,
-              background: palette.danger[10],
+            danger: {
+              borderColor: palette.danger.main,
+              color: palette.danger.main,
+              "&:hover": {
+                color: surface.blank,
+                background: palette.danger.main,
+              },
+              "&:active": {
+                color: surface.blank,
+                background: palette.danger[10],
+              },
             },
           },
         },
@@ -248,44 +256,46 @@ export const defaultTheme: Theme = {
             background: surface[10],
             borderColor: "transparent",
           },
-          primary: {
-            color: palette.primary.main,
-            "&:hover": {
-              background: surface[20],
+          color: {
+            primary: {
+              color: palette.primary.main,
+              "&:hover": {
+                background: surface[20],
+              },
+              "&:active": {
+                color: palette.primary[20],
+                background: surface[30],
+              },
             },
-            "&:active": {
-              color: palette.primary[20],
-              background: surface[30],
+            secondary: {
+              color: palette.secondary.main,
+              "&:hover": {
+                background: surface[20],
+              },
+              "&:active": {
+                color: palette.secondary[20],
+                background: surface[30],
+              },
             },
-          },
-          secondary: {
-            color: palette.secondary.main,
-            "&:hover": {
-              background: surface[20],
+            success: {
+              color: palette.success.main,
+              "&:hover": {
+                background: surface[20],
+              },
+              "&:active": {
+                color: palette.success[20],
+                background: surface[30],
+              },
             },
-            "&:active": {
-              color: palette.secondary[20],
-              background: surface[30],
-            },
-          },
-          success: {
-            color: palette.success.main,
-            "&:hover": {
-              background: surface[20],
-            },
-            "&:active": {
-              color: palette.success[20],
-              background: surface[30],
-            },
-          },
-          danger: {
-            color: palette.danger.main,
-            "&:hover": {
-              background: surface[20],
-            },
-            "&:active": {
-              color: palette.danger[20],
-              background: surface[30],
+            danger: {
+              color: palette.danger.main,
+              "&:hover": {
+                background: surface[20],
+              },
+              "&:active": {
+                color: palette.danger[20],
+                background: surface[30],
+              },
             },
           },
         },
@@ -294,44 +304,46 @@ export const defaultTheme: Theme = {
             background: "transparent",
             borderColor: "transparent",
           },
-          primary: {
-            color: palette.primary.main,
-            "&:hover": {
-              background: surface[10],
+          color: {
+            primary: {
+              color: palette.primary.main,
+              "&:hover": {
+                background: surface[10],
+              },
+              "&:active": {
+                color: palette.primary[20],
+                background: surface[20],
+              },
             },
-            "&:active": {
-              color: palette.primary[20],
-              background: surface[20],
+            secondary: {
+              color: palette.secondary.main,
+              "&:hover": {
+                background: surface[10],
+              },
+              "&:active": {
+                color: palette.secondary[20],
+                background: surface[20],
+              },
             },
-          },
-          secondary: {
-            color: palette.secondary.main,
-            "&:hover": {
-              background: surface[10],
+            success: {
+              color: palette.success.main,
+              "&:hover": {
+                background: surface[10],
+              },
+              "&:active": {
+                color: palette.success[20],
+                background: surface[20],
+              },
             },
-            "&:active": {
-              color: palette.secondary[20],
-              background: surface[20],
-            },
-          },
-          success: {
-            color: palette.success.main,
-            "&:hover": {
-              background: surface[10],
-            },
-            "&:active": {
-              color: palette.success[20],
-              background: surface[20],
-            },
-          },
-          danger: {
-            color: palette.danger.main,
-            "&:hover": {
-              background: surface[10],
-            },
-            "&:active": {
-              color: palette.danger[20],
-              background: surface[20],
+            danger: {
+              color: palette.danger.main,
+              "&:hover": {
+                background: surface[10],
+              },
+              "&:active": {
+                color: palette.danger[20],
+                background: surface[20],
+              },
             },
           },
         },
@@ -356,6 +368,29 @@ export const defaultTheme: Theme = {
         xl: {
           padding: "14px 60px 14px 16px",
           minHeight: "5rem",
+        },
+      },
+    },
+    layer: {
+      root: {
+        padding: spacing(2),
+        background: surface[10],
+      },
+      level: {
+        1: {
+          zIndex: 10,
+        },
+        2: {
+          zIndex: 20,
+          background: surface[20],
+        },
+        3: {
+          zIndex: 30,
+          background: surface[30],
+        },
+        last: {
+          zIndex: 40,
+          background: surface[40],
         },
       },
     },
