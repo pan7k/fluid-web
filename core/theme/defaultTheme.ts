@@ -149,7 +149,7 @@ export const defaultTheme: Theme = {
         maxInlineSize: "20rem",
         position: "relative",
         cursor: "pointer",
-        border: "1px solid",
+        border: "1px solid transparent",
         ...focus,
       },
       icon: {
@@ -165,7 +165,6 @@ export const defaultTheme: Theme = {
           color: {
             primary: {
               background: palette.primary.main,
-              borderColor: palette.primary.main,
               "&:hover": {
                 background: palette.primary[10],
               },
@@ -175,7 +174,6 @@ export const defaultTheme: Theme = {
             },
             secondary: {
               background: palette.secondary.main,
-              borderColor: palette.secondary.main,
               "&:hover": {
                 background: palette.secondary[10],
               },
@@ -185,7 +183,6 @@ export const defaultTheme: Theme = {
             },
             success: {
               background: palette.success.main,
-              borderColor: palette.success.main,
               "&:hover": {
                 background: palette.success[10],
               },
@@ -195,7 +192,6 @@ export const defaultTheme: Theme = {
             },
             danger: {
               background: palette.danger.main,
-              borderColor: palette.danger.main,
               "&:hover": {
                 background: palette.danger[10],
               },
@@ -263,7 +259,6 @@ export const defaultTheme: Theme = {
         light: {
           root: {
             background: surface[10],
-            borderColor: "transparent",
           },
           color: {
             primary: {
@@ -311,7 +306,6 @@ export const defaultTheme: Theme = {
         ghost: {
           root: {
             background: "transparent",
-            borderColor: "transparent",
           },
           color: {
             primary: {
