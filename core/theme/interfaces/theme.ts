@@ -8,8 +8,8 @@ import {
 } from "./common";
 import { Button } from "./button";
 import { Layer } from "./layer";
-import { Input } from "./input";
 import { Icon } from "./icon";
+import { TextInput } from "./textInput";
 
 export interface Theme {
   breakpoints: Breakpoints;
@@ -21,7 +21,7 @@ export interface Theme {
   components?: {
     button?: Button;
     icon?: Icon;
-    input?: Input;
     layer?: Layer;
+    textInput?: TextInput;
   };
 }

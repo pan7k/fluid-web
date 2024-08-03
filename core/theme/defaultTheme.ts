@@ -15,7 +15,7 @@ import { createSpacing } from "./createSpacing";
 const palette: Palette = {
   text: {
     primary: colors.black,
-    secondary: colors.gray[80],
+    secondary: colors.gray[60],
     inverted: colors.white,
   },
   primary: {
@@ -122,6 +122,14 @@ const focus: CSSObject = {
   "&:focus": {
     outline: `2px solid ${colors.gray[80]}`,
     outlineOffset: "1px",
+  },
+};
+
+const focusWithin: CSSObject = {
+  "&:focus-within": {
+    outline: `2px solid ${colors.gray[80]}`,
+    outlineOffset: "1px",
+    borderBottom: "1px solid transparent",
   },
 };
 
@@ -381,8 +389,8 @@ export const defaultTheme: Theme = {
     icon: {
       size: {
         xs: 16,
-        sm: 24,
-        md: 32,
+        sm: 20,
+        md: 24,
         lg: 40,
         xl: 48,
       },
@@ -402,6 +410,107 @@ export const defaultTheme: Theme = {
         last: {
           background: surface[10],
           marginTop: spacing(4),
+        },
+      },
+    },
+    textInput: {
+      root: {
+        fontFamily: typography.root.fontFamily,
+      },
+      label: {
+        fontSize: typography.caption.fontSize,
+        color: palette.text.secondary,
+      },
+      input: {
+        fontSize: typography.body.fontSize,
+        border: "none",
+        outline: "none",
+        width: "100%",
+        background: "none",
+      },
+      icon: {
+        fill: palette.text.secondary,
+      },
+      helperText: {
+        color: palette.text.secondary,
+        fontSize: typography.caption.fontSize,
+      },
+      warningText: {
+        color: palette.warning.main,
+      },
+      invalidText: {
+        color: palette.danger.main,
+      },
+      variant: {
+        normal: {
+          root: {
+            display: "flex",
+            flexDirection: "column",
+            gap: spacing(2),
+          },
+          stack: {
+            display: "flex",
+            alignItems: "center",
+            width: "400px",
+            padding: "8px 10px",
+            background: surface[10],
+            borderBottom: `1px solid ${surface[20]}`,
+            ...focusWithin,
+          },
+        },
+        fluid: {
+          root: {
+            display: "flex",
+            flexDirection: "column",
+            background: surface[10],
+            borderBottom: `1px solid ${surface[20]}`,
+            padding: "8px 10px",
+            width: "400px",
+            ...focusWithin,
+          },
+          label: {},
+          stack: {
+            display: "flex",
+            flexDirection: "row",
+          },
+          input: {
+            marginLeft: "-1px",
+          },
+          icon: {},
+          helperText: {},
+          warningText: {},
+          invalidText: {},
+        },
+      },
+      size: {
+        xs: {
+          label: {
+            fontSize: "0.65rem",
+          },
+          input: {
+            height: "18px",
+            fontSize: "0.75rem",
+          },
+          helperText: {
+            fontSize: "0.65rem",
+          },
+          warningText: {
+            fontSize: "0.65rem",
+          },
+          invalidText: {
+            fontSize: "0.65rem",
+          },
+        },
+        sm: {
+          input: {
+            height: "24px",
+          },
+        },
+        md: {
+          input: {
+            height: "32px",
+            fontSize: "1rem",
+          },
         },
       },
     },

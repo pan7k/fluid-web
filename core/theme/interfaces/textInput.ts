@@ -1,17 +1,9 @@
 import { CSSObject } from "styled-components";
 
-interface Text {
-  root?: CSSObject;
-  label?: CSSObject;
-  helper?: CSSObject;
-  warning?: CSSObject;
-  invalid?: CSSObject;
-}
-
 interface Size {
-  sm?: CSSObject;
-  md?: CSSObject;
-  lg?: CSSObject;
+  xs?: Root;
+  sm?: Root;
+  md?: Root;
 }
 
 interface Variant {
@@ -22,12 +14,16 @@ interface Variant {
 
 interface Root {
   root?: CSSObject;
-  text?: Text;
+  label?: CSSObject;
+  stack?: CSSObject;
   input?: CSSObject;
   icon?: CSSObject;
+  helperText?: CSSObject;
+  warningText?: CSSObject;
+  invalidText?: CSSObject;
 }
 
-export interface Input extends Root {
+export interface TextInput extends Root {
   variant?: Variant;
   size?: Size;
 }
