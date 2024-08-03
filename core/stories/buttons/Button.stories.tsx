@@ -2,7 +2,6 @@ import React, { FC, useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { parameters } from "../../storybook/parameters";
 import { Button, ButtonProps } from "../../buttons/Button";
-import { AddLarge } from "@carbon/icons-react";
 
 export default {
   title: "Buttons/Button",
@@ -27,6 +26,7 @@ export const Default: StoryObj<typeof Button> = {
     variant: "filled",
     size: "md",
     icon: "add",
+    sx: {},
   },
   render: (args) => <ButtonWithHooks {...args} />,
   parameters: parameters("<Button />", "Button component"),

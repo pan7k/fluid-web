@@ -14,3 +14,6 @@ export { createSpacing } from "./theme/createSpacing";
 export { createTheme } from "./theme/createTheme";
 export { defaultTheme } from "./theme/defaultTheme";
 export { ThemeProvider } from "./theme/ThemeProvider";
+
+/* Typography */
+export { Text } from "./typography/Text";

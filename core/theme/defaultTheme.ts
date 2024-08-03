@@ -82,6 +82,10 @@ const typography: Typography = {
     fontSize: "0.875rem",
     lineHeight: "1.6",
   },
+  caption: {
+    fontSize: "0.75rem",
+    lineHeight: "1.6",
+  },
   h1: {
     fontSize: "2.25rem",
     fontWeight: 600,

@@ -25,6 +25,7 @@ export interface Surface {
 export interface Typography {
   root: CSSObject;
   body: CSSObject;
+  caption: CSSObject;
   h1: CSSObject;
   h2: CSSObject;
   h3: CSSObject;

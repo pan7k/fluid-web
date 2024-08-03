@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { ComponentSize } from "../common/types";
 import { useTheme } from "styled-components";
+import { Theme } from "../theme/interfaces/theme";
 
 export type IconVariant = "add";
 
@@ -15,7 +16,7 @@ export const Icon: FC<IconProps> = ({
   size = "md",
   color = "currentColor",
 }) => {
-  const theme = useTheme();
+  const theme = useTheme() as Theme;
   const iconSize = theme.components?.icon?.size?.[size] || 32;
 
   if (variant === "add") {
