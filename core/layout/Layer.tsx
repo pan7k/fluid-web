@@ -8,7 +8,8 @@ export interface LayerContextProps {
 
 export const LayerContext = createContext<LayerContextProps>({ level: 0 });
 
-interface LayerProps {
+export interface LayerProps {
+  level?: number;
   children: ReactNode;
 }
 

@@ -385,17 +385,19 @@ export const defaultTheme: Theme = {
     },
     layer: {
       root: {
-        padding: spacing(2),
+        padding: spacing(4),
       },
       level: {
         1: {
           background: surface[10],
         },
         2: {
-          background: surface[20],
+          background: surface.blank,
+          marginTop: spacing(4),
         },
         last: {
-          background: surface[30],
+          background: surface[10],
+          marginTop: spacing(4),
         },
       },
     },
