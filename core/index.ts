@@ -6,5 +6,8 @@ export { createTheme } from "./theme/createTheme";
 export { defaultTheme } from "./theme/defaultTheme";
 export { ThemeProvider } from "./theme/ThemeProvider";
 
+/* Layout */
+export * from "./layout/Layer";
+
 /* Buttons */
 export * from "./buttons/Button";

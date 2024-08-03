@@ -26,7 +26,7 @@ export const Default: StoryObj<typeof Button> = {
     color: "primary",
     variant: "filled",
     size: "md",
-    icon: <AddLarge />,
+    icon: "add",
   },
   render: (args) => <ButtonWithHooks {...args} />,
   parameters: parameters("<Button />", "Button component"),

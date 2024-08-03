@@ -1,12 +1,12 @@
-import React, { createContext, useContext, ReactNode, FC } from "react";
+import React, { useContext, ReactNode, FC, createContext } from "react";
 import styled from "styled-components";
-import { Theme } from "../theme/interfaces";
+import { Theme } from "../theme/interfaces/theme";
 
-interface LayerContextProps {
+export interface LayerContextProps {
   level: number;
 }
 
-const LayerContext = createContext<LayerContextProps>({ level: 0 });
+export const LayerContext = createContext<LayerContextProps>({ level: 0 });
 
 interface LayerProps {
   children: ReactNode;

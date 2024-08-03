@@ -1,6 +1,7 @@
 import { CSSObject } from "styled-components";
 import { Theme } from "./interfaces/theme";
 import {
+  Breakpoints,
   Color,
   Palette,
   Spacing,
@@ -122,7 +123,7 @@ const focus: CSSObject = {
 
 const spacing: Spacing = createSpacing(4);
 
-const breakpoints = createBreakpoints({
+const breakpoints: Breakpoints = createBreakpoints({
   xs: 320,
   sm: 576,
   md: 768,
@@ -382,15 +383,16 @@ export const defaultTheme: Theme = {
     layer: {
       root: {
         padding: spacing(2),
-        background: surface[10],
       },
       level: {
         1: {
-          zIndex: 10,
+          background: surface[10],
         },
         2: {
-          zIndex: 20,
           background: surface[20],
+        },
+        last: {
+          background: surface[30],
         },
       },
     },

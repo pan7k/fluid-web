@@ -5,5 +5,6 @@ export interface Layer {
   level?: {
     1?: CSSObject;
     2?: CSSObject;
+    last?: CSSObject;
   };
 }

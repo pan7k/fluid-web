@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent, MouseEvent } from "react";
+import { FocusEvent, FormEventHandler, MouseEvent } from "react";
 import { CSSObject } from "styled-components";
 
 export interface EventProps {
@@ -7,7 +7,7 @@ export interface EventProps {
 }
 
 export interface InputEventProps {
-  onChange?: (event: ChangeEvent) => void;
+  onChange?: FormEventHandler<HTMLDivElement>;
 }
 
 export interface SxProps {

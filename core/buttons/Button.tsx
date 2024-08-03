@@ -2,18 +2,23 @@ import React, { FC, ReactNode } from "react";
 import styled from "styled-components";
 import { Theme } from "../theme/interfaces/theme";
 import { EventProps } from "../common/interfaces";
-import { ButtonColor, ButtonVariant, ComponentSize } from "../common/types";
+import { ComponentSize } from "../common/types";
+import { Icon, IconVariant } from "../icons/Icon";
+import { Add, AddLarge } from "@carbon/icons-react";
+
+export type ButtonColor = "primary" | "secondary" | "success" | "danger";
+export type ButtonVariant = "filled" | "outline" | "light" | "ghost";
 
 export interface ButtonProps extends EventProps {
   label: string;
+  icon?: IconVariant;
   color?: ButtonColor;
   variant?: ButtonVariant;
   size?: ComponentSize;
-  icon?: ReactNode;
 }
 
 interface BaseProps {
-  theme?: Theme;
+  theme: Theme;
   $color: ButtonColor;
   $variant: ButtonVariant;
   $size: ComponentSize;
@@ -30,8 +35,8 @@ const Base = styled("button")<BaseProps>(
   }),
 );
 
-const Icon = styled("div")<IconProps>(({ theme, $variant }) => ({
-  "& svg": {
+const IconBase = styled("div")<IconProps>(({ theme, $variant }) => ({
+  svg: {
     ...theme.components?.button?.icon,
     ...theme.components?.button?.variant?.[$variant]?.icon,
   },
@@ -48,7 +53,9 @@ export const Button: FC<ButtonProps> = ({
   return (
     <Base $color={color} $variant={variant} $size={size} {...rest}>
       {label}
-      <Icon $variant={variant}>{icon}</Icon>
+      <IconBase $variant={variant}>
+        <Icon variant={icon} size="xs" />
+      </IconBase>
     </Base>
   );
 };

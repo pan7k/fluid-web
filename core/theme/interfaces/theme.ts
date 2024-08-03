@@ -1,5 +1,3 @@
-import { CSSObject } from "styled-components";
-import { Button } from "./button";
 import {
   Breakpoints,
   Color,
@@ -8,6 +6,9 @@ import {
   Surface,
   Typography,
 } from "./common";
+import { Button } from "./button";
+import { Layer } from "./layer";
+import { Input } from "./input";
 
 export interface Theme {
   breakpoints: Breakpoints;
@@ -18,70 +19,7 @@ export interface Theme {
   typography: Typography;
   components?: {
     button?: Button;
-    layer?: {
-      root?: CSSObject;
-      level?: {
-        1?: CSSObject;
-        2?: CSSObject;
-      };
-    };
-    input?: {
-      root?: CSSObject;
-      input?: CSSObject;
-      icon?: CSSObject;
-      text?: {
-        label?: CSSObject;
-        placeholder?: CSSObject;
-        helper?: CSSObject;
-        invalid?: CSSObject;
-      };
-      disabled?: {
-        root?: CSSObject;
-        label?: CSSObject;
-        input?: CSSObject;
-        icon?: CSSObject;
-        helperText?: CSSObject;
-        invalidText?: CSSObject;
-      };
-      size?: {
-        sm?: CSSObject;
-        md?: CSSObject;
-        lg?: CSSObject;
-      };
-      variant?: {
-        normal?: {
-          root?: CSSObject;
-          label?: CSSObject;
-          input?: CSSObject;
-          icon?: CSSObject;
-          helperText?: CSSObject;
-          invalidText?: CSSObject;
-          disabled?: {
-            root?: CSSObject;
-            label?: CSSObject;
-            input?: CSSObject;
-            icon?: CSSObject;
-            helperText?: CSSObject;
-            invalidText?: CSSObject;
-          };
-        };
-        fluid?: {
-          root?: CSSObject;
-          label?: CSSObject;
-          input?: CSSObject;
-          icon?: CSSObject;
-          helperText?: CSSObject;
-          invalidText?: CSSObject;
-          disabled?: {
-            root?: CSSObject;
-            label?: CSSObject;
-            input?: CSSObject;
-            icon?: CSSObject;
-            helperText?: CSSObject;
-            invalidText?: CSSObject;
-          };
-        };
-      };
-    };
+    layer?: Layer;
+    input?: Input;
   };
 }
