@@ -9,6 +9,7 @@ import {
 import { Button } from "./button";
 import { Layer } from "./layer";
 import { Input } from "./input";
+import { Icon } from "./icon";
 
 export interface Theme {
   breakpoints: Breakpoints;
@@ -19,7 +20,8 @@ export interface Theme {
   typography: Typography;
   components?: {
     button?: Button;
-    layer?: Layer;
+    icon?: Icon;
     input?: Input;
+    layer?: Layer;
   };
 }

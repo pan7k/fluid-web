@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { ComponentSize } from "../common/types";
-import { Theme } from "../theme/interfaces/theme";
+import { useTheme } from "styled-components";
 
 export type IconVariant = "add";
 
@@ -10,26 +10,13 @@ export interface IconProps {
   color?: string;
 }
 
-interface BaseProps {
-  theme: Theme;
-  $variant: IconVariant;
-  $size: ComponentSize;
-}
-
-const sizes = {
-  xs: 16,
-  sm: 24,
-  md: 32,
-  lg: 40,
-  xl: 48,
-};
-
 export const Icon: FC<IconProps> = ({
   variant = "add",
   size = "md",
   color = "currentColor",
 }) => {
-  const iconSize = sizes[size];
+  const theme = useTheme();
+  const iconSize = theme.components?.icon?.size?.[size] || 32;
 
   if (variant === "add") {
     return (

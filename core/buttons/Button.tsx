@@ -1,10 +1,9 @@
-import React, { FC, ReactNode } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import { Theme } from "../theme/interfaces/theme";
 import { EventProps } from "../common/interfaces";
 import { ComponentSize } from "../common/types";
 import { Icon, IconVariant } from "../icons/Icon";
-import { Add, AddLarge } from "@carbon/icons-react";
 
 export type ButtonColor = "primary" | "secondary" | "success" | "danger";
 export type ButtonVariant = "filled" | "outline" | "light" | "ghost";
@@ -53,9 +52,11 @@ export const Button: FC<ButtonProps> = ({
   return (
     <Base $color={color} $variant={variant} $size={size} {...rest}>
       {label}
-      <IconBase $variant={variant}>
-        <Icon variant={icon} size="xs" />
-      </IconBase>
+      {icon && (
+        <IconBase $variant={variant}>
+          <Icon variant={icon} size="xs" />
+        </IconBase>
+      )}
     </Base>
   );
 };

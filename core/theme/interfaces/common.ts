@@ -37,7 +37,7 @@ export interface Spacing {
   (factor: number): string;
 }
 
-// Palette
+/* Palette */
 
 interface PaletteColor {
   main: string;
@@ -61,7 +61,7 @@ export interface Palette {
   info: PaletteColor;
 }
 
-// Breakpoints
+/* Breakpoints */
 
 export interface BreakpointValues {
   [key: string]: number;

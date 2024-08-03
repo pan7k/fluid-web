@@ -380,6 +380,15 @@ export const defaultTheme: Theme = {
         },
       },
     },
+    icon: {
+      size: {
+        xs: 16,
+        sm: 24,
+        md: 32,
+        lg: 40,
+        xl: 48,
+      },
+    },
     layer: {
       root: {
         padding: spacing(2),
