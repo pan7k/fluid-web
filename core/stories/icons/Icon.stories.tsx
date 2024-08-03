@@ -3,16 +3,16 @@ import { parameters } from "../../storybook/parameters";
 import { Icon } from "../../icons/Icon";
 
 export default {
-  title: "Icons/Add",
+  title: "Icons/Icon",
   component: Icon,
 } satisfies Meta<typeof Icon>;
 
 export const Default: StoryObj<typeof Icon> = {
-  name: "Add",
+  name: "Icon",
   args: {
     variant: "add",
     color: "black",
     size: "xl",
   },
-  parameters: parameters("<Add />", "Add icon"),
+  parameters: parameters(`<Icon variant="add" size="xl" />`, "Icon component"),
 };

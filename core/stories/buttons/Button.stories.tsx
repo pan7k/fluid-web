@@ -29,5 +29,8 @@ export const Default: StoryObj<typeof Button> = {
     sx: {},
   },
   render: (args) => <ButtonWithHooks {...args} />,
-  parameters: parameters("<Button />", "Button component"),
+  parameters: parameters(
+    `<Button label="Button" icon="add" />`,
+    "Button component",
+  ),
 };

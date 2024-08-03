@@ -29,5 +29,17 @@ export const Default: StoryObj<typeof Layer> = {
     sx: {},
   },
   render: (args) => <LayerWithOutline {...args} />,
-  parameters: parameters("<Layer />", "Layer component"),
+  parameters: parameters(
+    `<Layer>
+  <Text>First layer</Text>
+  <Layer>
+    <Text>Second layer</Text>
+    <Layer>
+      <Text>Last layer</Text>
+    </Layer>
+  </Layer>
+</Layer>
+    `,
+    "Layer component",
+  ),
 };
