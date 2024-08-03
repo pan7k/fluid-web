@@ -1,17 +1,18 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { parameters } from "../../storybook/parameters";
-import { Add } from "@carbon/icons-react";
+import { Icon } from "../../icons/Icon";
 
 export default {
   title: "Icons/Add",
-  component: Add,
-} satisfies Meta<typeof Add>;
+  component: Icon,
+} satisfies Meta<typeof Icon>;
 
-export const Default: StoryObj<typeof Add> = {
+export const Default: StoryObj<typeof Icon> = {
   name: "Add",
   args: {
-    size: 24,
+    variant: "add",
     color: "black",
+    size: "xl",
   },
-  parameters: parameters("<Add />", "Carbon icon"),
+  parameters: parameters("<Add />", "Add icon"),
 };
