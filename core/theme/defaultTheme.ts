@@ -391,8 +391,8 @@ export const defaultTheme: Theme = {
         xs: 16,
         sm: 20,
         md: 24,
-        lg: 40,
-        xl: 48,
+        lg: 30,
+        xl: 40,
       },
     },
     layer: {
@@ -417,10 +417,6 @@ export const defaultTheme: Theme = {
       root: {
         fontFamily: typography.root.fontFamily,
       },
-      label: {
-        fontSize: typography.caption.fontSize,
-        color: palette.text.secondary,
-      },
       input: {
         fontSize: typography.body.fontSize,
         border: "none",
@@ -429,17 +425,26 @@ export const defaultTheme: Theme = {
         background: "none",
       },
       icon: {
-        fill: palette.text.secondary,
+        adornment: {
+          color: palette.text.secondary,
+        },
       },
-      helperText: {
-        color: palette.text.secondary,
-        fontSize: typography.caption.fontSize,
-      },
-      warningText: {
-        color: palette.warning.main,
-      },
-      invalidText: {
-        color: palette.danger.main,
+      text: {
+        root: {
+          fontSize: typography.caption.fontSize,
+        },
+        label: {
+          color: palette.text.secondary,
+        },
+        description: {
+          color: palette.text.secondary,
+        },
+        warning: {
+          color: palette.warning[10],
+        },
+        invalid: {
+          color: palette.danger[10],
+        },
       },
       variant: {
         normal: {
@@ -451,7 +456,6 @@ export const defaultTheme: Theme = {
           stack: {
             display: "flex",
             alignItems: "center",
-            width: "400px",
             padding: "8px 10px",
             background: surface[10],
             borderBottom: `1px solid ${surface[20]}`,
@@ -464,11 +468,9 @@ export const defaultTheme: Theme = {
             flexDirection: "column",
             background: surface[10],
             borderBottom: `1px solid ${surface[20]}`,
-            padding: "8px 10px",
-            width: "400px",
+            padding: "8px 10px 4px 10px",
             ...focusWithin,
           },
-          label: {},
           stack: {
             display: "flex",
             flexDirection: "row",
@@ -476,40 +478,80 @@ export const defaultTheme: Theme = {
           input: {
             marginLeft: "-1px",
           },
-          icon: {},
-          helperText: {},
-          warningText: {},
-          invalidText: {},
+          size: {
+            xs: {
+              stack: {
+                padding: "0px",
+              },
+            },
+            sm: {
+              root: {
+                padding: "4px 10px",
+              },
+              stack: {
+                padding: "0px",
+              },
+            },
+          },
         },
       },
       size: {
         xs: {
-          label: {
-            fontSize: "0.65rem",
+          text: {
+            root: {
+              fontSize: "0.65rem",
+            },
+            label: {
+              fontSize: "0.65rem",
+            },
+          },
+          stack: {
+            padding: "4px 10px",
           },
           input: {
             height: "18px",
             fontSize: "0.75rem",
           },
-          helperText: {
-            fontSize: "0.65rem",
-          },
-          warningText: {
-            fontSize: "0.65rem",
-          },
-          invalidText: {
-            fontSize: "0.65rem",
-          },
         },
         sm: {
-          input: {
-            height: "24px",
+          stack: {
+            padding: "6px 10px",
           },
         },
         md: {
           input: {
+            height: "24px",
+          },
+        },
+        lg: {
+          text: {
+            root: {
+              fontSize: "0.8rem",
+            },
+            label: {
+              fontSize: "0.8rem",
+            },
+          },
+          input: {
             height: "32px",
             fontSize: "1rem",
+          },
+        },
+      },
+      state: {
+        disabled: {
+          text: {
+            root: {
+              color: colors.gray[30],
+            },
+          },
+          stack: {
+            background: colors.gray[0],
+          },
+          icon: {
+            adornment: {
+              color: colors.gray[30],
+            },
           },
         },
       },

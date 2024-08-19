@@ -25,9 +25,7 @@ const LayerWithOutline: FC<LayerProps> = () => {
 
 export const Default: StoryObj<typeof Layer> = {
   name: "Layer",
-  args: {
-    sx: {},
-  },
+  args: {},
   render: (args) => <LayerWithOutline {...args} />,
   parameters: parameters(
     `<Layer>

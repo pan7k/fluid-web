@@ -1,8 +1,6 @@
 import React, { FC } from "react";
-import styled from "styled-components";
+import styled, { CSSObject } from "styled-components";
 import { Theme } from "../theme/interfaces/theme";
-import { SxProps } from "../common/interfaces";
-import { SX } from "../common/types";
 
 export type TextColor = "primary" | "secondary" | "inverted";
 export type TextType =
@@ -15,17 +13,18 @@ export type TextType =
   | "h5"
   | "h6";
 
-export interface TextProps extends SxProps {
+export interface TextProps {
   variant?: TextType;
   color?: TextColor;
   children: string;
+  sx?: CSSObject;
 }
 
 interface BaseProps {
   theme: Theme;
   $variant: TextType;
   $color: TextColor;
-  $sx?: SX;
+  $sx?: CSSObject;
 }
 
 const Span = styled("span")<BaseProps>(({ theme, $variant, $color, $sx }) => ({

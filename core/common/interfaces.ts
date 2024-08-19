@@ -9,7 +9,3 @@ export interface EventProps {
 export interface InputEventProps {
   onChange?: FormEventHandler<HTMLDivElement>;
 }
-
-export interface SxProps {
-  sx?: CSSObject;
-}

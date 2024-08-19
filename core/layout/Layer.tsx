@@ -1,8 +1,6 @@
 import React, { useContext, ReactNode, FC, createContext } from "react";
-import styled from "styled-components";
+import styled, { CSSObject } from "styled-components";
 import { Theme } from "../theme/interfaces/theme";
-import { SxProps } from "../common/interfaces";
-import { SX } from "../common/types";
 
 export interface LayerContextProps {
   level: number;
@@ -10,14 +8,15 @@ export interface LayerContextProps {
 
 export const LayerContext = createContext<LayerContextProps>({ level: 0 });
 
-export interface LayerProps extends SxProps {
+export interface LayerProps {
   children: ReactNode;
+  sx?: CSSObject;
 }
 
 interface BaseProps {
   theme?: Theme;
   $level: number;
-  $sx?: SX;
+  $sx?: CSSObject;
 }
 
 const Base = styled("div")<BaseProps>(({ theme, $level, $sx }) => ({

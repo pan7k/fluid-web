@@ -10,7 +10,7 @@ export default {
 export const Default: StoryObj<typeof Icon> = {
   name: "Icon",
   args: {
-    variant: "add",
+    symbol: "add",
     color: "black",
     size: "xl",
   },
