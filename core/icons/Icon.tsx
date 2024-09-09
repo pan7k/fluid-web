@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import React, { FC } from "react";
 import { ComponentSize } from "../common/types";
 import { CSSObject, useTheme } from "styled-components";
 import { Theme } from "../theme/interfaces/theme";

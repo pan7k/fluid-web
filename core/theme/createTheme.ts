@@ -54,4 +54,22 @@ export const createTheme = (overrides?: Partial<Theme>): Theme => ({
   },
   spacing: overrides?.spacing || defaults.spacing,
   breakpoints: overrides?.breakpoints || defaults.breakpoints,
+  components: {
+    button: {
+      ...defaults.components?.button,
+      ...overrides?.components?.button,
+    },
+    icon: {
+      ...defaults.components?.icon,
+      ...overrides?.components?.icon,
+    },
+    layer: {
+      ...defaults.components?.layer,
+      ...overrides?.components?.layer,
+    },
+    textInput: {
+      ...defaults.components?.textInput,
+      ...overrides?.components?.textInput,
+    },
+  },
 });

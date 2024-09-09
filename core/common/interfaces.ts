@@ -1,5 +1,4 @@
 import { FocusEvent, FormEventHandler, MouseEvent } from "react";
-import { CSSObject } from "styled-components";
 
 export interface EventProps {
   onClick?: (event: MouseEvent) => void;
