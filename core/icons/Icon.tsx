@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import { ComponentSize } from "../common/types";
 import { CSSObject, useTheme } from "styled-components";
 import { Theme } from "../theme/interfaces/theme";
-import { isDark } from "../theme/colors";
 
 export type IconSymbol = "add" | "error" | "warning";
 export type IconVariant = "filled" | "outlined";
@@ -22,52 +21,24 @@ interface SVG {
 
 const Add: FC<SVG> = ({ fill }) => (
   <polygon
-    points="17 15 17 5 15 5 15 15 5 15 5 17 15 17 15 27 17 27 17 17 27 17 27 15 17 15"
+    points="18 16 18 6 16 6 16 16 6 16 6 18 16 18 16 28 18 28 18 18 28 18 28 16 18 16"
     fill={fill}
   />
 );
 
-const Error: FC<SVG> = ({ fill, variant }) => {
-  const inverted =
-    fill === "currentColor" ? "transparent" : isDark(fill) ? "#fff" : "#000";
+const Error: FC<SVG> = ({ fill, variant }) => (
+  <path
+    d="M16,2.2C8.2,2.2,2.2,8.2,2.2,16s6,13.8,13.8,13.8S29.8,23.8,29.8,16C29.8,8.2,23.8,2.2,16,2.2z M15,8h2v11h-2V8z M16,24.5c-0.8,0-1.5-0.7-1.5-1.5S15.2,21.5,16,21.5s1.5,0.7,1.5,1.5S16.8,24.5,16,24.5z"
+    fill={fill}
+  />
+);
 
-  return (
-    <>
-      <path
-        d="M17.5,23.5c0,0.8-0.7,1.5-1.5,1.5c-0.8,0-1.5-0.7-1.5-1.5S15.2,22,16,22
-        C16.8,22,17.5,22.7,17.5,23.5z M17.1,8h-2.2v11h2.2V8z"
-        fill={inverted}
-      />
-      <path
-        d="M16,2C8.3,2,2,8.3,2,16s6.3,14,14,14s14-6.3,14-14C30,8.3,23.7,2,16,2z M14.9,8h2.2v11h-2.2V8z M16,25
-        c-0.8,0-1.5-0.7-1.5-1.5S15.2,22,16,22c0.8,0,1.5,0.7,1.5,1.5S16.8,25,16,25z"
-        fill={fill}
-      />
-    </>
-  );
-};
-
-const Warning: FC<SVG> = ({ fill, variant }) => {
-  const inverted =
-    fill === "currentColor" ? "transparent" : isDark(fill) ? "#fff" : "#000";
-
-  return (
-    <>
-      <path
-        d="M16,26a1.5,1.5,0,1,1,1.5-1.5A1.5,1.5,0,0,1,16,26Zm-1.125-5h2.25V12h-2.25Z"
-        fill={inverted}
-      />
-      <path
-        d="M16.002,6.1714h-.004L4.6487,27.9966,4.6506,28H27.3494l.0019-.0034ZM14.875,12h2.25v9h-2.25ZM16,26a1.5,1.5,0,1,1,1.5-1.5A1.5,1.5,0,0,1,16,26Z"
-        fill={fill}
-      />
-      <path
-        d="M29,30H3a1,1,0,0,1-.8872-1.4614l13-25a1,1,0,0,1,1.7744,0l13,25A1,1,0,0,1,29,30ZM4.6507,28H27.3493l.002-.0033L16.002,6.1714h-.004L4.6487,27.9967Z"
-        fill="none"
-      />
-    </>
-  );
-};
+const Warning: FC<SVG> = ({ fill, variant }) => (
+  <path
+    d="M16.1,6.4h-0.005L4.795,28.4l0.002,0.004h22.407l0.002-0.004L16.1,6.4z M15,11h2v9h-2V11z M16,25c-0.8,0-1.5-0.7-1.5-1.5S15.2,22,16,22s1.5,0.7,1.5,1.5S16.8,25,16,25z"
+    fill={fill}
+  />
+);
 
 export const Icon: FC<IconProps> = ({
   symbol,
