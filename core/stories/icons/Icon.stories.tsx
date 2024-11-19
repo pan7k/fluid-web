@@ -11,8 +11,12 @@ export const Default: StoryObj<typeof Icon> = {
   name: "Icon",
   args: {
     symbol: "add",
+    variant: "outlined",
     color: "black",
     size: "xl",
   },
-  parameters: parameters(`<Icon variant="add" size="xl" />`, "Icon component"),
+  parameters: parameters(
+    `<Icon variant="add" color="black" size="xl" />`,
+    "Icon component",
+  ),
 };

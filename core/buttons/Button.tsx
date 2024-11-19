@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { forwardRef, ReactNode } from "react";
 import styled, { CSSObject } from "styled-components";
 import { Theme } from "../theme/interfaces/theme";
 import { EventProps } from "../common/interfaces";
@@ -8,19 +8,15 @@ import { Icon, IconSymbol, IconVariant } from "../icons/Icon";
 export type ButtonColor = "primary" | "secondary" | "success" | "danger";
 export type ButtonVariant = "filled" | "outline" | "light" | "ghost";
 
-interface CSSProps {
-  root?: CSSObject;
-  icon?: CSSObject;
-}
-
 export interface ButtonProps extends EventProps {
-  label: string;
+  label: ReactNode;
   icon?: IconSymbol;
   iconVariant?: IconVariant;
   color?: ButtonColor;
   variant?: ButtonVariant;
+  disabled?: boolean;
   size?: ComponentSize;
-  sx?: CSSProps;
+  sx?: CSSObject;
 }
 
 interface BaseProps {
@@ -33,46 +29,56 @@ interface BaseProps {
 
 interface IconProps extends Omit<BaseProps, "$color" | "$size"> {}
 
-const Base = styled("button")<BaseProps>(
-  ({ theme, $color, $variant, $size, $sx }) => ({
+const Base = styled.button<BaseProps>(
+  ({ theme, disabled, $color, $variant, $size, $sx }) => ({
     ...theme.components?.button?.root,
     ...theme.components?.button?.variant?.[$variant]?.root,
     ...theme.components?.button?.variant?.[$variant]?.color?.[$color],
     ...theme.components?.button?.size?.[$size],
+    ...(disabled ? theme.components?.button?.disabled : {}),
+    ...$sx,
   }),
 );
 
-const IconBase = styled("div")<IconProps>(({ theme, $variant }) => ({
+const IconBase = styled.div<IconProps>(({ theme, $variant }) => ({
   svg: {
     ...theme.components?.button?.icon,
     ...theme.components?.button?.variant?.[$variant]?.icon,
   },
 }));
 
-export const Button: FC<ButtonProps> = ({
-  label,
-  color = "primary",
-  variant = "filled",
-  size = "md",
-  icon,
-  iconVariant = "filled",
-  sx,
-  ...rest
-}) => {
-  return (
-    <Base
-      $color={color}
-      $variant={variant}
-      $size={size}
-      $sx={sx?.root}
-      {...rest}
-    >
-      {label}
-      {icon && (
-        <IconBase $variant={variant} $sx={sx?.icon}>
-          <Icon symbol={icon} variant={iconVariant} size="xs" />
-        </IconBase>
-      )}
-    </Base>
-  );
-};
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      label,
+      color = "primary",
+      variant = "filled",
+      size = "md",
+      disabled,
+      icon,
+      iconVariant = "filled",
+      sx,
+      ...rest
+    },
+    ref,
+  ) => {
+    return (
+      <Base
+        ref={ref}
+        $color={color}
+        $variant={variant}
+        disabled={disabled}
+        $size={size}
+        $sx={sx}
+        {...rest}
+      >
+        {label}
+        {icon && (
+          <IconBase $variant={variant}>
+            <Icon symbol={icon} variant={iconVariant} size="xs" />
+          </IconBase>
+        )}
+      </Base>
+    );
+  },
+);

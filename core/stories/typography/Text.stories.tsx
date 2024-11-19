@@ -15,7 +15,7 @@ export const Default: StoryObj<typeof Text> = {
     children: "Lorem ipsum dolor sit amet",
   },
   parameters: parameters(
-    "<Text>Lorem ipsum dolor sit amet</Text>",
+    `<Text>Lorem ipsum dolor sit amet</Text>`,
     "Text component",
   ),
 };

@@ -3,6 +3,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { parameters } from "../../storybook/parameters";
 import { Layer, LayerProps } from "../../layout/Layer";
 import { Text } from "../../typography/Text";
+import { TextInput } from "../../inputs/TextInput";
+import { Chip } from "../../fields/Chip";
+import { Stack } from "../../layout/Stack";
 
 export default {
   title: "Layout/Layer",
@@ -11,12 +14,24 @@ export default {
 
 const LayerWithOutline: FC<LayerProps> = () => {
   return (
-    <Layer sx={{ border: "1px dashed red" }}>
-      <Text sx={{ color: "darkred" }}>First layer</Text>
+    <Layer sx={{ border: "1px dashed red", marginTop: 0 }}>
+      <Stack>
+        <Text sx={{ color: "darkred" }}>First layer</Text>
+        <TextInput placeholder="Text input" />
+        <Chip>Chip</Chip>
+      </Stack>
       <Layer sx={{ border: "1px dashed blue" }}>
-        <Text sx={{ color: "darkblue" }}>Second layer</Text>
+        <Stack>
+          <Text sx={{ color: "darkblue" }}>Second layer</Text>
+          <TextInput placeholder="Text input" />
+          <Chip>Chip</Chip>
+        </Stack>
         <Layer sx={{ border: "1px dashed green" }}>
-          <Text sx={{ color: "darkgreen" }}>Last layer</Text>
+          <Stack>
+            <Text sx={{ color: "darkgreen" }}>Last layer</Text>
+            <TextInput placeholder="Text input" />
+            <Chip>Chip</Chip>
+          </Stack>
         </Layer>
       </Layer>
     </Layer>
@@ -28,16 +43,15 @@ export const Default: StoryObj<typeof Layer> = {
   args: {},
   render: (args) => <LayerWithOutline {...args} />,
   parameters: parameters(
-    `<Layer>
-  <Text>First layer</Text>
+    `<Layer sx={{ marginTop: 0 }}>
+  <Content />
   <Layer>
-    <Text>Second layer</Text>
+    <Content />
     <Layer>
-      <Text>Last layer</Text>
+      <Content />
     </Layer>
   </Layer>
-</Layer>
-    `,
+</Layer>`,
     "Layer component",
   ),
 };

@@ -1,5 +1,10 @@
 import { CSSObject } from "styled-components";
 
+interface Layer {
+  first?: Root;
+  second?: Root;
+}
+
 interface Size {
   xs?: Root;
   sm?: Root;
@@ -44,6 +49,7 @@ interface Root {
   size?: Size;
 }
 
-export interface TextInput extends Root {
+export interface CSSInput extends Root {
   variant?: Variant;
+  layer?: Layer;
 }

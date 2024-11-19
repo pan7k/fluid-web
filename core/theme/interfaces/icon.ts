@@ -1,4 +1,4 @@
-export interface Icon {
+export interface CSSIcon {
   size?: {
     xs?: number;
     sm?: number;

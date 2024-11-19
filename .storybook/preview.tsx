@@ -6,24 +6,18 @@ import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
 
 const preview: Preview = {
-  parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
-    controls: {
-      matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/,
-      },
+  decorators: [
+    (Story, context) => {
+      return (
+        <App theme={context.globals.theme}>
+          <Story {...context.args} />
+        </App>
+      );
     },
-    options: {
-      storySort: {
-        order: [],
-      },
-    },
-  },
+  ],
   globalTypes: {
     locale: {
       description: "Locale",
-      defaultValue: "en",
       toolbar: {
         title: "Locale",
         icon: "globe",
@@ -34,14 +28,37 @@ const preview: Preview = {
         ],
       },
     },
+    theme: {
+      description: "Theme",
+      toolbar: {
+        title: "Theme",
+        icon: "paintbrush",
+        dynamicTitle: true,
+        items: [
+          {
+            value: "light",
+            title: "Light",
+            right: "default",
+          },
+          {
+            value: "dark",
+            title: "Dark",
+          },
+        ],
+      },
+    },
   },
-  decorators: [
-    (Story, args) => (
-      <App>
-        <Story {...args} />
-      </App>
-    ),
-  ],
+  initialGlobals: {
+    locale: "en",
+    theme: "light",
+  },
+  parameters: {
+    options: {
+      storySort: {
+        order: ["Examples"],
+      },
+    },
+  },
 };
 
 export default preview;

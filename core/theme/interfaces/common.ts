@@ -41,9 +41,11 @@ export interface Spacing {
 /* Palette */
 
 interface PaletteColor {
+  dark: string;
+  darker: string;
   main: string;
-  10: string;
-  20: string;
+  lighter: string;
+  light: string;
 }
 
 interface PaletteText {

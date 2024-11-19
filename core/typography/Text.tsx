@@ -14,9 +14,9 @@ export type TextType =
   | "h6";
 
 export interface TextProps {
+  children: string;
   variant?: TextType;
   color?: TextColor;
-  children: string;
   sx?: CSSObject;
 }
 
@@ -27,14 +27,14 @@ interface BaseProps {
   $sx?: CSSObject;
 }
 
-const Span = styled("span")<BaseProps>(({ theme, $variant, $color, $sx }) => ({
+const Span = styled.span<BaseProps>(({ theme, $variant, $color, $sx }) => ({
   color: theme.palette.text[$color],
   ...theme.typography?.root,
   ...theme.typography?.[$variant],
   ...$sx,
 }));
 
-const Heading = styled("p")<BaseProps>(({ theme, $variant, $color, $sx }) => ({
+const Heading = styled.p<BaseProps>(({ theme, $variant, $color, $sx }) => ({
   color: theme.palette.text[$color],
   ...theme.typography?.root,
   ...theme.typography?.[$variant],

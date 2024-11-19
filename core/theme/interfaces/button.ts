@@ -26,9 +26,10 @@ interface Root {
   root?: CSSObject;
   icon?: CSSObject;
   color?: Color;
+  disabled?: CSSObject;
 }
 
-export interface Button extends Root {
+export interface CSSButton extends Root {
   size?: Size;
   variant?: Variant;
 }

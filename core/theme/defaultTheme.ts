@@ -11,6 +11,33 @@ import {
 import { colors } from "./colors";
 import { createBreakpoints } from "./createBreakpoints";
 import { createSpacing } from "./createSpacing";
+import { ComponentSize } from "../common/types";
+
+const padding = (size?: ComponentSize, offset?: "withOffset" | undefined) => {
+  const right = offset === "withOffset" ? "60px" : "16px";
+
+  const sizes = {
+    xs: `6px ${right} 6px 16px`,
+    sm: `10px ${right} 10px 16px`,
+    md: `14px ${right} 14px 16px`,
+    lg: `14px ${right} 14px 16px`,
+    xl: `14px ${right} 14px 16px`,
+  };
+
+  return {
+    padding: sizes[size || "md"],
+  };
+};
+
+const spacing: Spacing = createSpacing(4);
+
+const breakpoints: Breakpoints = createBreakpoints({
+  xs: 320,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+});
 
 const palette: Palette = {
   text: {
@@ -19,34 +46,46 @@ const palette: Palette = {
     inverted: colors.white,
   },
   primary: {
+    light: colors.blue[50],
+    lighter: colors.blue[60],
     main: colors.blue[70],
-    10: colors.blue[80],
-    20: colors.blue[90],
+    darker: colors.blue[80],
+    dark: colors.blue[90],
   },
   secondary: {
+    light: colors.gray[60],
+    lighter: colors.gray[70],
     main: colors.gray[80],
-    10: colors.gray[90],
-    20: colors.gray[100],
+    darker: colors.gray[90],
+    dark: colors.gray[100],
   },
   success: {
+    light: colors.green[40],
+    lighter: colors.green[50],
     main: colors.green[60],
-    10: colors.green[70],
-    20: colors.green[80],
+    darker: colors.green[70],
+    dark: colors.green[80],
   },
   danger: {
+    light: colors.red[40],
+    lighter: colors.red[50],
     main: colors.red[60],
-    10: colors.red[70],
-    20: colors.red[80],
+    darker: colors.red[70],
+    dark: colors.red[80],
   },
   warning: {
+    light: colors.orange[40],
+    lighter: colors.orange[50],
     main: colors.orange[60],
-    10: colors.orange[70],
-    20: colors.orange[80],
+    darker: colors.orange[70],
+    dark: colors.orange[80],
   },
   info: {
+    light: colors.cyan[40],
+    lighter: colors.cyan[50],
     main: colors.cyan[60],
-    10: colors.cyan[70],
-    20: colors.cyan[80],
+    darker: colors.cyan[70],
+    dark: colors.cyan[80],
   },
 };
 
@@ -133,15 +172,19 @@ const focusWithin: CSSObject = {
   },
 };
 
-const spacing: Spacing = createSpacing(4);
+const focusInner: CSSObject = {
+  "&:focus": {
+    outline: `2px solid ${colors.gray[80]}`,
+    outlineOffset: "-2px",
+  },
+};
 
-const breakpoints: Breakpoints = createBreakpoints({
-  xs: 320,
-  sm: 576,
-  md: 768,
-  lg: 992,
-  xl: 1200,
-});
+const userSelect: CSSObject = {
+  userSelect: "none",
+  WebkitUserSelect: "none",
+  MozUserSelect: "none",
+  msUserSelect: "none",
+};
 
 export const defaultTheme: Theme = {
   palette,
@@ -151,6 +194,114 @@ export const defaultTheme: Theme = {
   spacing,
   breakpoints,
   components: {
+    accordion: {
+      panel: {
+        position: "relative",
+        display: "flex",
+        flexShrink: 0,
+        justifyContent: "space-between",
+        textAlign: "start",
+        cursor: "pointer",
+        background: surface[10],
+        "&:hover": {
+          background: surface[20],
+        },
+        ...focus,
+        ...userSelect,
+      },
+      icon: {
+        position: "absolute",
+        insetInlineEnd: "1rem",
+        flexShrink: 0,
+        display: "flex",
+        alignItems: "center",
+        height: "22px",
+        color: palette.text.secondary,
+      },
+      content: {
+        display: "none",
+        height: "100%",
+        maxHeight: 0,
+        overflowY: "auto",
+      },
+      opened: {
+        panel: {
+          background: surface[20],
+          "&:hover": {
+            background: surface[30],
+          },
+        },
+        content: {
+          display: "block",
+          maxHeight: 800,
+          overflowY: "visible",
+          marginTop: "2px",
+        },
+      },
+      size: {
+        xs: padding("xs", "withOffset"),
+        sm: padding("sm", "withOffset"),
+        md: padding("md", "withOffset"),
+      },
+    },
+    checkbox: {
+      root: {
+        fontFamily: typography.root.fontFamily,
+        fontSize: typography.body.fontSize,
+        color: palette.text.primary,
+        display: "inline-flex",
+        gap: spacing(2),
+        cursor: "pointer",
+        alignItems: "center",
+        width: "fit-content",
+        ...userSelect,
+      },
+      input: {
+        cursor: "pointer",
+        height: "18px",
+        width: "18px",
+        background: surface[10],
+        border: `1px solid ${surface[30]}`,
+        display: "inline-block",
+        position: "relative",
+        appearance: "none",
+        margin: 0,
+        "&:checked": {
+          background: palette.text.primary,
+          borderColor: palette.text.primary,
+          "&::after": {
+            content: '""',
+            position: "absolute",
+            left: "5px",
+            top: "1px",
+            width: "4px",
+            height: "10px",
+            border: `solid ${palette.text.inverted}`,
+            borderWidth: "0 2px 2px 0",
+            transform: "rotate(45deg)",
+          },
+        },
+        "&:indeterminate": {
+          background: palette.text.primary,
+          borderColor: palette.text.primary,
+          "&::after": {
+            content: '""',
+            position: "absolute",
+            left: "2px",
+            top: "7px",
+            width: "10px",
+            height: "0px",
+            border: `solid ${palette.text.inverted}`,
+            borderWidth: "0 2px 2px 0",
+          },
+        },
+        "&:disabled": {
+          background: surface[10],
+          borderColor: surface[10],
+        },
+        ...focus,
+      },
+    },
     button: {
       root: {
         fontSize: typography.body.fontSize,
@@ -162,7 +313,9 @@ export const defaultTheme: Theme = {
         position: "relative",
         cursor: "pointer",
         border: "1px solid transparent",
+        alignSelf: "flex-start",
         ...focus,
+        ...userSelect,
       },
       icon: {
         position: "absolute",
@@ -178,37 +331,37 @@ export const defaultTheme: Theme = {
             primary: {
               background: palette.primary.main,
               "&:hover": {
-                background: palette.primary[10],
+                background: palette.primary.darker,
               },
               "&:active": {
-                background: palette.primary[20],
+                background: palette.primary.dark,
               },
             },
             secondary: {
               background: palette.secondary.main,
               "&:hover": {
-                background: palette.secondary[10],
+                background: palette.secondary.darker,
               },
               "&:active": {
-                background: palette.secondary[20],
+                background: palette.secondary.dark,
               },
             },
             success: {
               background: palette.success.main,
               "&:hover": {
-                background: palette.success[10],
+                background: palette.success.darker,
               },
               "&:active": {
-                background: palette.success[20],
+                background: palette.success.dark,
               },
             },
             danger: {
               background: palette.danger.main,
               "&:hover": {
-                background: palette.danger[10],
+                background: palette.danger.darker,
               },
               "&:active": {
-                background: palette.danger[20],
+                background: palette.danger.dark,
               },
             },
           },
@@ -227,7 +380,7 @@ export const defaultTheme: Theme = {
               },
               "&:active": {
                 color: surface.blank,
-                background: palette.primary[10],
+                background: palette.primary.darker,
               },
             },
             secondary: {
@@ -239,7 +392,7 @@ export const defaultTheme: Theme = {
               },
               "&:active": {
                 color: surface.blank,
-                background: palette.secondary[10],
+                background: palette.secondary.darker,
               },
             },
             success: {
@@ -251,7 +404,7 @@ export const defaultTheme: Theme = {
               },
               "&:active": {
                 color: surface.blank,
-                background: palette.success[10],
+                background: palette.success.darker,
               },
             },
             danger: {
@@ -263,7 +416,7 @@ export const defaultTheme: Theme = {
               },
               "&:active": {
                 color: surface.blank,
-                background: palette.danger[10],
+                background: palette.danger.darker,
               },
             },
           },
@@ -279,7 +432,7 @@ export const defaultTheme: Theme = {
                 background: surface[20],
               },
               "&:active": {
-                color: palette.primary[20],
+                color: palette.primary.dark,
                 background: surface[30],
               },
             },
@@ -289,7 +442,7 @@ export const defaultTheme: Theme = {
                 background: surface[20],
               },
               "&:active": {
-                color: palette.secondary[20],
+                color: palette.secondary.dark,
                 background: surface[30],
               },
             },
@@ -299,7 +452,7 @@ export const defaultTheme: Theme = {
                 background: surface[20],
               },
               "&:active": {
-                color: palette.success[20],
+                color: palette.success.dark,
                 background: surface[30],
               },
             },
@@ -309,7 +462,7 @@ export const defaultTheme: Theme = {
                 background: surface[20],
               },
               "&:active": {
-                color: palette.danger[20],
+                color: palette.danger.dark,
                 background: surface[30],
               },
             },
@@ -326,7 +479,7 @@ export const defaultTheme: Theme = {
                 background: surface[10],
               },
               "&:active": {
-                color: palette.primary[20],
+                color: palette.primary.dark,
                 background: surface[20],
               },
             },
@@ -336,7 +489,7 @@ export const defaultTheme: Theme = {
                 background: surface[10],
               },
               "&:active": {
-                color: palette.secondary[20],
+                color: palette.secondary.dark,
                 background: surface[20],
               },
             },
@@ -346,7 +499,7 @@ export const defaultTheme: Theme = {
                 background: surface[10],
               },
               "&:active": {
-                color: palette.success[20],
+                color: palette.success.dark,
                 background: surface[20],
               },
             },
@@ -356,7 +509,7 @@ export const defaultTheme: Theme = {
                 background: surface[10],
               },
               "&:active": {
-                color: palette.danger[20],
+                color: palette.danger.dark,
                 background: surface[20],
               },
             },
@@ -365,26 +518,192 @@ export const defaultTheme: Theme = {
       },
       size: {
         xs: {
-          padding: "6px 60px 6px 16px",
+          ...padding("xs", "withOffset"),
           minHeight: "2rem",
         },
         sm: {
-          padding: "10px 60px 10px 16px",
+          ...padding("sm", "withOffset"),
           minHeight: "2.5rem",
         },
         md: {
-          padding: "14px 60px 14px 16px",
+          ...padding("md", "withOffset"),
           minHeight: "3rem",
         },
         lg: {
-          padding: "14px 60px 14px 16px",
+          ...padding("lg", "withOffset"),
           minHeight: "4rem",
         },
         xl: {
-          padding: "14px 60px 14px 16px",
+          ...padding("xl", "withOffset"),
           minHeight: "5rem",
         },
       },
+    },
+    chip: {
+      root: {
+        display: "flex",
+        alignItems: "center",
+        background: surface[10],
+        gap: "4px",
+        width: "fit-content",
+        fontFamily: typography.root.fontFamily,
+        cursor: "default",
+        ...userSelect,
+      },
+      variant: {
+        filled: {
+          root: {
+            color: palette.text.inverted,
+          },
+          color: {
+            primary: {
+              background: palette.primary.main,
+            },
+            secondary: {
+              background: palette.secondary.main,
+            },
+            success: {
+              background: palette.success.main,
+            },
+            danger: {
+              background: palette.danger.main,
+            },
+            warning: {
+              background: palette.warning.main,
+            },
+            info: {
+              background: palette.info.main,
+            },
+          },
+        },
+        light: {
+          color: {
+            primary: {
+              color: palette.primary.main,
+            },
+            secondary: {
+              color: palette.secondary.main,
+            },
+            success: {
+              color: palette.success.main,
+            },
+            danger: {
+              color: palette.danger.main,
+            },
+            warning: {
+              color: palette.warning.main,
+            },
+            info: {
+              color: palette.info.main,
+            },
+          },
+        },
+      },
+      layer: {
+        first: {
+          background: surface.blank,
+        },
+        second: {
+          background: surface[10],
+        },
+      },
+      size: {
+        xs: {
+          fontSize: typography.caption.fontSize,
+          padding: "2px 4px",
+        },
+        sm: {
+          fontSize: typography.caption.fontSize,
+          padding: "4px 6px",
+        },
+        md: {
+          fontSize: typography.body.fontSize,
+          padding: "4px 6px",
+        },
+        lg: {
+          fontSize: typography.body.fontSize,
+          padding: "6px 10px",
+        },
+      },
+    },
+    dialog: {
+      root: {
+        position: "fixed",
+        minWidth: "320px",
+        minHeight: "150px",
+        maxWidth: "100vw",
+        maxHeight: "100vh",
+        background: surface[10],
+        overflow: "auto",
+        display: "flex",
+        flexDirection: "column",
+      },
+      header: {
+        root: {
+          zIndex: 1000,
+          display: "flex",
+          alignItems: "start",
+          justifyContent: "space-between",
+          gap: spacing(2),
+          background: surface[10],
+          position: "sticky",
+          minHeight: "48px",
+          marginBottom: "3px",
+          top: 0,
+          ...userSelect,
+        },
+        label: {
+          marginLeft: spacing(4),
+          marginTop: spacing(3),
+          marginBottom: spacing(3),
+          alignSelf: "center",
+          fontFamily: typography.root.fontFamily,
+          fontSize: typography.h6.fontSize,
+          fontWeight: typography.h6.fontWeight,
+          color: palette.text.primary,
+        },
+        buttons: {
+          position: "relative",
+          display: "flex",
+          "& > :focus": {
+            ...focusInner,
+          },
+        },
+      },
+      content: {
+        flexGrow: 1,
+      },
+      actions: {
+        display: "flex",
+        paddingTop: 0,
+        paddingBottom: 0,
+        gap: spacing(4),
+      },
+      overlay: {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
+      },
+      panel: {
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "1px",
+        "& > :focus": {
+          ...focusInner,
+        },
+        ...userSelect,
+      },
+    },
+    divider: {
+      padding: 0,
+      margin: 0,
+      border: `1px solid ${surface[40]}`,
     },
     icon: {
       size: {
@@ -395,8 +714,34 @@ export const defaultTheme: Theme = {
         xl: 40,
       },
     },
+    iconButton: {
+      root: {
+        cursor: "pointer",
+        border: "1px solid transparent",
+        ...focus,
+        ...userSelect,
+      },
+      icon: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexShrink: 0,
+      },
+      size: {
+        xs: {
+          padding: "7px",
+        },
+        sm: {
+          padding: "11px",
+        },
+        md: {
+          padding: "15px",
+        },
+      },
+    },
     layer: {
       root: {
+        marginTop: spacing(4),
         padding: spacing(4),
       },
       level: {
@@ -405,23 +750,18 @@ export const defaultTheme: Theme = {
         },
         2: {
           background: surface.blank,
-          marginTop: spacing(4),
-        },
-        last: {
-          background: surface[10],
-          marginTop: spacing(4),
         },
       },
     },
-    textInput: {
+    input: {
       root: {
         fontFamily: typography.root.fontFamily,
+        ...userSelect,
       },
       input: {
         fontSize: typography.body.fontSize,
         border: "none",
         outline: "none",
-        width: "100%",
         background: "none",
       },
       icon: {
@@ -429,8 +769,14 @@ export const defaultTheme: Theme = {
           color: palette.text.secondary,
         },
       },
+      stack: {
+        width: "auto",
+        justifyContent: "space-between",
+        gap: spacing(1),
+      },
       text: {
         root: {
+          cursor: "default",
           fontSize: typography.caption.fontSize,
         },
         label: {
@@ -440,10 +786,10 @@ export const defaultTheme: Theme = {
           color: palette.text.secondary,
         },
         warning: {
-          color: palette.warning[10],
+          color: palette.warning.darker,
         },
         invalid: {
-          color: palette.danger[10],
+          color: palette.danger.darker,
         },
       },
       variant: {
@@ -464,11 +810,11 @@ export const defaultTheme: Theme = {
         },
         fluid: {
           root: {
-            display: "flex",
+            display: "inline-flex",
+            alignSelf: "center",
             flexDirection: "column",
             background: surface[10],
             borderBottom: `1px solid ${surface[20]}`,
-            padding: "8px 10px 4px 10px",
             ...focusWithin,
           },
           stack: {
@@ -480,16 +826,43 @@ export const defaultTheme: Theme = {
           },
           size: {
             xs: {
+              text: {
+                label: {
+                  padding: "2px 10px 0px 10px",
+                },
+              },
               stack: {
-                padding: "0px",
+                padding: "0px 10px",
               },
             },
             sm: {
-              root: {
-                padding: "4px 10px",
+              text: {
+                label: {
+                  padding: "4px 10px 0px 10px",
+                },
               },
               stack: {
-                padding: "0px",
+                padding: "0px 10px 2px 10px",
+              },
+            },
+            md: {
+              text: {
+                label: {
+                  padding: "6px 10px 0px 10px",
+                },
+              },
+              stack: {
+                padding: "0px 10px 0px 10px",
+              },
+            },
+            lg: {
+              text: {
+                label: {
+                  padding: "6px 10px 4px 10px",
+                },
+              },
+              stack: {
+                padding: "0px 10px 4px 10px",
               },
             },
           },
@@ -553,6 +926,181 @@ export const defaultTheme: Theme = {
               color: colors.gray[30],
             },
           },
+        },
+      },
+      layer: {
+        first: {
+          stack: {
+            background: surface.blank,
+          },
+        },
+        second: {
+          stack: {
+            background: surface[10],
+          },
+        },
+      },
+    },
+    menu: {
+      list: {
+        zIndex: 1000,
+        position: "fixed",
+        outline: `2px solid ${surface.focus}`,
+        margin: "2px",
+        padding: "1px",
+        background: surface.blank,
+        maxHeight: "200px",
+        overflowY: "auto",
+        ...userSelect,
+      },
+      item: {
+        padding: "8px 14px",
+        cursor: "pointer",
+        background: surface.blank,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: spacing(4),
+        "&:hover": {
+          background: surface[10],
+        },
+      },
+    },
+    radio: {
+      root: {
+        fontFamily: typography.root.fontFamily,
+        fontSize: typography.caption.fontSize,
+        color: palette.text.secondary,
+        display: "inline-flex",
+        flexDirection: "column",
+        gap: spacing(3),
+        width: "fit-content",
+        cursor: "default",
+        ...userSelect,
+      },
+      stack: {
+        display: "flex",
+        flexDirection: "row",
+        cursor: "pointer",
+        color: palette.text.primary,
+        fontSize: typography.body.fontSize,
+        gap: spacing(2),
+      },
+      input: {
+        height: "18px",
+        width: "18px",
+        background: surface[10],
+        border: `1px solid ${surface[30]}`,
+        display: "inline-block",
+        position: "relative",
+        appearance: "none",
+        margin: 0,
+        borderRadius: "50%",
+        cursor: "pointer",
+        "&:checked": {
+          "&::after": {
+            content: '""',
+            position: "absolute",
+            left: "3px",
+            top: "3px",
+            width: "10px",
+            height: "10px",
+            borderRadius: "50%",
+            background: palette.text.primary,
+          },
+        },
+        "&:disabled": {
+          borderColor: surface[10],
+          "&:checked": {
+            "&::after": {
+              background: surface[40],
+            },
+          },
+        },
+        ...focus,
+      },
+    },
+    switch: {
+      root: {
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        width: "fit-content",
+        cursor: "pointer",
+        fontFamily: typography.root.fontFamily,
+        fontSize: typography.body.fontSize,
+        color: palette.text.primary,
+        ...userSelect,
+      },
+      stack: {
+        position: "relative",
+        width: "38px",
+        height: "22px",
+        borderRadius: "12px",
+        transition: "background 0.3s ease",
+        background: surface[10],
+        border: `1px solid ${surface[30]}`,
+        ...focusWithin,
+      },
+      knob: {
+        position: "absolute",
+        top: "2px",
+        width: "18px",
+        height: "18px",
+        borderRadius: "50%",
+        background: palette.text.primary,
+        transition: "left 0.3s ease",
+        left: "2px",
+      },
+      input: {
+        opacity: 0,
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        cursor: "pointer",
+      },
+      checked: {
+        stack: {
+          background: palette.success.light,
+          border: `1px solid ${palette.success.light}`,
+        },
+        knob: {
+          left: "18px",
+        },
+      },
+      disabled: {
+        stack: {
+          background: surface[10],
+          border: `1px solid ${surface[30]}`,
+        },
+        knob: {
+          background: surface[30],
+        },
+      },
+    },
+    tooltip: {
+      root: {
+        zIndex: 1000,
+        position: "fixed",
+        background: palette.secondary.main,
+        color: palette.text.inverted,
+        textAlign: "center",
+        alignItems: "center",
+        fontFamily: typography.root.fontFamily,
+        ...userSelect,
+      },
+      size: {
+        sm: {
+          fontSize: "0.7rem",
+          padding: "4px 6px",
+        },
+        md: {
+          fontSize: "0.8rem",
+          padding: "6px 8px",
+        },
+        lg: {
+          fontSize: "0.875rem",
+          padding: "8px 10px",
         },
       },
     },

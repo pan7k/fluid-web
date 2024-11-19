@@ -12,8 +12,9 @@ export const Default: StoryObj<typeof TextInput> = {
   args: {
     label: "Label",
     placeholder: "Placeholder",
-    icon: "add",
+    icon: "user",
     iconVariant: "outlined",
+    iconPosition: "end",
     description: "Description",
     type: "text",
     variant: "normal",
@@ -26,7 +27,14 @@ export const Default: StoryObj<typeof TextInput> = {
     disabled: false,
   },
   parameters: parameters(
-    `<TextInput label="Label" placeholder="Placeholder" icon="add" helperText="Helper text" size="sm" />`,
-    "Text input component",
+    `<TextInput
+  label="Label"
+  icon="user"
+  placeholder="Placeholder"
+  description="Description"
+  warningText="Warning text"
+  invalidText="Invalid text"
+/>`,
+    "Text input",
   ),
 };
