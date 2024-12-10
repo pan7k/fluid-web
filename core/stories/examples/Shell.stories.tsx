@@ -61,7 +61,7 @@ const Shell: FC<ShellProps> = ({ theme = "light" }) => {
         </Layer>
       </SearchPanel>
       <ToolsPanel>
-        <Tooltip label="Account" alignment="left">
+        <Tooltip label="Account" direction="left">
           <IconButton icon="user" onClick={() => setOpen(true)} />
         </Tooltip>
       </ToolsPanel>

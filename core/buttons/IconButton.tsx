@@ -1,8 +1,9 @@
-import React, { FC, forwardRef } from "react";
+import React, { forwardRef } from "react";
 import styled, { CSSObject } from "styled-components";
 import { EventProps } from "../common/interfaces";
 import { Icon, IconSymbol, IconVariant } from "../icons/Icon";
 import { Theme } from "../theme/interfaces/theme";
+import { Tooltip, TooltipDirection } from "../content/Tooltip";
 
 export type IconButtonColor = "primary" | "secondary" | "success" | "danger";
 export type IconButtonVariant = "filled" | "outline" | "light" | "ghost";
@@ -14,6 +15,8 @@ export interface IconButtonProps extends EventProps {
   color?: IconButtonColor;
   variant?: IconButtonVariant;
   size?: IconButtonSize;
+  tooltip?: string;
+  direction?: TooltipDirection;
   sx?: CSSObject;
 }
 
@@ -52,12 +55,29 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       size = "md",
       icon,
       iconVariant = "filled",
+      tooltip,
+      direction = "bottom",
       sx,
       ...rest
     },
     ref,
   ) => {
-    return (
+    return tooltip ? (
+      <Tooltip label={tooltip} direction={direction}>
+        <Base
+          ref={ref}
+          $color={color}
+          $variant={variant}
+          $size={size}
+          $sx={sx}
+          {...rest}
+        >
+          <IconBase $variant={variant}>
+            <Icon symbol={icon} variant="regular" size="xs" />
+          </IconBase>
+        </Base>
+      </Tooltip>
+    ) : (
       <Base
         ref={ref}
         $color={color}
@@ -67,7 +87,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         {...rest}
       >
         <IconBase $variant={variant}>
-          <Icon symbol={icon} variant={iconVariant} size="xs" />
+          <Icon symbol={icon} variant="regular" size="xs" />
         </IconBase>
       </Base>
     );

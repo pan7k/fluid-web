@@ -76,14 +76,14 @@ export const MenuButton: FC<MenuButtonProps> = ({
         (label ? (
           <Button
             label={label}
-            icon={icon ? icon : open ? "chevronUp" : "chevronDown"}
+            icon={icon ? icon : open ? "caretUp" : "caretDown"}
             onClick={toggleMenu}
             ref={buttonRef}
             {...props}
           />
         ) : (
           <IconButton
-            icon={icon ? icon : open ? "chevronUp" : "chevronDown"}
+            icon={icon ? icon : open ? "caretUp" : "caretDown"}
             onClick={toggleMenu}
             ref={buttonRef}
             {...props}
@@ -100,7 +100,7 @@ export const MenuButton: FC<MenuButtonProps> = ({
             />
           )}
           <IconButton
-            icon={icon ? icon : open ? "chevronUp" : "chevronDown"}
+            icon={icon ? icon : open ? "caretUp" : "caretDown"}
             onClick={toggleMenu}
             ref={buttonRef}
             sx={label ? { paddingLeft: "8px", paddingRight: "8px" } : {}}

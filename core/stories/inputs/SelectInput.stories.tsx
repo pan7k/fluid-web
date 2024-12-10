@@ -1,8 +1,6 @@
-import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { parameters } from "../../storybook/parameters";
 import { SelectInput } from "../../inputs/SelectInput";
-import { Layer } from "../../layout/Layer";
 
 export default {
   title: "Inputs/Select Input",
@@ -16,8 +14,8 @@ export const Default: StoryObj<typeof SelectInput> = {
     autocomplete: true,
     multiple: true,
     placeholder: "Placeholder",
-    icon: "layers",
-    iconVariant: "outlined",
+    icon: "stack",
+    iconVariant: "regular",
     iconPosition: "end",
     description: "Description",
     variant: "normal",

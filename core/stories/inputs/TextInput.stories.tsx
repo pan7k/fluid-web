@@ -13,7 +13,7 @@ export const Default: StoryObj<typeof TextInput> = {
     label: "Label",
     placeholder: "Placeholder",
     icon: "user",
-    iconVariant: "outlined",
+    iconVariant: "regular",
     iconPosition: "end",
     description: "Description",
     type: "text",

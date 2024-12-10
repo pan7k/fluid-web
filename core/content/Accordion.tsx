@@ -137,7 +137,7 @@ export const Accordion: FC<AccordionProps> = ({
             $open={open}
             $sx={{ ...sx?.icon, ...(open ? sx?.opened?.icon : {}) }}
           >
-            <Icon symbol={open ? "chevronUp" : "chevronDown"} size="xs" />
+            <Icon symbol={open ? "caretUp" : "caretDown"} size="xs" />
           </IconBase>
         )}
       </Panel>

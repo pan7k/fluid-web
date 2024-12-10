@@ -350,7 +350,7 @@ export const Dialog: FC<DialogProps> = ({
           <Buttons $sx={sx?.header?.buttons}>
             {minimizable && !prominent && (
               <IconButton
-                icon={isMinimized ? "restoreWindow" : "minus"}
+                icon="minus"
                 variant="light"
                 color="secondary"
                 onClick={handleMinimize}
@@ -358,7 +358,7 @@ export const Dialog: FC<DialogProps> = ({
             )}
             {maximizable && !prominent && (
               <IconButton
-                icon={isMaximized ? "restoreWindow" : "square"}
+                icon={isMaximized ? "cornersOut" : "square"}
                 variant="light"
                 color="secondary"
                 onClick={handleMaximize}
@@ -366,7 +366,7 @@ export const Dialog: FC<DialogProps> = ({
             )}
             {closable && (
               <IconButton
-                icon="close"
+                icon="x"
                 variant="light"
                 color="secondary"
                 onClick={handleClose}

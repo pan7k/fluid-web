@@ -11,7 +11,6 @@ export type ButtonVariant = "filled" | "outline" | "light" | "ghost";
 export interface ButtonProps extends EventProps {
   label: ReactNode;
   icon?: IconSymbol;
-  iconVariant?: IconVariant;
   color?: ButtonColor;
   variant?: ButtonVariant;
   disabled?: boolean;
@@ -56,7 +55,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       size = "md",
       disabled,
       icon,
-      iconVariant = "filled",
       sx,
       ...rest
     },
@@ -75,7 +73,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {label}
         {icon && (
           <IconBase $variant={variant}>
-            <Icon symbol={icon} variant={iconVariant} size="xs" />
+            <Icon symbol={icon} variant="regular" size="xs" />
           </IconBase>
         )}
       </Base>

@@ -16,5 +16,5 @@ export interface SearchInputProps
   > {}
 
 export const SearchInput: FC<SearchInputProps> = (props) => {
-  return <BaseInput icon="search" iconPosition="start" {...props} />;
+  return <BaseInput icon="magnifyingGlass" iconPosition="start" {...props} />;
 };

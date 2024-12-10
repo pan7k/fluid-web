@@ -10,19 +10,19 @@ import styled, { CSSObject } from "styled-components";
 import { Theme } from "../theme/interfaces/theme";
 
 type TooltipSize = "sm" | "md" | "lg";
-type TooltipAlignment = "top" | "right" | "bottom" | "left";
+export type TooltipDirection = "top" | "right" | "bottom" | "left";
 
 export interface TooltipProps {
   children: ReactNode;
   label: ReactNode;
-  alignment?: TooltipAlignment;
+  direction?: TooltipDirection;
   size?: TooltipSize;
   sx?: CSSObject;
 }
 
 interface TooltipRootProps {
   children: ReactNode;
-  alignment: TooltipAlignment;
+  direction: TooltipDirection;
   targetRef: MutableRefObject<HTMLDivElement | null>;
   size: TooltipSize;
   sx?: CSSObject;
@@ -55,7 +55,7 @@ const TooltipBase = styled.div<BaseProps>(
 const TooltipRoot: FC<TooltipRootProps> = ({
   children,
   targetRef,
-  alignment,
+  direction,
   size,
   sx,
 }) => {
@@ -73,7 +73,7 @@ const TooltipRoot: FC<TooltipRootProps> = ({
         let top = rect.bottom + window.scrollY - 60;
         let left = rect.left + window.scrollX;
 
-        if (alignment === "left") {
+        if (direction === "left") {
           top =
             rect.bottom +
             window.scrollY -
@@ -83,7 +83,7 @@ const TooltipRoot: FC<TooltipRootProps> = ({
             rect.left + window.scrollX - tooltipRect.width - paddingFromObject;
         }
 
-        if (alignment === "top") {
+        if (direction === "top") {
           top =
             rect.bottom +
             window.scrollY -
@@ -93,13 +93,13 @@ const TooltipRoot: FC<TooltipRootProps> = ({
             rect.left + window.scrollX - tooltipRect.width / 2 + rect.width / 2;
         }
 
-        if (alignment === "bottom") {
+        if (direction === "bottom") {
           top = rect.bottom + window.scrollY + paddingFromObject;
           left =
             rect.left + window.scrollX - tooltipRect.width / 2 + rect.width / 2;
         }
 
-        if (alignment === "right") {
+        if (direction === "right") {
           top =
             rect.bottom +
             window.scrollY -
@@ -133,7 +133,7 @@ const TooltipRoot: FC<TooltipRootProps> = ({
         targetElement.removeEventListener("mouseleave", handleMouseLeave);
       }
     };
-  }, [targetRef, tooltipRef, alignment]);
+  }, [targetRef, tooltipRef, direction]);
 
   return (
     <TooltipBase
@@ -152,7 +152,7 @@ const TooltipRoot: FC<TooltipRootProps> = ({
 export const Tooltip: FC<TooltipProps> = ({
   children,
   label,
-  alignment = "right",
+  direction = "right",
   size = "md",
   sx,
 }) => {
@@ -163,7 +163,7 @@ export const Tooltip: FC<TooltipProps> = ({
       <Container ref={targetRef}>{children}</Container>
       <TooltipRoot
         targetRef={targetRef}
-        alignment={alignment}
+        direction={direction}
         size={size}
         sx={sx}
       >

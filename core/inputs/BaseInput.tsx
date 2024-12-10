@@ -228,7 +228,7 @@ export const BaseInput: FC<BaseInputProps> = ({
   size = "md",
   type = "text",
   icon,
-  iconVariant = "outlined",
+  iconVariant = "regular",
   iconPosition = "end",
   placeholder,
   options,
@@ -517,7 +517,6 @@ export const BaseInput: FC<BaseInputProps> = ({
                       <Icon
                         symbol="close"
                         size="xs"
-                        cursor="pointer"
                         color="gray"
                         onClick={() => handleOptionRemove(option)}
                       />
@@ -569,8 +568,7 @@ export const BaseInput: FC<BaseInputProps> = ({
             >
               <Icon
                 symbol={isOptionsOpen ? "chevronUp" : "chevronDown"}
-                variant="outlined"
-                cursor="pointer"
+                variant="regular"
                 size="xs"
               />
             </IconBase>
@@ -596,9 +594,8 @@ export const BaseInput: FC<BaseInputProps> = ({
           selectedOptions.map((option) => (
             <Icon
               key={option.value}
-              symbol="close"
+              symbol="x"
               size="xs"
-              cursor="pointer"
               color="gray"
               onClick={() => handleOptionRemove(option)}
             />
@@ -622,12 +619,7 @@ export const BaseInput: FC<BaseInputProps> = ({
             $icon="warning"
             $sx={sx?.icon}
           >
-            <Icon
-              symbol="warning"
-              variant="filled"
-              size={size}
-              color="orange"
-            />
+            <Icon symbol="warning" variant="fill" size={size} color="orange" />
           </IconBase>
         )}
         {invalid && (
@@ -638,7 +630,12 @@ export const BaseInput: FC<BaseInputProps> = ({
             $icon="invalid"
             $sx={sx?.icon}
           >
-            <Icon symbol="error" variant="filled" size={size} color="red" />
+            <Icon
+              symbol="warningCircle"
+              variant="fill"
+              size={size}
+              color="red"
+            />
           </IconBase>
         )}
       </Stack>
