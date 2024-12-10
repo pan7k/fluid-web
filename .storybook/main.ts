@@ -18,6 +18,7 @@ const config: StorybookConfig = {
   ],
   core: {
     disableWhatsNewNotifications: true,
+    disableTelemetry: true,
   },
   docs: {
     autodocs: "tag",

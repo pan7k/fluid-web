@@ -2,7 +2,10 @@ import { create } from "@storybook/theming/create";
 
 export default create({
   base: "light",
-  brandTitle: "@pan7k/fluid",
+  brandTitle: `<img src="/fluid.svg" width="30px" height="30px"/>`,
+  brandUrl: "https://github.com/pan7k/fluid",
   brandTarget: "_blank",
-  brandUrl: "https://github.com/@pan7k/fluid",
+  fontBase: '"Inter", sans-serif',
+  appBorderRadius: 0,
+  inputBorderRadius: 0,
 });
