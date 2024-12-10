@@ -7,6 +7,8 @@ import React, {
   useState,
   cloneElement,
   useLayoutEffect,
+  isValidElement,
+  MouseEvent,
 } from "react";
 import { MenuList } from "./MenuList";
 import { Button, ButtonProps } from "./Button";
@@ -41,13 +43,13 @@ export const MenuButton: FC<MenuButtonProps> = ({
 
   useLayoutEffect(() => {
     if (buttonRef.current && open) {
-      const rect = buttonRef?.current?.getBoundingClientRect();
-      setMenuPosition({ top: rect.bottom + 5, left: rect?.left });
+      const rect = buttonRef.current.getBoundingClientRect();
+      setMenuPosition({ top: rect.bottom + 5, left: rect.left });
     }
-  }, [buttonRef, open]);
+  }, [open, buttonRef]);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: Event) => {
       if (
         menuRef.current &&
         !menuRef.current.contains(event.target as Node) &&
@@ -115,14 +117,18 @@ export const MenuButton: FC<MenuButtonProps> = ({
           minWidth={(buttonRef.current?.offsetWidth ?? 0) - 6}
         >
           <>
-            {Children.map(children, (child) =>
-              cloneElement(child, {
-                onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-                  child.props.onClick && child.props.onClick(e);
-                  setOpen(false);
-                },
-              }),
-            )}
+            {Children.map(children, (child) => {
+              if (isValidElement(child)) {
+                return cloneElement(child as ReactElement<any>, {
+                  onClick: (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
+                    (child as ReactElement<any>).props.onClick &&
+                      (child as ReactElement<any>).props.onClick(e);
+                    setOpen(false);
+                  },
+                });
+              }
+              return null;
+            })}
           </>
         </MenuList>
       )}

@@ -15,7 +15,6 @@ interface Size {
 interface Variant {
   normal?: Root;
   fluid?: Root;
-  inline?: Root;
 }
 
 interface State {
