@@ -4,10 +4,25 @@ import { parameters } from "../../storybook/parameters";
 import { MenuButton, MenuButtonProps } from "../../buttons/MenuButton";
 import { MenuItem } from "../../buttons/MenuItem";
 import { useTheme } from "styled-components";
+import { iconSymbolKeys } from "../../icons/Icon";
 
 export default {
   title: "Buttons/Menu Button",
   component: MenuButton,
+  argTypes: {
+    icon: {
+      control: { type: "select" },
+      options: iconSymbolKeys,
+    },
+    color: {
+      control: { type: "select" },
+      options: ["primary", "secondary", "success", "danger"],
+    },
+    variant: {
+      control: { type: "select" },
+      options: ["filled", "outline", "light", "ghost"],
+    },
+  },
 } satisfies Meta<typeof MenuButton>;
 
 const MenuButtonWithHooks: FC<MenuButtonProps> = (args) => {

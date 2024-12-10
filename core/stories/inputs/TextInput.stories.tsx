@@ -1,10 +1,37 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { parameters } from "../../storybook/parameters";
 import { TextInput } from "../../inputs/TextInput";
+import { iconSymbolKeys, iconVariantKeys } from "../../icons/Icon";
 
 export default {
   title: "Inputs/Text Input",
   component: TextInput,
+  argTypes: {
+    icon: {
+      control: { type: "select" },
+      options: iconSymbolKeys,
+    },
+    iconVariant: {
+      control: { type: "select" },
+      options: iconVariantKeys,
+    },
+    iconPosition: {
+      control: { type: "radio" },
+      options: ["start", "end"],
+    },
+    type: {
+      control: { type: "select" },
+      options: ["email", "text", "url", "password"],
+    },
+    variant: {
+      control: { type: "radio" },
+      options: ["normal", "fluid"],
+    },
+    size: {
+      control: { type: "select" },
+      options: ["xs", "sm", "md", "lg"],
+    },
+  },
 } satisfies Meta<typeof TextInput>;
 
 export const Default: StoryObj<typeof TextInput> = {

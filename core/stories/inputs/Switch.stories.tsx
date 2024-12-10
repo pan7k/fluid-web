@@ -10,8 +10,10 @@ export default {
 export const Default: StoryObj<typeof Switch> = {
   name: "Switch",
   args: {
+    label: "",
     defaultValue: true,
     disabled: false,
+    labelPosition: "right",
   },
   parameters: parameters(`<Switch defaultValue={true} />`, "Switch"),
 };

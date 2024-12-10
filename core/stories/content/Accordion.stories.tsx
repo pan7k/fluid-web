@@ -4,10 +4,28 @@ import { parameters } from "../../storybook/parameters";
 import { Accordion } from "../../content/Accordion";
 import { Text } from "../../typography/Text";
 import { Layer } from "../../layout/Layer";
+import { iconSymbolKeys, iconVariantKeys } from "../../icons/Icon";
 
 export default {
   title: "Content/Accordion",
   component: Accordion,
+  argTypes: {
+    label: {
+      control: { type: "text" },
+    },
+    icon: {
+      control: { type: "select" },
+      options: iconSymbolKeys,
+    },
+    iconVariant: {
+      control: { type: "select" },
+      options: iconVariantKeys,
+    },
+    size: {
+      control: { type: "select" },
+      options: ["xs", "sm", "md"],
+    },
+  },
 } satisfies Meta<typeof Accordion>;
 
 export const Default: StoryObj<typeof Accordion> = {

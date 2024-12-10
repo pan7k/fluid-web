@@ -7,13 +7,19 @@ import { Button } from "../../buttons/Button";
 export default {
   title: "Content/Tooltip",
   component: Tooltip,
+  argTypes: {
+    label: {
+      control: { type: "text" },
+    },
+  },
 } satisfies Meta<typeof Tooltip>;
 
 export const Default: StoryObj<typeof Tooltip> = {
   name: "Tooltip",
   args: {
     label: "Tooltip",
-    alignment: "bottom",
+    direction: "bottom",
+    size: "md",
     children: (
       <Button label="Button with tooltip" variant="light" color="secondary" />
     ),

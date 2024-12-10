@@ -9,6 +9,11 @@ import { DialogPanel } from "../../content/DialogPanel";
 export default {
   title: "Content/Dialog",
   component: Dialog,
+  argTypes: {
+    label: {
+      control: { type: "text" },
+    },
+  },
 } satisfies Meta<typeof Dialog>;
 
 export const Default: StoryObj<typeof Dialog> = {
