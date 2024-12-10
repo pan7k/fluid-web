@@ -1,7 +1,7 @@
 import React, {
   FC,
   ReactNode,
-  MutableRefObject,
+  RefObject,
   useEffect,
   useRef,
   useState,
@@ -23,7 +23,7 @@ export interface TooltipProps {
 interface TooltipRootProps {
   children: ReactNode;
   direction: TooltipDirection;
-  targetRef: MutableRefObject<HTMLDivElement | null>;
+  targetRef: RefObject<HTMLDivElement | null>;
   size: TooltipSize;
   sx?: CSSObject;
 }

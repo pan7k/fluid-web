@@ -28,7 +28,9 @@ export { Switch } from "./inputs/Switch";
 
 /* Layout */
 export * from "./layout/LayerContext";
+export { Box } from "./layout/Box";
 export { Divider } from "./layout/Divider";
+export { Grid } from "./layout/Grid";
 export { Layer } from "./layout/Layer";
 export { Stack } from "./layout/Stack";
 

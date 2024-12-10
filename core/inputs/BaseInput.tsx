@@ -24,7 +24,7 @@ type IconType = "adornment" | "warning" | "invalid";
 type IconPosition = "start" | "end";
 
 interface Option {
-  value: string | number;
+  value: any;
   label: string;
 }
 
@@ -41,6 +41,8 @@ interface CSSProps {
 
 export interface BaseInputProps extends InputEventProps {
   label?: ReactNode;
+  value?: any;
+  defaultValue?: any;
   placeholder?: string;
   description?: ReactNode;
   warning?: boolean;
@@ -224,6 +226,8 @@ const InvalidText = styled.div<BaseProps>(
 
 export const BaseInput: FC<BaseInputProps> = ({
   label,
+  value,
+  defaultValue,
   variant = "normal",
   size = "md",
   type = "text",
@@ -244,17 +248,44 @@ export const BaseInput: FC<BaseInputProps> = ({
   sx,
 }) => {
   const theme = useTheme();
-
+  const [inputValue, setInputValue] = useState<string>(
+    Array.isArray(value) || Array.isArray(defaultValue)
+      ? ""
+      : value || defaultValue || "",
+  );
+  const [formValue, setFormValue] = useState<any>(value || defaultValue || "");
   const [isOptionsOpen, setOptionsOpen] = useState(false);
-  const [selectedOptions, setSelectedOptions] = useState<Array<Option>>([]);
+  const [selectedOptions, setSelectedOptions] = useState<Array<Option>>(
+    options?.filter((option) => option.value === inputValue) || [],
+  );
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
   const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null);
-  const [inputValue, setInputValue] = useState<string>("");
 
   const layer = useLayerContext();
   const stackRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (options && selectedOptions.length > 0) {
+      setFormValue(selectedOptions.map((option) => option.value));
+    }
+    if (!options) {
+      setFormValue(inputValue);
+    }
+  }, [selectedOptions, inputValue]);
+
+  useLayoutEffect(() => {
+    if (Array.isArray(value) && options) {
+      const selected = options.filter((option) => value.includes(option.value));
+      setSelectedOptions(selected);
+    } else if (Array.isArray(defaultValue) && options) {
+      const selected = options.filter((option) =>
+        defaultValue.includes(option.value),
+      );
+      setSelectedOptions(selected);
+    }
+  }, [value, defaultValue, options]);
 
   useLayoutEffect(() => {
     const updateMenuPosition = () => {
@@ -274,7 +305,7 @@ export const BaseInput: FC<BaseInputProps> = ({
     if (isOptionsOpen) {
       updateMenuPosition();
     }
-  }, [stackRef, isOptionsOpen]);
+  }, [stackRef, isOptionsOpen, selectedOptions]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -515,8 +546,9 @@ export const BaseInput: FC<BaseInputProps> = ({
                     <Chip>
                       {option.label}
                       <Icon
-                        symbol="close"
+                        symbol="x"
                         size="xs"
+                        cursor="pointer"
                         color="gray"
                         onClick={() => handleOptionRemove(option)}
                       />
@@ -569,6 +601,7 @@ export const BaseInput: FC<BaseInputProps> = ({
               <Icon
                 symbol={isOptionsOpen ? "chevronUp" : "chevronDown"}
                 variant="regular"
+                cursor="pointer"
                 size="xs"
               />
             </IconBase>
@@ -594,8 +627,9 @@ export const BaseInput: FC<BaseInputProps> = ({
           selectedOptions.map((option) => (
             <Icon
               key={option.value}
-              symbol="x"
+              symbol="close"
               size="xs"
+              cursor="pointer"
               color="gray"
               onClick={() => handleOptionRemove(option)}
             />
@@ -630,12 +664,7 @@ export const BaseInput: FC<BaseInputProps> = ({
             $icon="invalid"
             $sx={sx?.icon}
           >
-            <Icon
-              symbol="warningCircle"
-              variant="fill"
-              size={size}
-              color="red"
-            />
+            <Icon symbol="error" variant="fill" size={size} color="red" />
           </IconBase>
         )}
       </Stack>

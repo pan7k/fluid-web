@@ -3,7 +3,7 @@ import styled, { CSSObject } from "styled-components";
 import { Theme } from "../theme/interfaces/theme";
 import { EventProps } from "../common/interfaces";
 import { ComponentSize } from "../common/types";
-import { Icon, IconSymbol, IconVariant } from "../icons/Icon";
+import { Icon, IconSymbol } from "../icons/Icon";
 
 export type ButtonColor = "primary" | "secondary" | "success" | "danger";
 export type ButtonVariant = "filled" | "outline" | "light" | "ghost";
@@ -34,7 +34,7 @@ const Base = styled.button<BaseProps>(
     ...theme.components?.button?.variant?.[$variant]?.root,
     ...theme.components?.button?.variant?.[$variant]?.color?.[$color],
     ...theme.components?.button?.size?.[$size],
-    ...(disabled ? theme.components?.button?.disabled : {}),
+    ...(disabled ? { "&:disabled": theme.components?.button?.disabled } : {}),
     ...$sx,
   }),
 );

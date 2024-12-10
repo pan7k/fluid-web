@@ -17,6 +17,7 @@ export interface IconButtonProps extends EventProps {
   size?: IconButtonSize;
   tooltip?: string;
   direction?: TooltipDirection;
+  disabled?: boolean;
   sx?: CSSObject;
 }
 
@@ -25,17 +26,19 @@ interface BaseProps {
   $color: IconButtonColor;
   $variant: IconButtonVariant;
   $size: IconButtonSize;
+  disabled?: boolean;
   $sx?: CSSObject;
 }
 
 interface IconProps extends Omit<BaseProps, "$color" | "$size"> {}
 
 const Base = styled.button<BaseProps>(
-  ({ theme, $color, $variant, $size, $sx }) => ({
+  ({ theme, $color, $variant, $size, disabled, $sx }) => ({
     ...theme.components?.iconButton?.root,
     ...theme.components?.button?.variant?.[$variant]?.root,
     ...theme.components?.button?.variant?.[$variant]?.color?.[$color],
     ...theme.components?.iconButton?.size?.[$size],
+    ...(disabled ? { "&:disabled": theme.components?.button?.disabled } : {}),
     ...$sx,
   }),
 );
@@ -57,6 +60,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       iconVariant = "filled",
       tooltip,
       direction = "bottom",
+      disabled,
       sx,
       ...rest
     },
@@ -69,6 +73,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           $color={color}
           $variant={variant}
           $size={size}
+          disabled={disabled}
           $sx={sx}
           {...rest}
         >
@@ -83,6 +88,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         $color={color}
         $variant={variant}
         $size={size}
+        disabled={disabled}
         $sx={sx}
         {...rest}
       >

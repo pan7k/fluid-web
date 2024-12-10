@@ -13,4 +13,5 @@ interface Root {
 
 export interface CSSIconButton extends Root {
   size?: Size;
+  disabled?: CSSObject;
 }

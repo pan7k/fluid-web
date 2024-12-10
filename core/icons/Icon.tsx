@@ -32,6 +32,7 @@ export interface IconProps {
   size?: IconSize;
   variant?: IconVariant;
   color?: string;
+  cursor?: string;
   onClick?: () => void;
 }
 
@@ -60,6 +61,7 @@ export const Icon: FC<IconProps> = ({
   size = "md",
   variant = "regular",
   color = "currentColor",
+  cursor,
   onClick,
 }) => {
   const theme = useTheme() as Theme;
@@ -79,6 +81,7 @@ export const Icon: FC<IconProps> = ({
       size={resolvedSize}
       weight={variant}
       color={color}
+      cursor={cursor}
       onClick={onClick}
     />
   );

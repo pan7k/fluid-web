@@ -538,6 +538,11 @@ export const defaultTheme: Theme = {
           minHeight: "5rem",
         },
       },
+      disabled: {
+        background: surface[10],
+        color: colors.gray[30],
+        border: "none",
+      },
     },
     chip: {
       root: {
@@ -737,6 +742,11 @@ export const defaultTheme: Theme = {
         md: {
           padding: "15px",
         },
+      },
+      disabled: {
+        background: surface[10],
+        color: colors.gray[30],
+        border: "none",
       },
     },
     layer: {
