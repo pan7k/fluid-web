@@ -17,9 +17,10 @@ import styled from "styled-components";
 
 export interface MenuButtonProps extends Omit<ButtonProps, "label" | "size"> {
   label?: string;
-  children: ReactElement[];
+  children: ReactElement | ReactElement[];
   size?: "xs" | "sm" | "md";
   combined?: boolean;
+  direction?: "left" | "right";
 }
 
 const Stack = styled.div({
@@ -34,6 +35,7 @@ export const MenuButton: FC<MenuButtonProps> = ({
   icon,
   combined,
   onClick,
+  direction = "left",
   ...props
 }) => {
   const [open, setOpen] = useState(false);
@@ -44,9 +46,14 @@ export const MenuButton: FC<MenuButtonProps> = ({
   useLayoutEffect(() => {
     if (buttonRef.current && open) {
       const rect = buttonRef.current.getBoundingClientRect();
-      setMenuPosition({ top: rect.bottom + 5, left: rect.left });
+      const menuWidth = menuRef.current?.offsetWidth ?? 0;
+
+      const left =
+        direction === "right" ? rect.right - menuWidth - 4.5 : rect.left;
+
+      setMenuPosition({ top: rect.bottom + 5, left: Math.max(left, 0) });
     }
-  }, [open, buttonRef]);
+  }, [open, direction]);
 
   useEffect(() => {
     const handleClickOutside = (event: Event) => {

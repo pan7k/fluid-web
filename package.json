@@ -2,7 +2,7 @@
   "name": "@pan7k/fluid",
   "repository": "https://github.com/pan7k/fluid",
   "description": "Component library",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "UNLICENSED",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
