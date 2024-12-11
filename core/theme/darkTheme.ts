@@ -483,11 +483,11 @@ export const darkTheme: Theme = createTheme({
             },
           },
           stack: {
-            background: colors.gray[0],
+            background: "#111",
           },
           icon: {
             adornment: {
-              color: colors.gray[70],
+              color: colors.gray[60],
             },
           },
         },
@@ -519,6 +519,9 @@ export const darkTheme: Theme = createTheme({
     },
     radio: {
       root: {
+        color: palette.text.secondary,
+      },
+      stack: {
         color: palette.text.primary,
       },
       input: {

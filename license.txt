@@ -1,0 +1,8 @@
+All rights reserved.
+
+This software and all associated files are proprietary and confidential. 
+Unauthorized use, copying, distribution, modification, or any other activity 
+related to this software is strictly prohibited unless explicitly agreed 
+upon in a written agreement with the copyright holder.
+
+© 2024 Tomáš Pánik.

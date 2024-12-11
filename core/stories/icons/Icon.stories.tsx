@@ -35,7 +35,7 @@ export const Default: StoryObj<typeof Icon> = {
     symbol: "asterisk",
     size: "xl",
     variant: "regular",
-    color: "currentColor",
+    color: "#888",
   },
   parameters: parameters(
     `<Icon variant="asterisk" color="currentColor" size="xl" />`,

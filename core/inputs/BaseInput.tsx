@@ -664,7 +664,12 @@ export const BaseInput: FC<BaseInputProps> = ({
             $icon="invalid"
             $sx={sx?.icon}
           >
-            <Icon symbol="error" variant="fill" size={size} color="red" />
+            <Icon
+              symbol="warningCircle"
+              variant="fill"
+              size={size}
+              color="red"
+            />
           </IconBase>
         )}
       </Stack>

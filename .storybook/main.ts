@@ -4,6 +4,7 @@ const config: StorybookConfig = {
   addons: [
     "@storybook/addon-webpack5-compiler-babel",
     "@storybook/addon-toolbars",
+    "storybook-dark-mode",
     "@storybook/addon-controls",
     "@storybook/addon-storysource",
     "@storybook/addon-interactions",

@@ -222,7 +222,7 @@ export const Dialog: FC<DialogProps> = ({
     }
   };
 
-  // TODO: refactor
+  // TODO: Refactor
   const handleFullscreen = () => {
     setFullscreen(!isFullscreen);
     if (dialogRef.current && !isFullscreen) {
@@ -259,7 +259,7 @@ export const Dialog: FC<DialogProps> = ({
     }
   }, [isActive, isInitialized]);
 
-  // TODO: refactor; toggles the fullscreen state when the prop changes
+  // TODO: Refactor; toggles the fullscreen state when the prop changes
   useEffect(() => {
     if (fullscreen !== isFullscreen) {
       handleFullscreen();

@@ -1,24 +1,57 @@
-import React, { ReactNode, useEffect } from "react";
+import React, {
+  FC,
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import { ThemeProvider } from "../theme/ThemeProvider";
-import { defaultTheme } from "../theme/defaultTheme";
 import { DialogProvider } from "../content/DialogContext";
 import { LayerProvider } from "../layout/LayerContext";
+import { Theme } from "../theme/interfaces/theme";
+import { defaultTheme } from "../theme/defaultTheme";
 import { darkTheme } from "../theme/darkTheme";
-
-export type ThemeVariant = "light" | "dark";
+import { themes } from "../theme/themes";
+import { addons } from "@storybook/preview-api";
+import { DARK_MODE_EVENT_NAME } from "storybook-dark-mode";
+import { StoryContext } from "storybook/internal/types";
 
 interface AppProps {
+  context: StoryContext;
   children: ReactNode;
-  theme?: ThemeVariant;
 }
 
-export const App = ({ children, theme }: AppProps) => {
+export const App: FC<AppProps> = ({ context, children }) => {
+  const channel = addons.getChannel();
+  const [theme, setTheme] = useState<Theme>(defaultTheme);
+  const [isDark, setDark] = useState(context.globals.themeVariant === "dark");
+
+  const updateTheme = () => {
+    const theme = themes.find((t) => t.code === context.globals.theme);
+    setTheme(isDark ? theme?.dark || darkTheme : theme?.light || defaultTheme);
+  };
+
+  const handleThemeVariantChange = (isDark: boolean) => {
+    document.body.style.backgroundColor = isDark ? "#000" : "#fff";
+    setDark(isDark);
+  };
+
+  useLayoutEffect(() => {
+    updateTheme();
+  }, []);
+
   useEffect(() => {
-    document.body.style.backgroundColor = theme === "light" ? "#fff" : "#000";
-  }, [theme]);
+    channel.on(DARK_MODE_EVENT_NAME, handleThemeVariantChange);
+
+    return () => channel.off(DARK_MODE_EVENT_NAME, handleThemeVariantChange);
+  }, [channel]);
+
+  useEffect(() => {
+    updateTheme();
+  }, [context.globals.theme, isDark]);
 
   return (
-    <ThemeProvider theme={theme === "dark" ? darkTheme : defaultTheme}>
+    <ThemeProvider theme={theme}>
       <LayerProvider>
         <DialogProvider>{children}</DialogProvider>
       </LayerProvider>
