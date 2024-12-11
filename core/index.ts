@@ -40,6 +40,7 @@ export { createBreakpoints } from "./theme/createBreakpoints";
 export { createSpacing } from "./theme/createSpacing";
 export { createTheme } from "./theme/createTheme";
 export { defaultTheme } from "./theme/defaultTheme";
+export { darkTheme } from "./theme/darkTheme";
 export { ThemeProvider } from "./theme/ThemeProvider";
 export { themes } from "./theme/themes";
 
