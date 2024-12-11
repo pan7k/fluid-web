@@ -42,7 +42,6 @@ export const App: FC<AppProps> = ({ context, children }) => {
 
   useEffect(() => {
     channel.on(DARK_MODE_EVENT_NAME, handleThemeVariantChange);
-
     return () => channel.off(DARK_MODE_EVENT_NAME, handleThemeVariantChange);
   }, [channel]);
 
