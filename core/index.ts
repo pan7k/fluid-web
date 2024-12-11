@@ -16,7 +16,13 @@ export { Tooltip, type TooltipProps } from "./content/Tooltip";
 export { Chip, type ChipProps } from "./fields/Chip";
 
 /* Icons */
-export { Icon, type IconProps } from "./icons/Icon";
+export {
+  iconSizeKeys,
+  iconSymbolKeys,
+  iconVariantKeys,
+  Icon,
+  type IconProps,
+} from "./icons/Icon";
 
 /* Inputs */
 export { TextInput, type TextInputProps } from "./inputs/TextInput";
