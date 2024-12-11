@@ -53,7 +53,6 @@ export default [
       visualizer({ template: "sunburst" }),
       terser(),
     ],
-    external: ["react-router-dom"],
   },
   {
     input: "dist/index.d.ts",

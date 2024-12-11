@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "outDir": "dist",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "declaration": true,
     "declarationMap": true,
     "declarationDir": "dist",
@@ -19,6 +23,12 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["core"],
-  "exclude": ["node_modules", "dist", ".storybook"]
+  "include": [
+    "core"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".storybook"
+  ]
 }
