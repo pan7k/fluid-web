@@ -5,7 +5,6 @@ import React, {
   isValidElement,
   cloneElement,
   HTMLAttributes,
-  CSSProperties,
 } from "react";
 import { sx } from "../theme/utils/sx";
 

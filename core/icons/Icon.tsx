@@ -31,7 +31,6 @@ export interface IconProps extends HTMLAttributes<SVGSVGElement> {
   variant?: IconVariant;
   color?: string;
   cursor?: string;
-  classes?: CSS;
 }
 
 const getSize = (size: IconSize): number => {
@@ -59,7 +58,6 @@ export const Icon: FC<IconProps> = ({
   variant = "regular",
   color = "currentColor",
   cursor,
-  classes,
   onClick,
 }) => {
   const resolvedSize = typeof size === "number" ? size : getSize(size);

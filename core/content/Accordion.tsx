@@ -73,8 +73,6 @@ export const Accordion: FC<AccordionProps> = ({
     [handleChange],
   );
 
-  const [isHoveringActions, setIsHoveringActions] = useState(false);
-
   return (
     <div className={sx(classes?.stack)}>
       <div
@@ -84,10 +82,7 @@ export const Accordion: FC<AccordionProps> = ({
         aria-expanded={open}
         className={sx(
           `accordion-panel accordion-${size}`,
-          {
-            "accordion-panel-opened": open,
-            "accordion-no-hover": isHoveringActions,
-          },
+          { "accordion-panel-opened": open },
           classes?.accordion,
         )}
       >

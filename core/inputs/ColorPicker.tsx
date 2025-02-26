@@ -2,7 +2,6 @@ import React, { FC, useState, useRef, useEffect, MouseEvent } from "react";
 import { Theme } from "../theme/interfaces";
 import { sx } from "../theme/utils/sx";
 import { Slider } from "./Slider";
-import { Icon } from "../icons/Icon";
 import { IconButton } from "../buttons/IconButton";
 
 interface HSVColor {
