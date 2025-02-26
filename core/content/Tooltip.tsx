@@ -11,7 +11,7 @@ import { CSS } from "../common/types";
 import { Theme } from "../theme/interfaces";
 import { createPortal } from "react-dom";
 
-type TooltipSize = "sm" | "md" | "lg";
+export type TooltipSize = "sm" | "md" | "lg";
 export type TooltipDirection = "top" | "right" | "bottom" | "left";
 
 export interface TooltipProps {
