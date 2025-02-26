@@ -1,0 +1,7 @@
+[data-theme-name="fluid"] .dialogPanel {
+  @apply absolute bottom-0 left-[3px] flex flex-wrap gap-[1px] select-none;
+}
+
+[data-theme-name="fluid"] .dialogPanel:focus {
+  @apply outline-[2px] outline-offset-[-2px] outline-gray-80;
+}

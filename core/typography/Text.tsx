@@ -1,8 +1,14 @@
-import React, { FC } from "react";
-import styled, { CSSObject } from "styled-components";
-import { Theme } from "../theme/interfaces/theme";
+import React, { FC, HTMLAttributes } from "react";
+import { sx } from "../theme/utils/sx";
 
-export type TextColor = "primary" | "secondary" | "inverted";
+export type TextColor =
+  | "primary"
+  | "secondary"
+  | "inverted"
+  | "info"
+  | "success"
+  | "warning"
+  | "danger";
 export type TextType =
   | "body"
   | "caption"
@@ -13,51 +19,41 @@ export type TextType =
   | "h5"
   | "h6";
 
-export interface TextProps {
+export interface TextProps
+  extends HTMLAttributes<HTMLParagraphElement | HTMLSpanElement> {
   children: string;
   variant?: TextType;
   color?: TextColor;
-  sx?: CSSObject;
+  classes?: string;
 }
-
-interface BaseProps {
-  theme: Theme;
-  $variant: TextType;
-  $color: TextColor;
-  $sx?: CSSObject;
-}
-
-const Span = styled.span<BaseProps>(({ theme, $variant, $color, $sx }) => ({
-  color: theme.palette.text[$color],
-  ...theme.typography?.root,
-  ...theme.typography?.[$variant],
-  ...$sx,
-}));
-
-const Heading = styled.p<BaseProps>(({ theme, $variant, $color, $sx }) => ({
-  color: theme.palette.text[$color],
-  ...theme.typography?.root,
-  ...theme.typography?.[$variant],
-  ...$sx,
-}));
 
 export const Text: FC<TextProps> = ({
   variant = "body",
   color = "primary",
   children,
-  sx,
+  classes,
 }) => {
   if (variant === "body" || variant === "caption") {
     return (
-      <Span $variant={variant} $color={color} $sx={sx}>
+      <span
+        className={sx(
+          `typography typography-${variant} typography-${color}`,
+          classes,
+        )}
+      >
         {children}
-      </Span>
+      </span>
     );
   } else {
     return (
-      <Heading $variant={variant} $color={color} $sx={sx}>
+      <p
+        className={sx(
+          `typography typography-${variant} typography-${color}`,
+          classes,
+        )}
+      >
         {children}
-      </Heading>
+      </p>
     );
   }
 };

@@ -1,47 +1,40 @@
-import React, { FC, useEffect, useRef } from "react";
-import styled, { CSSObject } from "styled-components";
-import { Theme } from "../theme/interfaces/theme";
-import { CSSCheckbox } from "../theme/interfaces/checkbox";
+import React, {
+  FC,
+  HTMLAttributes,
+  MouseEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { sx } from "../theme/utils/sx";
+import { Theme } from "../theme/interfaces";
 
 type CheckboxLabelPosition = "left" | "right";
 
-export interface CheckboxProps {
+export interface CheckboxProps extends HTMLAttributes<HTMLInputElement> {
   id?: string;
   label?: string;
   labelPosition?: CheckboxLabelPosition;
-  defaultValue?: boolean;
   indeterminate?: boolean;
+  checked?: boolean;
   disabled?: boolean;
-  onChange?: () => void;
-  sx?: CSSCheckbox;
+  classes?: Theme["checkbox"];
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-
-interface BaseProps {
-  theme?: Theme;
-  $sx?: CSSObject;
-}
-
-const Base = styled.div<BaseProps>(({ theme, $sx }) => ({
-  ...theme.components?.checkbox?.root,
-  ...$sx,
-}));
-
-const Input = styled.input<BaseProps>(({ theme, $sx }) => ({
-  ...theme.components?.checkbox?.input,
-  ...$sx,
-}));
 
 export const Checkbox: FC<CheckboxProps> = ({
   id,
   label,
   labelPosition = "right",
-  defaultValue,
-  indeterminate,
   disabled,
-  onChange,
-  sx,
+  indeterminate,
+  classes,
+  ...rest
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const labelRef = useRef<HTMLSpanElement>(null);
+  const [isLabelTruncated, setIsLabelTruncated] = useState(false);
 
   useEffect(() => {
     if (inputRef.current) {
@@ -49,25 +42,55 @@ export const Checkbox: FC<CheckboxProps> = ({
     }
   }, [indeterminate]);
 
-  const handleClick = () => {
-    if (disabled || !inputRef.current) return;
-    inputRef.current.click();
-  };
+  useEffect(() => {
+    const checkTruncation = () => {
+      if (labelRef.current) {
+        setIsLabelTruncated(
+          labelRef.current.scrollWidth > labelRef.current.offsetWidth,
+        );
+      }
+    };
+
+    checkTruncation();
+    window.addEventListener("resize", checkTruncation);
+    return () => window.removeEventListener("resize", checkTruncation);
+  }, [label]);
+
+  const handleClick = useCallback(
+    (e: MouseEvent) => {
+      if (e.target === inputRef.current) return;
+      if (disabled || !inputRef.current) return;
+      inputRef.current.click();
+    },
+    [disabled, inputRef?.current],
+  );
 
   return (
-    <Base $sx={sx?.root} onClick={handleClick}>
-      {label && labelPosition === "left" && label}
-      <Input
+    <div
+      className={sx(
+        "checkbox",
+        { "checkbox-disabled": disabled },
+        classes?.checkbox,
+      )}
+      onClick={handleClick}
+    >
+      {label && labelPosition === "left" && (
+        <span ref={labelRef} title={isLabelTruncated ? label : undefined}>
+          {label}
+        </span>
+      )}
+      <input
+        className={sx("checkbox-input", classes?.input)}
         id={id || Math.floor(Math.random() * 10000).toString()}
         ref={inputRef}
         type="checkbox"
-        defaultChecked={defaultValue}
-        disabled={disabled}
-        onChange={onChange}
-        onClick={(e) => e.stopPropagation()}
-        $sx={sx?.input}
+        {...rest}
       />
-      {label && labelPosition === "right" && label}
-    </Base>
+      {label && labelPosition === "right" && (
+        <span ref={labelRef} title={isLabelTruncated ? label : undefined}>
+          {label}
+        </span>
+      )}
+    </div>
   );
 };

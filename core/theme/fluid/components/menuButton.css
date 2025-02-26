@@ -1,0 +1,3 @@
+[data-theme-name="fluid"] .menuButton-stack {
+  @apply inline-flex items-center gap-px;
+}

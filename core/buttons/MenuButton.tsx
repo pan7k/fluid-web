@@ -1,135 +1,75 @@
-import React, {
-  FC,
-  ReactElement,
-  Children,
-  useEffect,
-  useRef,
-  useState,
-  cloneElement,
-  useLayoutEffect,
-  isValidElement,
-  MouseEvent,
-} from "react";
-import { MenuList } from "./MenuList";
+import React, { FC, ReactElement, RefObject, useRef, useState } from "react";
 import { Button, ButtonProps } from "./Button";
 import { IconButton } from "./IconButton";
-import styled from "styled-components";
+import { sx } from "../theme/utils/sx";
+import { MenuDirection, MenuList } from "../menus/MenuList";
 
-export interface MenuButtonProps extends Omit<ButtonProps, "label" | "size"> {
+export interface MenuButtonProps
+  extends Omit<ButtonProps, "label" | "size" | "classes"> {
   label?: string;
-  children: ReactElement[];
+  children: ReactElement | ReactElement[];
   size?: "xs" | "sm" | "md";
   combined?: boolean;
+  menuDirection?: MenuDirection;
 }
-
-const Stack = styled.div({
-  display: "inline-flex",
-  alignItems: "center",
-  gap: "1px",
-});
 
 export const MenuButton: FC<MenuButtonProps> = ({
   children,
   label,
   icon,
   combined,
+  menuDirection,
   onClick,
-  ...props
+  ...rest
 }) => {
   const [open, setOpen] = useState(false);
-  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    if (buttonRef.current && open) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      setMenuPosition({ top: rect.bottom + 5, left: rect.left });
-    }
-  }, [open, buttonRef]);
-
-  useEffect(() => {
-    const handleClickOutside = (event: Event) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node) &&
-        !buttonRef.current?.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
-
-    if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [open]);
 
   const toggleMenu = () => {
     setOpen((prev) => !prev);
+    buttonRef.current?.focus();
   };
 
   return (
     <>
-      {!combined &&
-        (label ? (
+      {!combined ? (
+        label ? (
           <Button
             label={label}
-            icon={icon ? icon : open ? "caretUp" : "caretDown"}
+            icon={icon || (open ? "caretUp" : "caretDown")}
             onClick={toggleMenu}
             ref={buttonRef}
-            {...props}
+            {...rest}
           />
         ) : (
           <IconButton
-            icon={icon ? icon : open ? "caretUp" : "caretDown"}
+            icon={icon || (open ? "caretUp" : "caretDown")}
             onClick={toggleMenu}
             ref={buttonRef}
-            {...props}
+            {...rest}
           />
-        ))}
-      {combined && (
-        <Stack>
-          {label && (
-            <Button
-              label={label}
-              onClick={onClick}
-              sx={{ paddingRight: "25px" }}
-              {...props}
-            />
-          )}
+        )
+      ) : (
+        <div className={sx("menuButton-stack")}>
+          {label && <Button label={label} onClick={onClick} {...rest} />}
           <IconButton
-            icon={icon ? icon : open ? "caretUp" : "caretDown"}
+            icon={icon || (open ? "caretUp" : "caretDown")}
             onClick={toggleMenu}
             ref={buttonRef}
-            sx={label ? { paddingLeft: "8px", paddingRight: "8px" } : {}}
-            {...props}
+            {...rest}
           />
-        </Stack>
+        </div>
       )}
-      {open && (
+      {open && buttonRef.current && (
         <MenuList
-          position={menuPosition}
-          ref={menuRef}
-          minWidth={(buttonRef.current?.offsetWidth ?? 0) - 6}
+          parentRef={buttonRef as RefObject<HTMLButtonElement>}
+          direction={menuDirection}
+          onClose={() => setOpen(false)}
+          offset={4}
         >
-          <>
-            {Children.map(children, (child) => {
-              if (isValidElement(child)) {
-                return cloneElement(child as ReactElement<any>, {
-                  onClick: (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
-                    (child as ReactElement<any>).props.onClick &&
-                      (child as ReactElement<any>).props.onClick(e);
-                    setOpen(false);
-                  },
-                });
-              }
-              return null;
-            })}
-          </>
+          {React.Children.map(children, (child) =>
+            React.isValidElement(child) ? React.cloneElement(child) : child,
+          )}
         </MenuList>
       )}
     </>

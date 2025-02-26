@@ -4,6 +4,7 @@
   "prettier.configPath": ".vscode/prettier.json",
   "files.associations": {
     "*.svg": "html",
+    "*.css": "tailwindcss"
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"

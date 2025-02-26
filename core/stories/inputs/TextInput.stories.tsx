@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { parameters } from "../../storybook/parameters";
 import { TextInput } from "../../inputs/TextInput";
-import { iconSymbolKeys, iconVariantKeys } from "../../icons/Icon";
+import { iconVariantKeys } from "../../icons/Icon";
 
 export default {
   title: "Inputs/Text Input",
@@ -9,7 +9,6 @@ export default {
   argTypes: {
     icon: {
       control: { type: "select" },
-      options: iconSymbolKeys,
     },
     iconVariant: {
       control: { type: "select" },

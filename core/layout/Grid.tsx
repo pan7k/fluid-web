@@ -5,10 +5,9 @@ import React, {
   isValidElement,
   ReactNode,
 } from "react";
-import styled, { CSSObject } from "styled-components";
 
 export interface GridProps {
-  children: ReactNode;
+  children: ReactNode[];
   gridTemplateColumns?: string;
   gridTemplateRows?: string;
   gap?: number;
@@ -18,48 +17,8 @@ export interface GridProps {
   alignItems?: string;
   justifyContent?: string;
   alignContent?: string;
-  sx?: CSSObject;
+  classes?: string;
 }
-
-export interface BaseProps {
-  $gridTemplateColumns?: string;
-  $gridTemplateRows?: string;
-  $gap?: number;
-  $rowGap?: number;
-  $columnGap?: number;
-  $justifyItems?: string;
-  $alignItems?: string;
-  $justifyContent?: string;
-  $alignContent?: string;
-  $sx?: CSSObject;
-}
-
-const Base = styled.div<BaseProps>(
-  ({
-    $gridTemplateColumns,
-    $gridTemplateRows,
-    $gap,
-    $rowGap,
-    $columnGap,
-    $justifyItems,
-    $alignItems,
-    $justifyContent,
-    $alignContent,
-    $sx,
-  }) => ({
-    display: "grid",
-    gridTemplateColumns: $gridTemplateColumns,
-    gridTemplateRows: $gridTemplateRows,
-    gap: $gap,
-    rowGap: $rowGap,
-    columnGap: $columnGap,
-    justifyItems: $justifyItems,
-    alignItems: $alignItems,
-    justifyContent: $justifyContent,
-    alignContent: $alignContent,
-    ...$sx,
-  }),
-);
 
 export const Grid: FC<GridProps> = ({
   children,
@@ -72,22 +31,25 @@ export const Grid: FC<GridProps> = ({
   alignItems,
   justifyContent,
   alignContent,
-  sx,
+  classes,
 }) => (
-  <Base
-    $sx={sx}
-    $gridTemplateColumns={gridTemplateColumns}
-    $gridTemplateRows={gridTemplateRows}
-    $gap={gap}
-    $rowGap={rowGap}
-    $columnGap={columnGap}
-    $justifyItems={justifyItems}
-    $alignItems={alignItems}
-    $justifyContent={justifyContent}
-    $alignContent={alignContent}
+  <div
+    className={classes}
+    style={{
+      display: "grid",
+      gridTemplateColumns,
+      gridTemplateRows,
+      gap,
+      rowGap,
+      columnGap,
+      justifyItems,
+      alignItems,
+      justifyContent,
+      alignContent,
+    }}
   >
     {Children.map(children, (child, index) =>
       isValidElement(child) ? cloneElement(child, { key: index }) : child,
     )}
-  </Base>
+  </div>
 );

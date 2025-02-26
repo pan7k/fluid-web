@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "outDir": "dist",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "declaration": true,
     "declarationMap": true,
     "declarationDir": "dist",
@@ -16,9 +20,18 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react"
+    "noEmit": false,
+    "jsx": "react",
+    "sourceMap": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
-  "include": ["core"],
-  "exclude": ["node_modules", "dist", ".storybook"]
+  "include": [
+    "core"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".storybook"
+  ]
 }

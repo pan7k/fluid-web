@@ -1,13 +1,32 @@
-import React, { FC, ReactNode } from "react";
-import { ThemeProvider as Provider } from "styled-components";
-import { Theme } from "./interfaces/theme";
+import React, { FC, ReactNode, useEffect } from "react";
 
 export interface ThemeProviderProps {
-  theme: Theme;
+  themeName: string;
+  themeVariant?: string;
   children: ReactNode;
 }
 
 export const ThemeProvider: FC<ThemeProviderProps> = ({
+  themeName,
+  themeVariant,
   children,
-  ...rest
-}) => <Provider {...rest}>{children}</Provider>;
+}) => {
+  useEffect(() => {
+    const root = document.documentElement;
+    root.setAttribute("data-theme-name", themeName);
+
+    if (themeVariant) {
+      root.setAttribute("data-theme-variant", themeVariant);
+    } else {
+      root.removeAttribute("data-theme-variant");
+    }
+
+    if (themeName) {
+      root.setAttribute("data-theme-name", themeName);
+    } else {
+      root.removeAttribute("data-theme-name");
+    }
+  }, [themeName, themeVariant]);
+
+  return <>{children}</>;
+};

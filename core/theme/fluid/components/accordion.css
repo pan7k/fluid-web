@@ -1,0 +1,43 @@
+[data-theme-name="fluid"] .accordion-panel {
+  @apply relative flex flex-shrink-0 justify-between text-start cursor-pointer bg-surface-10 hover:bg-surface-20 select-none pl-4;
+}
+
+[data-theme-name="fluid"] .accordion-panel-opened {
+  @apply bg-surface-20 hover:bg-surface-30;
+}
+
+[data-theme-name="fluid"] .accordion-panel:focus  {
+  @apply outline-offset-1 outline-2 outline-surface-focus;
+}
+
+[data-theme-name="fluid"] .accordion-content {
+  @apply hidden h-full max-h-0 overflow-y-auto;
+}
+
+[data-theme-name="fluid"] .accordion-content-opened {
+  @apply block max-h-[800px] overflow-visible mt-0;
+}
+
+[data-theme-name="fluid"] .accordion-left {
+  @apply flex items-center gap-2;
+}
+
+[data-theme-name="fluid"] .accordion-right {
+  @apply flex items-center;
+}
+
+[data-theme-name="fluid"] .accordion-icon {
+  @apply flex flex-shrink-0 items-center h-[22px] text-text-secondary;
+}
+
+[data-theme-name="fluid"] .accordion-xs {
+  @apply h-[31px];
+}
+
+[data-theme-name="fluid"] .accordion-sm {
+  @apply h-[39px];
+}
+
+[data-theme-name="fluid"] .accordion-md {
+  @apply h-[46px];
+}

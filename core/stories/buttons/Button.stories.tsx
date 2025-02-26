@@ -1,8 +1,9 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { parameters } from "../../storybook/parameters";
-import { Button, ButtonProps } from "../../buttons/Button";
+import { Button } from "../../buttons/Button";
 import { iconSymbolKeys } from "../../icons/Icon";
+import { Snackbar } from "../../content/Snackbar";
 
 export default {
   title: "Buttons/Button",
@@ -10,7 +11,7 @@ export default {
   argTypes: {
     color: {
       control: { type: "select" },
-      options: ["primary", "secondary", "success", "danger"],
+      options: ["primary", "secondary", "info", "success", "warning", "danger"],
     },
     variant: {
       control: { type: "select" },
@@ -27,16 +28,6 @@ export default {
   },
 } satisfies Meta<typeof Button>;
 
-const ButtonWithHooks: FC<ButtonProps> = ({ label, ...rest }) => {
-  const [count, setCount] = useState(0);
-  const handleClick = () => {
-    setCount(count + 1);
-  };
-
-  const text = `${label} ${count}`;
-  return <Button label={text} onClick={handleClick} {...rest} />;
-};
-
 export const Default: StoryObj<typeof Button> = {
   name: "Button",
   args: {
@@ -46,9 +37,24 @@ export const Default: StoryObj<typeof Button> = {
     size: "md",
     icon: "plus",
   },
-  render: (args) => <ButtonWithHooks {...args} />,
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+    return (
+      <>
+        <Button {...args} onClick={() => setOpen(true)} />
+        <Snackbar
+          open={open}
+          type="debug"
+          message="Button clicked"
+          duration={2000}
+          closeButton={false}
+          onClose={() => setOpen(false)}
+        />
+      </>
+    );
+  },
   parameters: parameters(
-    `<Button label="Button" icon="add" />`,
+    `<Button label="Button" icon="plus" />`,
     "Button component",
   ),
 };

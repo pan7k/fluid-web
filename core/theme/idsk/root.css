@@ -1,0 +1,10 @@
+/* IDSK theme */
+
+@import "./main.css";
+
+@import "./components/button.css";
+@import "./components/iconButton.css";
+@import "./components/menuButton.css";
+@import "./components/menuList.css";
+@import "./components/menuItem.css";
+@import "./components/typography.css";

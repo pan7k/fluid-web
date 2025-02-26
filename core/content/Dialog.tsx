@@ -6,30 +6,20 @@ import React, {
   useRef,
   useEffect,
   useLayoutEffect,
+  HTMLAttributes,
 } from "react";
-import styled, { CSSObject } from "styled-components";
-import { Theme } from "../theme/interfaces/theme";
-import { EventProps } from "../common/interfaces";
 import { IconButton } from "../buttons/IconButton";
 import { Layer } from "../layout/Layer";
 import { useDialogContext } from "./DialogContext";
 import { Stack } from "../layout/Stack";
+import { sx } from "../theme/utils/sx";
+import { Theme } from "../theme/interfaces";
+
+// TODO: REFACTOR
 
 type ActionsAlign = "flex-start" | "space-between" | "flex-end";
 
-interface SXProps {
-  root?: CSSObject;
-  header?: {
-    root?: CSSObject;
-    label?: CSSObject;
-    buttons?: CSSObject;
-  };
-  actions?: CSSObject;
-  content?: CSSObject;
-  overlay?: CSSObject;
-}
-
-export interface DialogProps extends EventProps {
+export interface DialogProps extends HTMLAttributes<HTMLDialogElement> {
   children: ReactNode;
   label: ReactNode;
   actions?: Array<ReactNode>;
@@ -47,64 +37,11 @@ export interface DialogProps extends EventProps {
   left?: string;
   width?: string;
   height?: string;
+  noPadding?: boolean;
   active?: boolean;
   onClose?: () => void;
-  sx?: SXProps;
+  classes?: Theme["dialog"];
 }
-
-interface BaseProps {
-  theme: Theme;
-  $active?: boolean;
-  $draggable?: boolean;
-  $resizable?: boolean;
-  $maximized?: boolean;
-  $prominent?: boolean;
-  $align?: "flex-start" | "space-between" | "flex-end";
-  $sx?: CSSObject;
-}
-
-const Overlay = styled.div<BaseProps>(({ theme, $sx }) => ({
-  ...theme.components?.dialog?.overlay,
-  ...$sx,
-}));
-
-const Base = styled.div<BaseProps>(
-  ({ theme, $active, $resizable, $maximized, $sx }) => ({
-    display: $active ? "block" : "none",
-    resize: $resizable && !$maximized ? "both" : "none",
-    ...theme.components?.dialog?.root,
-    ...$sx,
-  }),
-);
-
-const Header = styled.div<BaseProps>(
-  ({ theme, $draggable, $maximized, $prominent, $sx }) => ({
-    cursor: $draggable && !$maximized && !$prominent ? "move" : "default",
-    ...theme.components?.dialog?.header?.root,
-    ...$sx,
-  }),
-);
-
-const Label = styled.div<BaseProps>(({ theme, $sx }) => ({
-  ...theme.components?.dialog?.header?.label,
-  ...$sx,
-}));
-
-const Content = styled.div<BaseProps>(({ theme, $sx }) => ({
-  ...theme.components?.dialog?.content,
-  ...$sx,
-}));
-
-const Actions = styled.div<BaseProps>(({ theme, $align, $sx }) => ({
-  ...theme.components?.dialog?.actions,
-  ...$sx,
-  justifyContent: $align,
-}));
-
-const Buttons = styled.div<BaseProps>(({ theme, $sx }) => ({
-  ...theme.components?.dialog?.header?.buttons,
-  ...$sx,
-}));
 
 export const Dialog: FC<DialogProps> = ({
   children,
@@ -119,6 +56,7 @@ export const Dialog: FC<DialogProps> = ({
   fullscreen = false,
   prominent,
   active = false,
+  noPadding,
   top,
   right,
   bottom,
@@ -126,7 +64,7 @@ export const Dialog: FC<DialogProps> = ({
   width,
   height,
   onClose,
-  sx,
+  classes,
 }) => {
   const dialogId = useRef(`dialog-${Math.random()}`).current;
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -148,7 +86,12 @@ export const Dialog: FC<DialogProps> = ({
     height: height ? height : "auto",
   });
 
-  const { addMinimizedDialog } = useDialogContext();
+  const { bringDialogToFront, getDialogZIndex, addMinimizedDialog } =
+    useDialogContext();
+
+  const bringToFront = () => {
+    bringDialogToFront(dialogId);
+  };
 
   const centerDialog = () => {
     const dialog = dialogRef.current;
@@ -222,7 +165,6 @@ export const Dialog: FC<DialogProps> = ({
     }
   };
 
-  // TODO: refactor
   const handleFullscreen = () => {
     setFullscreen(!isFullscreen);
     if (dialogRef.current && !isFullscreen) {
@@ -259,7 +201,7 @@ export const Dialog: FC<DialogProps> = ({
     }
   }, [isActive, isInitialized]);
 
-  // TODO: refactor; toggles the fullscreen state when the prop changes
+  // toggles the fullscreen state when the prop changes
   useEffect(() => {
     if (fullscreen !== isFullscreen) {
       handleFullscreen();
@@ -328,32 +270,42 @@ export const Dialog: FC<DialogProps> = ({
 
   return (
     <>
-      {isActive && prominent && <Overlay $sx={sx?.overlay} />}
-      <Base
+      {isActive && prominent && (
+        <div className={sx("dialog-overlay", classes?.overlay)} />
+      )}
+      <div
         ref={dialogRef}
-        $active={isActive}
-        $draggable={draggable}
-        $resizable={resizable}
-        $maximized={isMaximized}
-        $sx={sx?.root}
+        onMouseDown={bringToFront}
+        style={{
+          display: active ? "block" : "none",
+          resize: resizable && !isMaximized ? "both" : "none",
+          zIndex: getDialogZIndex(dialogId),
+        }}
+        className={sx("dialog", classes?.dialog)}
       >
-        <Header
-          $draggable={draggable}
-          $maximized={isMaximized}
-          $prominent={prominent}
+        <div
+          className={sx(
+            "dialog-header",
+            classes?.header,
+            noPadding ? "" : "mb-[3px]",
+          )}
+          style={{
+            cursor:
+              draggable && !isMaximized && !prominent ? "move" : "default",
+          }}
           onMouseMove={handleMouseMove}
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
-          $sx={sx?.header}
         >
-          <Label>{label}</Label>
-          <Buttons $sx={sx?.header?.buttons}>
+          <div className={sx("dialog-label", classes?.label)}>{label}</div>
+          <div className={sx("dialog-buttons", classes?.buttons)}>
             {minimizable && !prominent && (
               <IconButton
                 icon="minus"
                 variant="light"
                 color="secondary"
                 onClick={handleMinimize}
+                classes={classes?.iconButton}
               />
             )}
             {maximizable && !prominent && (
@@ -362,6 +314,7 @@ export const Dialog: FC<DialogProps> = ({
                 variant="light"
                 color="secondary"
                 onClick={handleMaximize}
+                classes={classes?.iconButton}
               />
             )}
             {closable && (
@@ -370,32 +323,38 @@ export const Dialog: FC<DialogProps> = ({
                 variant="light"
                 color="secondary"
                 onClick={handleClose}
+                classes={classes?.iconButton}
               />
             )}
-          </Buttons>
-        </Header>
+          </div>
+        </div>
         <Layer
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            flexGrow: 1,
-            marginTop: 0,
-            paddingTop: 0,
-            paddingBottom: "16px",
-          }}
+          classes={`dialog-layer ${classes?.layer ? classes.layer : ""} ${!fullscreen && resizable && !width && !height ? "resize min-w-[320px] min-h-[100px]" : ""} ${noPadding ? "!p-0 !m-0" : ""} ${isMaximized ? "fixed w-full" : ""}`}
+          style={{ height: isMaximized ? "calc(100vh - 54px)" : height }}
         >
-          <Stack sx={{ flexGrow: 1 }}>
-            <Content $sx={sx?.content}>{children}</Content>
+          <Stack classes={`flex-grow ${classes?.stack ? classes?.stack : {}}`}>
+            <div
+              className={sx(
+                "dialog-content",
+                isMaximized ? "w-full" : "",
+                classes?.content,
+              )}
+            >
+              {children}
+            </div>
             {actions && (
-              <Actions $align={actionsAlign} $sx={sx?.actions}>
+              <div
+                className={sx("dialog-actions", classes?.actions)}
+                style={{ justifyContent: actionsAlign }}
+              >
                 {actions.map((action, index) => (
                   <div key={index}>{action}</div>
                 ))}
-              </Actions>
+              </div>
             )}
           </Stack>
         </Layer>
-      </Base>
+      </div>
     </>
   );
 };

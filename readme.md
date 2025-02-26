@@ -13,7 +13,7 @@ Component library
 $ bun i
 ```
 
-For the development environment to work, you need to have [Node.JS](https://nodejs.org) and a [package manager](https://bun.sh) installed and running. This project is optimised for [Visual Studio Code](https://code.visualstudio.com) and [bun](https://bun.sh).
+For the development environment to work, you need to have [Node.JS](https://nodejs.org) and a [package manager](https://bun.sh) installed. This project is optimised for [Visual Studio Code](https://code.visualstudio.com) and [bun](https://bun.sh).
 
 #### Running the app
 
@@ -29,8 +29,9 @@ To publish the package, either manually trigger the [Publish](https://github.com
 
 [Storybook](https://storybook.js.org)<br>
 [React](https://react.dev)<br>
-[TypeScript](https://typescriptlang.org)
+[TypeScript](https://typescriptlang.org)<br>
+[Vanilla Extract](https://vanilla-extract.style)
 
 #### License
 
-© 2024 Tomáš Pánik. All rights reserved.<br>
+© 2025 Tomáš Pánik. All rights reserved.<br>

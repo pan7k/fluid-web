@@ -4,6 +4,7 @@ const config: StorybookConfig = {
   addons: [
     "@storybook/addon-webpack5-compiler-babel",
     "@storybook/addon-toolbars",
+    "storybook-dark-mode",
     "@storybook/addon-controls",
     "@storybook/addon-storysource",
     "@storybook/addon-interactions",
@@ -15,6 +16,17 @@ const config: StorybookConfig = {
     "@storybook/addon-themes",
     "@storybook/addon-viewport",
     "@storybook/addon-a11y",
+    {
+      name: "@storybook/addon-postcss",
+      options: {
+        cssLoaderOptions: {
+          importLoaders: 1,
+        },
+        postcssLoaderOptions: {
+          implementation: require("postcss"),
+        },
+      },
+    },
   ],
   core: {
     disableWhatsNewNotifications: true,

@@ -1,0 +1,3 @@
+[data-theme-name="idsk"] .menuList {
+  @apply z-[1000] fixed outline-2 outline-surface-focus m-0.5 p-px bg-surface-blank max-h-[200px] overflow-y-auto select-none rounded-[6px];
+}

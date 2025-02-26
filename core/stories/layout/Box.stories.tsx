@@ -13,12 +13,7 @@ export const Default: StoryObj<typeof Box> = {
   name: "Box",
   args: {
     children: <Chip>Box</Chip>,
-    sx: {
-      padding: 2,
-      background: "silver",
-      height: "auto",
-      minHeight: "100px",
-    },
+    classes: "p-2 bg-surface-20 h-40",
   },
   parameters: parameters(`<Divider />`, "Divider"),
 };

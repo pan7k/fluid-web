@@ -1,0 +1,106 @@
+[data-theme-name="idsk"] .button {
+  @apply text-body inline-flex text-start font-sans cursor-pointer border border-transparent flex-shrink-0 relative max-w-[20rem] select-none gap-2 rounded-[6px] font-bold;
+}
+
+[data-theme-name="idsk"] .button:focus  {
+  @apply outline-offset-1 outline-2 outline-surface-focus;
+}
+
+[data-theme-name="idsk"] .button-icon {
+  @apply flex items-center justify-center absolute mt-[2px];
+  inset-inline-end: 1rem;
+}
+
+/* Variants */
+
+[data-theme-name="idsk"] .button-filled-primary {
+  @apply bg-primary-main text-text-inverted hover:bg-primary-darker active:bg-primary-dark;
+}
+
+[data-theme-name="idsk"] .button-filled-secondary {
+  @apply bg-secondary-main text-text-inverted hover:bg-secondary-darker active:bg-secondary-dark;
+}
+
+[data-theme-name="idsk"] .button-filled-success {
+  @apply bg-success-main text-text-inverted hover:bg-success-darker active:bg-success-dark;
+}
+
+[data-theme-name="idsk"] .button-filled-danger {
+  @apply bg-danger-main text-text-inverted hover:bg-danger-darker active:bg-danger-dark;
+}
+
+[data-theme-name="idsk"] .button-outline-primary {
+  @apply border border-primary-main text-primary-main hover:bg-primary-main hover:text-white active:bg-primary-darker;
+}
+
+[data-theme-name="idsk"] .button-outline-secondary {
+  @apply border border-secondary-main text-secondary-main hover:bg-secondary-main hover:text-white active:bg-secondary-darker;
+}
+
+[data-theme-name="idsk"] .button-outline-success {
+  @apply border border-success-main text-success-main hover:bg-success-main hover:text-white active:bg-success-darker;
+}
+
+[data-theme-name="idsk"] .button-outline-danger {
+  @apply border border-danger-main text-danger-main hover:bg-danger-main hover:text-white active:bg-danger-darker;
+}
+
+[data-theme-name="idsk"] .button-light-primary {
+  @apply bg-surface-10 text-primary-main hover:bg-surface-20 active:bg-surface-30;
+}
+
+[data-theme-name="idsk"] .button-light-secondary {
+  @apply bg-surface-10 text-secondary-main hover:bg-surface-20 active:bg-surface-30;
+}
+
+[data-theme-name="idsk"] .button-light-success {
+  @apply bg-surface-10 text-success-main hover:bg-surface-20 active:bg-surface-30;
+}
+
+[data-theme-name="idsk"] .button-light-danger {
+  @apply bg-surface-10 text-danger-main hover:bg-surface-20 active:bg-surface-30;
+}
+
+[data-theme-name="idsk"] .button-ghost-primary {
+  @apply bg-transparent text-primary-main hover:bg-surface-10 active:bg-surface-20;
+}
+
+[data-theme-name="idsk"] .button-ghost-secondary {
+  @apply bg-transparent text-secondary-main hover:bg-surface-10 active:bg-surface-20;
+}
+
+[data-theme-name="idsk"] .button-ghost-success {
+  @apply bg-transparent text-success-main hover:bg-surface-10 active:bg-surface-20;
+}
+
+[data-theme-name="idsk"] .button-ghost-danger {
+  @apply bg-transparent text-danger-main hover:bg-surface-10 active:bg-surface-20;
+}
+
+/* Sizes */
+
+[data-theme-name="idsk"] .button-xs {
+  @apply min-h-[2rem] pt-[6px] pr-[60px] pb-[6px] pl-[16px];
+}
+
+[data-theme-name="idsk"] .button-sm {
+  @apply min-h-[2.5rem] pt-[10px] pr-[60px] pb-[10px] pl-[16px];
+}
+
+[data-theme-name="idsk"] .button-md {
+  @apply min-h-[3rem] pt-[14px] pr-[60px] pb-[14px] pl-[16px];
+}
+
+[data-theme-name="idsk"] .button-lg {
+  @apply min-h-[4rem] pt-[14px] pr-[60px] pb-[14px] pl-[16px];
+}
+
+[data-theme-name="idsk"] .button-xl {
+  @apply min-h-[5rem] pt-[14px] pr-[60px] pb-[14px] pl-[16px];
+}
+
+/* States */
+
+[data-theme-name="idsk"] .button-disabled {
+  @apply bg-surface-10 text-gray-400 border-none cursor-not-allowed opacity-50;
+}

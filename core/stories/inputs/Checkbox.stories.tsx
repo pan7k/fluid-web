@@ -12,9 +12,7 @@ export const Default: StoryObj<typeof Checkbox> = {
   args: {
     label: "Checkbox",
     labelPosition: "right",
-    defaultValue: true,
-    indeterminate: false,
-    disabled: false,
+    defaultChecked: true,
   },
   parameters: parameters(
     `<Checkbox label="Checkbox" defaultValue={true} />`,

@@ -1,0 +1,47 @@
+[data-theme-name="fluid"] .menuItem {
+  @apply cursor-pointer select-none bg-surface-blank flex items-center justify-between gap-4 hover:bg-surface-10 active:bg-surface-20;
+}
+
+[data-theme-name="fluid"] .menuItem-primary {
+  @apply text-text-primary;
+}
+
+[data-theme-name="fluid"] .menuItem-secondary {
+  @apply text-text-secondary;
+}
+
+[data-theme-name="fluid"] .menuItem-success {
+  @apply text-success-darker;
+}
+
+[data-theme-name="fluid"] .menuItem-warning {
+  @apply text-warning-darker;
+}
+
+[data-theme-name="fluid"] .menuItem-danger {
+  @apply text-danger-darker;
+}
+
+[data-theme-name="fluid"] .menuItem-xs {
+  @apply pt-[5px] pr-[16px] pb-[5px] pl-[16px];
+}
+
+[data-theme-name="fluid"] .menuItem-sm {
+  @apply pt-[9px] pr-[16px] pb-[9px] pl-[16px];
+}
+
+[data-theme-name="fluid"] .menuItem-md {
+  @apply pt-[12.5px] pr-[16px] pb-[12.5px] pl-[16px];
+}
+
+[data-theme-name="fluid"] .menuItem-lg {
+  @apply pt-[14.5px] pr-[16px] pb-[14.5px] pl-[16px];
+}
+
+[data-theme-name="fluid"] .menuItem-xl {
+  @apply pt-[14px] pr-[16px] pb-[14px] pl-[16px];
+}
+
+[data-theme-name="fluid"] .menuItem-highlighted {
+  @apply bg-surface-10;
+}

@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { parameters } from "../../storybook/parameters";
-import { MenuButton, MenuButtonProps } from "../../buttons/MenuButton";
-import { MenuItem } from "../../buttons/MenuItem";
-import { useTheme } from "styled-components";
+import { MenuButton } from "../../buttons/MenuButton";
+import { MenuItem } from "../../menus/MenuItem";
 import { iconSymbolKeys } from "../../icons/Icon";
+import { Snackbar } from "../../content/Snackbar";
 
 export default {
   title: "Buttons/Menu Button",
@@ -16,7 +16,7 @@ export default {
     },
     color: {
       control: { type: "select" },
-      options: ["primary", "secondary", "success", "danger"],
+      options: ["primary", "secondary", "info", "success", "warning", "danger"],
     },
     variant: {
       control: { type: "select" },
@@ -24,16 +24,6 @@ export default {
     },
   },
 } satisfies Meta<typeof MenuButton>;
-
-const MenuButtonWithHooks: FC<MenuButtonProps> = (args) => {
-  const theme = useTheme();
-  return (
-    <MenuButton {...args}>
-      <MenuItem label="Add" icon="add" color={theme.palette.success.main} />
-      <MenuItem label="Item 2" />
-    </MenuButton>
-  );
-};
 
 export const Default: StoryObj<typeof MenuButton> = {
   name: "MenuButton",
@@ -45,12 +35,30 @@ export const Default: StoryObj<typeof MenuButton> = {
     size: "md",
     variant: "filled",
   },
-  render: (args) => <MenuButtonWithHooks {...args} />,
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+    return (
+      <>
+        <MenuButton {...args} onClick={() => setOpen(true)}>
+          <MenuItem label="Add" icon="plus" onClick={() => setOpen(true)} />
+          <MenuItem label="Copy" onClick={() => setOpen(true)} />
+        </MenuButton>
+        <Snackbar
+          open={open}
+          type="debug"
+          message="Button clicked"
+          duration={2000}
+          closeButton={false}
+          onClose={() => setOpen(false)}
+        />
+      </>
+    );
+  },
   parameters: parameters(
     `<MenuButton label="Menu">
-  <MenuItem label="Add" icon="add" color={theme.palette.success.main} />
-  <MenuItem label="Item 2" />
+  <MenuItem label="Add" icon="plus" color="primary" />
+  <MenuItem label="Copy" />
 </MenuButton>`,
-    "Menu component",
+    "Menu button component",
   ),
 };

@@ -1,45 +1,39 @@
 import React, {
-  Children,
-  cloneElement,
   FC,
-  isValidElement,
   ReactNode,
+  Children,
+  isValidElement,
+  cloneElement,
+  HTMLAttributes,
 } from "react";
-import styled, { CSSObject } from "styled-components";
+import { sx } from "../theme/utils/sx";
 
 type StackDirection = "row" | "column";
 
-export interface StackProps {
+export interface StackProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   direction?: StackDirection;
   spacing?: number;
-  sx?: CSSObject;
+  classes?: string;
 }
-
-export interface BaseProps {
-  $direction: StackDirection;
-  $spacing: number;
-  $sx?: CSSObject;
-}
-
-const Base = styled.div<BaseProps>(({ theme, $direction, $spacing, $sx }) => ({
-  display: "flex",
-  flexDirection: $direction,
-  gap: theme.spacing($spacing),
-  rowGap: $direction === "column" ? theme.spacing($spacing) : undefined,
-  columnGap: $direction === "row" ? theme.spacing($spacing) : undefined,
-  ...$sx,
-}));
 
 export const Stack: FC<StackProps> = ({
   direction = "column",
   spacing = 4,
   children,
-  sx,
-}) => (
-  <Base $direction={direction} $spacing={spacing} $sx={sx}>
-    {Children.map(children, (child, index) =>
-      isValidElement(child) ? cloneElement(child, { key: index }) : child,
-    )}
-  </Base>
-);
+  classes,
+}) => {
+  return (
+    <div
+      style={{ gap: `calc(${spacing} * var(--spacing))` }}
+      className={sx(
+        `flex ${direction === "column" ? "flex-col" : "flex-row"}`,
+        classes,
+      )}
+    >
+      {Children.map(children, (child, index) =>
+        isValidElement(child) ? cloneElement(child, { key: index }) : child,
+      )}
+    </div>
+  );
+};

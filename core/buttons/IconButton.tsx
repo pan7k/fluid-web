@@ -1,54 +1,34 @@
-import React, { forwardRef } from "react";
-import styled, { CSSObject } from "styled-components";
-import { EventProps } from "../common/interfaces";
+import React, { ButtonHTMLAttributes, createRef, forwardRef } from "react";
 import { Icon, IconSymbol, IconVariant } from "../icons/Icon";
-import { Theme } from "../theme/interfaces/theme";
 import { Tooltip, TooltipDirection } from "../content/Tooltip";
+import { Theme } from "../theme/interfaces";
+import { sx } from "../theme/utils/sx";
+import { ButtonType } from "./Button";
+import { ComponentSize } from "../common/types";
 
-export type IconButtonColor = "primary" | "secondary" | "success" | "danger";
+export type IconButtonColor =
+  | "primary"
+  | "secondary"
+  | "info"
+  | "success"
+  | "warning"
+  | "danger";
 export type IconButtonVariant = "filled" | "outline" | "light" | "ghost";
-export type IconButtonSize = "xs" | "sm" | "md";
 
-export interface IconButtonProps extends EventProps {
+export interface IconButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: IconSymbol;
   iconVariant?: IconVariant;
+  type?: ButtonType;
   color?: IconButtonColor;
   variant?: IconButtonVariant;
-  size?: IconButtonSize;
+  size?: ComponentSize;
   tooltip?: string;
   direction?: TooltipDirection;
   disabled?: boolean;
-  sx?: CSSObject;
+  active?: boolean;
+  classes?: Theme["iconButton"];
 }
-
-interface BaseProps {
-  theme: Theme;
-  $color: IconButtonColor;
-  $variant: IconButtonVariant;
-  $size: IconButtonSize;
-  disabled?: boolean;
-  $sx?: CSSObject;
-}
-
-interface IconProps extends Omit<BaseProps, "$color" | "$size"> {}
-
-const Base = styled.button<BaseProps>(
-  ({ theme, $color, $variant, $size, disabled, $sx }) => ({
-    ...theme.components?.iconButton?.root,
-    ...theme.components?.button?.variant?.[$variant]?.root,
-    ...theme.components?.button?.variant?.[$variant]?.color?.[$color],
-    ...theme.components?.iconButton?.size?.[$size],
-    ...(disabled ? { "&:disabled": theme.components?.button?.disabled } : {}),
-    ...$sx,
-  }),
-);
-
-const IconBase = styled.div<IconProps>(({ theme, $variant }) => ({
-  svg: {
-    ...theme.components?.iconButton?.icon,
-    ...theme.components?.button?.variant?.[$variant]?.icon,
-  },
-}));
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   (
@@ -57,45 +37,75 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       variant = "filled",
       size = "md",
       icon,
-      iconVariant = "filled",
+      iconVariant = "regular",
       tooltip,
       direction = "bottom",
       disabled,
-      sx,
+      active,
+      classes,
+      onClick,
       ...rest
     },
     ref,
   ) => {
+    const buttonRef = ref || createRef<HTMLButtonElement>();
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (onClick) {
+        onClick(event);
+      }
+      if ("current" in buttonRef && buttonRef.current) {
+        buttonRef.current.focus();
+      }
+    };
+    const buttonClassName = sx(
+      "iconButton",
+      `iconButton-${variant}-${color}`,
+      `iconButton-${size}`,
+      {
+        "iconButton-disabled": disabled,
+        [`iconButton-${variant}-${color}-active`]: active,
+      },
+      classes?.button,
+    );
+
     return tooltip ? (
-      <Tooltip label={tooltip} direction={direction}>
-        <Base
-          ref={ref}
-          $color={color}
-          $variant={variant}
-          $size={size}
+      <Tooltip
+        label={tooltip}
+        direction={direction}
+        classes={{ container: classes?.tooltip }}
+      >
+        <button
+          ref={buttonRef}
+          className={buttonClassName}
           disabled={disabled}
-          $sx={sx}
+          onClick={handleClick}
           {...rest}
         >
-          <IconBase $variant={variant}>
-            <Icon symbol={icon} variant="regular" size="xs" />
-          </IconBase>
-        </Base>
+          <div className={sx("iconButton-icon", classes?.stack)}>
+            <Icon
+              symbol={icon}
+              variant={iconVariant}
+              size={size === "lg" ? "sm" : size === "xl" ? "md" : "xs"}
+            />
+          </div>
+        </button>
       </Tooltip>
     ) : (
-      <Base
-        ref={ref}
-        $color={color}
-        $variant={variant}
-        $size={size}
+      <button
+        ref={buttonRef}
+        className={buttonClassName}
         disabled={disabled}
-        $sx={sx}
+        onClick={handleClick}
         {...rest}
       >
-        <IconBase $variant={variant}>
-          <Icon symbol={icon} variant="regular" size="xs" />
-        </IconBase>
-      </Base>
+        <div className={sx("iconButton-icon", classes?.stack)}>
+          <Icon
+            symbol={icon}
+            variant={iconVariant}
+            size={size === "lg" ? "sm" : size === "xl" ? "md" : "xs"}
+          />
+        </div>
+      </button>
     );
   },
 );

@@ -1,92 +1,94 @@
-import React, { FC, useState } from "react";
-import styled, { CSSObject } from "styled-components";
-import { Theme } from "../theme/interfaces/theme";
-import { CSSSwitch } from "../theme/interfaces/switch";
+import React, { ChangeEvent, FC, InputHTMLAttributes, useState } from "react";
+import { sx } from "../theme/utils/sx";
+import { Theme } from "../theme/interfaces";
 
 type SwitchLabelPosition = "left" | "right";
 
-export interface SwitchProps {
+export interface SwitchProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   labelPosition?: SwitchLabelPosition;
-  defaultValue?: boolean;
   disabled?: boolean;
-  onChange?: (checked: boolean) => void;
-  sx?: CSSSwitch;
+  classes?: Theme["switch"];
 }
-
-interface BaseProps {
-  theme?: Theme;
-  $checked?: boolean;
-  $disabled?: boolean;
-  $sx?: CSSObject;
-}
-
-const Base = styled.div<BaseProps>(({ theme, $sx, $checked, $disabled }) => ({
-  ...theme?.components?.switch?.root,
-  ...($checked ? theme?.components?.switch?.checked?.root : {}),
-  ...($disabled ? theme?.components?.switch?.disabled?.root : {}),
-  ...$sx,
-}));
-
-const Stack = styled.div<BaseProps>(({ theme, $sx, $checked, $disabled }) => ({
-  ...theme?.components?.switch?.stack,
-  ...($checked ? theme?.components?.switch?.checked?.stack : {}),
-  ...($disabled ? theme?.components?.switch?.disabled?.stack : {}),
-  ...$sx,
-}));
-
-const Knob = styled.div<BaseProps>(({ theme, $sx, $checked, $disabled }) => ({
-  ...theme?.components?.switch?.knob,
-  ...($checked ? theme?.components?.switch?.checked?.knob : {}),
-  ...($disabled ? theme?.components?.switch?.disabled?.knob : {}),
-  ...$sx,
-}));
-
-const Input = styled.input<BaseProps>(({ theme, $sx, $checked, disabled }) => ({
-  ...theme?.components?.switch?.input,
-  ...($checked ? theme?.components?.switch?.checked?.input : {}),
-  ...(disabled ? theme?.components?.switch?.disabled?.input : {}),
-  ...$sx,
-}));
 
 export const Switch: FC<SwitchProps> = ({
+  id,
   label,
   labelPosition = "right",
-  defaultValue,
+  defaultChecked = false,
   disabled,
   onChange,
-  sx,
+  classes,
+  ...rest
 }) => {
-  const [isChecked, setIsChecked] = useState(defaultValue || false);
+  const [isChecked, setIsChecked] = useState(defaultChecked);
+  const switchId =
+    id || `switch-${Math.random().toString(36).substring(2, 11)}`;
 
-  const handleToggle = () => {
+  const handleToggle = (event: ChangeEvent<HTMLInputElement>) => {
     if (disabled) return;
-    const newChecked = !isChecked;
+    const newChecked = event.target.checked;
     setIsChecked(newChecked);
     if (onChange) {
-      onChange(newChecked);
+      onChange(event);
     }
   };
 
   return (
-    <Base $sx={sx?.root} onClick={handleToggle}>
-      {label && labelPosition === "left" && label}
-      <Stack
-        $sx={sx?.stack}
-        $checked={isChecked}
-        $disabled={disabled}
-        onClick={handleToggle}
+    <div
+      className={sx(
+        "switch",
+        { "switch-checked": isChecked },
+        { "switch-disabled": disabled },
+        classes?.switch,
+      )}
+    >
+      {label && labelPosition === "left" && (
+        <label
+          htmlFor={switchId}
+          className={sx("switch-label", { "switch-disabled-label": disabled })}
+        >
+          {label}
+        </label>
+      )}
+
+      <div
+        className={sx(
+          "switch-stack",
+          { "switch-checked-stack": isChecked },
+          { "switch-disabled-stack": disabled },
+          { "switch-disabled-checked-stack": isChecked && disabled },
+          classes?.stack,
+        )}
       >
-        <Input
+        <input
+          id={switchId}
+          className={sx("switch-input", classes?.input)}
           type="checkbox"
           checked={isChecked}
           disabled={disabled}
           onChange={handleToggle}
-          $sx={sx?.input}
+          {...rest}
         />
-        <Knob $sx={sx?.knob} $checked={isChecked} $disabled={disabled} />
-      </Stack>
-      {label && labelPosition === "right" && label}
-    </Base>
+        <label
+          htmlFor={switchId}
+          className={sx(
+            "switch-knob",
+            { "switch-checked-knob": isChecked },
+            { "switch-disabled-knob": disabled },
+            classes?.knob,
+          )}
+        />
+      </div>
+
+      {label && labelPosition === "right" && (
+        <label
+          htmlFor={switchId}
+          className={sx("switch-label", { "switch-disabled-label": disabled })}
+        >
+          {label}
+        </label>
+      )}
+    </div>
   );
 };

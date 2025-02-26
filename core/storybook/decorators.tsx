@@ -1,27 +1,57 @@
-import React, { ReactNode, useEffect } from "react";
-import { ThemeProvider } from "../theme/ThemeProvider";
-import { defaultTheme } from "../theme/defaultTheme";
+import React, {
+  FC,
+  ReactNode,
+  useEffect,
+  useLayoutEffect,
+  useState,
+} from "react";
 import { DialogProvider } from "../content/DialogContext";
 import { LayerProvider } from "../layout/LayerContext";
-import { darkTheme } from "../theme/darkTheme";
-
-export type ThemeVariant = "light" | "dark";
+import { addons } from "@storybook/preview-api";
+import { DARK_MODE_EVENT_NAME } from "storybook-dark-mode";
+import { StoryContext } from "storybook/internal/types";
 
 interface AppProps {
+  context: StoryContext;
   children: ReactNode;
-  theme?: ThemeVariant;
 }
 
-export const App = ({ children, theme }: AppProps) => {
+export const App: FC<AppProps> = ({ context, children }) => {
+  const channel = addons.getChannel();
+  const [isDark, setDark] = useState(context.globals.themeVariant === "dark");
+
+  const updateThemeClasses = () => {
+    const root = document.documentElement;
+    root.setAttribute("data-theme-name", context.globals.theme);
+
+    if (isDark) {
+      root.setAttribute("data-theme-variant", "dark");
+    } else {
+      root.removeAttribute("data-theme-variant");
+    }
+  };
+
+  const handleThemeVariantChange = (darkMode: boolean) => {
+    document.body.style.backgroundColor = darkMode ? "#000" : "#fff";
+    setDark(darkMode);
+  };
+
+  useLayoutEffect(() => {
+    updateThemeClasses();
+  }, []);
+
   useEffect(() => {
-    document.body.style.backgroundColor = theme === "light" ? "#fff" : "#000";
-  }, [theme]);
+    channel.on(DARK_MODE_EVENT_NAME, handleThemeVariantChange);
+    return () => channel.off(DARK_MODE_EVENT_NAME, handleThemeVariantChange);
+  }, [channel]);
+
+  useEffect(() => {
+    updateThemeClasses();
+  }, [context.globals.theme, isDark]);
 
   return (
-    <ThemeProvider theme={theme === "dark" ? darkTheme : defaultTheme}>
-      <LayerProvider>
-        <DialogProvider>{children}</DialogProvider>
-      </LayerProvider>
-    </ThemeProvider>
+    <LayerProvider>
+      <DialogProvider>{children}</DialogProvider>
+    </LayerProvider>
   );
 };

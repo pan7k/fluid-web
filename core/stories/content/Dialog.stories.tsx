@@ -5,6 +5,7 @@ import { Text } from "../../typography/Text";
 import { Layer } from "../../layout/Layer";
 import { Dialog } from "../../content/Dialog";
 import { DialogPanel } from "../../content/DialogPanel";
+import { Button } from "../../buttons/Button";
 
 export default {
   title: "Content/Dialog",
@@ -34,11 +35,15 @@ export const Default: StoryObj<typeof Dialog> = {
     right: undefined,
     bottom: undefined,
     left: undefined,
+    actions: [
+      <Button label="Add" color="secondary" onClick={() => {}} />,
+      <Button label="Remove" color="danger" onClick={() => {}} />,
+    ],
     children: (
-      <Layer sx={{ border: "1px dashed red", margin: 0 }}>
-        <Text sx={{ color: "darkred" }}>Second layer</Text>
-        <Layer sx={{ border: "1px dashed blue" }}>
-          <Text sx={{ color: "darkblue" }}>Third layer</Text>
+      <Layer classes="border border-dashed border-red-50 !m-0">
+        <Text color="danger">Second layer</Text>
+        <Layer classes="border border-dashed border-blue-50">
+          <Text color="info">Third layer</Text>
         </Layer>
       </Layer>
     ),

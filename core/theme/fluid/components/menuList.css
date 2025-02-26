@@ -1,0 +1,28 @@
+[data-theme-name="fluid"] .menuList {
+  @apply z-[1000] fixed border-2 border-surface-focus p-px bg-surface-blank max-h-[300px] overflow-y-auto;
+}
+
+[data-theme-name="fluid"] .menuList-scrollbar {
+  @apply overflow-y-auto;
+}
+
+[data-theme-name="fluid"] .menuList-scrollbar::-webkit-scrollbar {
+  @apply w-[8px];
+}
+
+[data-theme-name="fluid"] .menuList-scrollbar::-webkit-scrollbar-track {  
+  @apply bg-none;
+}
+
+[data-theme-name="fluid"] .menuList-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-surface-focus border-1 border-solid border-text-inverted;
+  border-left-width: 4px;
+}
+
+[data-theme-name="fluid"] .menuList-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-text-primary rounded-none;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}

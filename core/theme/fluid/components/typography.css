@@ -1,0 +1,63 @@
+[data-theme-name="fluid"] .typography {
+  @apply font-sans;
+}
+
+[data-theme-name="fluid"] .typography-body {
+  @apply text-body;
+}
+
+[data-theme-name="fluid"] .typography-caption {
+  @apply text-caption;
+}
+
+[data-theme-name="fluid"] .typography-h1 {
+  @apply text-h1;
+}
+
+[data-theme-name="fluid"] .typography-h2 {
+  @apply text-h2;
+}
+
+[data-theme-name="fluid"] .typography-h3 {
+  @apply text-h3;
+}
+
+[data-theme-name="fluid"] .typography-h4 {
+  @apply text-h4;
+}
+
+[data-theme-name="fluid"] .typography-h5 {
+  @apply text-h5;
+}
+
+[data-theme-name="fluid"] .typography-h6 {
+  @apply text-h6;
+}
+
+[data-theme-name="fluid"] .typography-primary {
+  @apply text-text-primary;
+}
+
+[data-theme-name="fluid"] .typography-secondary {
+  @apply text-text-secondary;
+}
+
+[data-theme-name="fluid"] .typography-inverted {
+  @apply text-text-inverted;
+}
+
+[data-theme-name="fluid"] .typography-info {
+  @apply text-text-info;
+}
+
+[data-theme-name="fluid"] .typography-success {
+  @apply text-text-success;
+}
+
+[data-theme-name="fluid"] .typography-warning {
+  @apply text-text-warning;
+}
+
+[data-theme-name="fluid"] .typography-danger {
+  @apply text-text-danger;
+}

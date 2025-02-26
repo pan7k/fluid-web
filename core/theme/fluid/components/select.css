@@ -1,0 +1,19 @@
+[data-theme-name="fluid"] .select-container {
+  @apply flex flex-row flex-nowrap items-center w-full gap-2 relative overflow-hidden;
+}
+
+[data-theme-name="fluid"] .select-layer {
+  @apply flex flex-wrap items-center gap-2 overflow-hidden flex-grow !m-0 !p-0;
+}
+
+[data-theme-name="fluid"] .select-input {
+  @apply flex-grow !w-[100px] !min-w-[10px] truncate;
+}
+
+[data-theme-name="fluid"] .select-icon {
+  @apply absolute right-2 top-1/2 transform -translate-y-1/2 flex-shrink-0;
+}
+
+[data-theme-name="fluid"] .select-menu {
+  @apply absolute left-0 top-full w-full mt-1 z-50 bg-white shadow-md rounded-md;
+}

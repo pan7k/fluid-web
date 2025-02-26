@@ -1,31 +1,20 @@
-import React, { useContext, ReactNode, FC } from "react";
-import styled, { CSSObject } from "styled-components";
-import { Theme } from "../theme/interfaces/theme";
+import React, {
+  useContext,
+  ReactNode,
+  FC,
+  HTMLAttributes,
+  CSSProperties,
+} from "react";
 import { LayerContext } from "./LayerContext";
+import { sx } from "../theme/utils/sx";
 
-export interface LayerProps {
+export interface LayerProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
-  sx?: CSSObject;
+  classes?: string;
+  style?: CSSProperties;
 }
 
-interface BaseProps {
-  theme?: Theme;
-  $level: number;
-  $sx?: CSSObject;
-}
-
-const Base = styled.div<BaseProps>(({ theme, $level, $sx }) => ({
-  ...theme.components?.layer?.root,
-  ...(theme.components?.layer?.level &&
-    $level > 0 &&
-    $level < 3 &&
-    theme.components.layer.level[
-      $level as keyof typeof theme.components.layer.level
-    ]),
-  ...$sx,
-}));
-
-export const Layer: FC<LayerProps> = ({ children, sx }) => {
+export const Layer: FC<LayerProps> = ({ children, classes, style }) => {
   const context = useContext(LayerContext);
   const current = context.level;
 
@@ -46,9 +35,9 @@ export const Layer: FC<LayerProps> = ({ children, sx }) => {
 
   return (
     <LayerContext.Provider value={{ level: value }}>
-      <Base $level={value} $sx={sx}>
+      <div className={sx(`layer layer-level-${value}`, classes)} style={style}>
         {children}
-      </Base>
+      </div>
     </LayerContext.Provider>
   );
 };

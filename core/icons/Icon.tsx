@@ -1,8 +1,6 @@
-import React, { ElementType, FC } from "react";
+import React, { ElementType, FC, HTMLAttributes } from "react";
 import * as Icons from "@phosphor-icons/react";
-import { useTheme } from "styled-components";
 import { ComponentSize } from "../common/types";
-import { Theme } from "../theme/interfaces/theme";
 
 export const iconSymbolKeys = Object.keys(Icons)
   .filter((name) => !["IconContext", "IconBase", "SSR"].includes(name))
@@ -27,25 +25,23 @@ export type IconVariant =
   | "fill"
   | "duotone";
 
-export interface IconProps {
-  symbol: string;
+export interface IconProps extends HTMLAttributes<SVGSVGElement> {
+  symbol: IconSymbol;
   size?: IconSize;
   variant?: IconVariant;
   color?: string;
   cursor?: string;
-  onClick?: () => void;
 }
 
-const getSize = (size: string, theme: any): number => {
-  const themeSize = theme?.components?.icon?.size?.[size];
-  const fallbackSize: Record<string, number> = {
+const getSize = (size: IconSize): number => {
+  const defaultSize: Record<string, number> = {
     xs: 16,
     sm: 20,
     md: 24,
     lg: 30,
     xl: 40,
   };
-  return themeSize ?? fallbackSize[size] ?? fallbackSize.md;
+  return defaultSize[size] ?? defaultSize.md;
 };
 
 const camelToPascal = Object.keys(Icons).reduce<Record<string, string>>(
@@ -64,8 +60,7 @@ export const Icon: FC<IconProps> = ({
   cursor,
   onClick,
 }) => {
-  const theme = useTheme() as Theme;
-  const resolvedSize = typeof size === "number" ? size : getSize(size, theme);
+  const resolvedSize = typeof size === "number" ? size : getSize(size);
   const pascalCaseSymbol = camelToPascal[symbol];
   const SelectedIcon = pascalCaseSymbol
     ? (Icons[pascalCaseSymbol as keyof typeof Icons] as ElementType)
