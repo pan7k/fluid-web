@@ -42,6 +42,7 @@ export const SelectInput: FC<SelectInputProps> = ({
   id,
   name,
   label,
+  ariaLabel,
   value,
   defaultValue,
   placeholder,
@@ -234,6 +235,7 @@ export const SelectInput: FC<SelectInputProps> = ({
         ref={baseRef}
         id={id}
         label={label}
+        ariaLabel={ariaLabel}
         icon={icon}
         iconPosition={iconPosition}
         placeholder={placeholder}
@@ -281,6 +283,7 @@ export const SelectInput: FC<SelectInputProps> = ({
               type="text"
               ref={inputRef}
               value={inputValue}
+              aria-label={ariaLabel}
               placeholder={selectedValues.length === 0 ? placeholder : ""}
               onChange={handleInputChange}
               onKeyDown={handleKeyDown}
