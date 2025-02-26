@@ -30,6 +30,7 @@ export default [
         file: "dist/index.js",
         format: "umd",
         name: "Fluid",
+        sourcemap: true,
         globals: {
           clsx: "clsx",
           react: "React",
