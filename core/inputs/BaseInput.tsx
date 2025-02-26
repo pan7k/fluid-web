@@ -23,6 +23,7 @@ export interface BaseInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
   id?: string;
   label?: ReactNode;
+  ariaLabel?: string;
   defaultValue?: string | number;
   value?: string | number;
   placeholder?: string;
@@ -45,6 +46,7 @@ export interface BaseInputProps
 
 interface BaseProps {
   id?: string;
+  ariaLabel?: string;
   children?: ReactNode;
   variant?: BaseInputVariant;
   size: BaseInputSize;
@@ -118,9 +120,21 @@ const Stack = forwardRef<HTMLDivElement, BaseProps>(
 );
 
 const InputBase = forwardRef<HTMLInputElement, BaseProps>(
-  ({ variant, size, disabled, select, defaultValue, ...rest }, ref) => (
+  (
+    {
+      ariaLabel,
+      variant = "normal",
+      size,
+      disabled,
+      select,
+      defaultValue,
+      ...rest
+    },
+    ref,
+  ) => (
     <input
       ref={ref}
+      aria-label={ariaLabel}
       {...rest}
       className={sx(
         `input-input input-${variant}-input input-${size}-input input-${variant}-${size}-input`,
@@ -188,7 +202,7 @@ const InvalidText = ({ variant, size, disabled, children }: BaseProps) => (
 export const BaseInput = forwardRef<HTMLDivElement, BaseInputProps>(
   (
     {
-      id,
+      id = Math.random().toString(36).substring(7),
       label,
       value,
       defaultValue,
