@@ -24,7 +24,6 @@ export const MenuButton: FC<MenuButtonProps> = ({
 }) => {
   const [open, setOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => {
     setOpen((prev) => !prev);

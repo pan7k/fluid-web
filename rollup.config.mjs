@@ -54,7 +54,13 @@ export default [
       }),
       visualizer({ template: "sunburst" }),
     ],
-    external: ["react-router-dom"],
+    external: [
+      "@fontsource-variable/inter/index.css",
+      "@fontsource/poppins/500.css",
+      "@phosphor-icons/react",
+      "clsx",
+      "tailwind-merge",
+    ],
   },
   {
     input: "dist/index.d.ts",
