@@ -12,7 +12,7 @@ export const Label: FC<LabelProps> = ({ label, htmlFor, classes }) => {
     <label
       htmlFor={htmlFor}
       className={sx(
-        `typography typography-caption typography-secondary`,
+        `typography typography-caption typography-secondary select-none`,
         classes,
       )}
     >

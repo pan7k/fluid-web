@@ -4,9 +4,17 @@
 }
 
 [data-theme-name="fluid"] .colorPicker-trigger {
-  @apply h-5 w-5 border border-surface-40 p-[2px] focus:border-transparent focus:outline-[2px] focus:outline-surface-focus;
+  @apply h-5 w-5 border border-surface-40 p-[2px] cursor-pointer;
   outline-offset: -1px;
   border-radius: 50%;
+}
+
+[data-theme-name="fluid"] .colorPicker-trigger:focus {
+  @apply border-transparent outline-[2px] outline-surface-focus;
+}
+
+[data-theme-name="fluid"] .colorPicker-trigger:active {
+  @apply border-transparent outline-[2px] outline-surface-focus;
 }
 
 [data-theme-name="fluid"] .colorPicker-swatch {
