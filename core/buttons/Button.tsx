@@ -81,12 +81,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         <label className={sx("button-label", classes?.label)}>{label}</label>
         {icon && (
           <div className={sx("button-icon", classes?.stack)}>
-            <Icon
-              symbol={icon}
-              variant={iconVariant}
-              size="xs"
-              classes={classes?.icon}
-            />
+            <Icon symbol={icon} variant={iconVariant} size="xs" />
           </div>
         )}
       </button>

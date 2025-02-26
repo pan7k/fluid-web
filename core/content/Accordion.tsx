@@ -93,12 +93,7 @@ export const Accordion: FC<AccordionProps> = ({
                 "accordion-icon-opened": open,
               })}
             >
-              <Icon
-                symbol={icon}
-                variant={iconVariant}
-                size="xs"
-                classes={classes?.icon}
-              />
+              <Icon symbol={icon} variant={iconVariant} size="xs" />
             </div>
           ) : (
             <div
@@ -106,11 +101,7 @@ export const Accordion: FC<AccordionProps> = ({
                 "accordion-icon-opened": open,
               })}
             >
-              <Icon
-                symbol={open ? "caretUp" : "caretDown"}
-                size="xs"
-                classes={classes?.icon}
-              />
+              <Icon symbol={open ? "caretUp" : "caretDown"} size="xs" />
             </div>
           )}
           {typeof label === "string" ? <Text>{label}</Text> : label}

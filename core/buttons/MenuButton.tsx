@@ -63,7 +63,6 @@ export const MenuButton: FC<MenuButtonProps> = ({
       )}
       {open && buttonRef.current && (
         <MenuList
-          ref={menuRef}
           parentRef={buttonRef as RefObject<HTMLButtonElement>}
           direction={menuDirection}
           onClose={() => setOpen(false)}

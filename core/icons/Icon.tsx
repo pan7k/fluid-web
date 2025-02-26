@@ -1,6 +1,6 @@
 import React, { ElementType, FC, HTMLAttributes } from "react";
 import * as Icons from "@phosphor-icons/react";
-import { ComponentSize, CSS } from "../common/types";
+import { ComponentSize } from "../common/types";
 
 export const iconSymbolKeys = Object.keys(Icons)
   .filter((name) => !["IconContext", "IconBase", "SSR"].includes(name))
