@@ -4,7 +4,7 @@
   "author": "Tomáš Pánik <tomas@panik.cc>",
   "repository": "https://github.com/pan7k/fluid",
   "license": "SEE LICENSE IN license.txt",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
