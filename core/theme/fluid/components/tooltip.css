@@ -1,0 +1,19 @@
+[data-theme-name="fluid"] .tooltip {
+  @apply fixed z-[1000] bg-secondary-main text-text-inverted text-center flex items-center select-none font-sans;
+}
+
+[data-theme-name="fluid"] .tooltip-container {
+  @apply inline-block;
+}
+
+[data-theme-name="fluid"] .tooltip-sm {
+  @apply text-[0.7rem] px-[6px] py-[4px];
+}
+
+[data-theme-name="fluid"] .tooltip-md {
+  @apply text-[0.8rem] px-[8px] py-[6px];
+}
+
+[data-theme-name="fluid"] .tooltip-lg {
+  @apply text-[0.875rem] px-[10px] py-[8px];
+}

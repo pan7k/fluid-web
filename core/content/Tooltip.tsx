@@ -6,8 +6,10 @@ import React, {
   useRef,
   useState,
 } from "react";
-import styled, { CSSObject } from "styled-components";
-import { Theme } from "../theme/interfaces/theme";
+import { sx } from "../theme/utils/sx";
+import { CSS } from "../common/types";
+import { Theme } from "../theme/interfaces";
+import { createPortal } from "react-dom";
 
 type TooltipSize = "sm" | "md" | "lg";
 export type TooltipDirection = "top" | "right" | "bottom" | "left";
@@ -17,7 +19,7 @@ export interface TooltipProps {
   label: ReactNode;
   direction?: TooltipDirection;
   size?: TooltipSize;
-  sx?: CSSObject;
+  classes?: Theme["tooltip"];
 }
 
 interface TooltipRootProps {
@@ -25,39 +27,15 @@ interface TooltipRootProps {
   direction: TooltipDirection;
   targetRef: RefObject<HTMLDivElement | null>;
   size: TooltipSize;
-  sx?: CSSObject;
+  classes?: CSS;
 }
-
-interface BaseProps {
-  theme: Theme;
-  $top: number;
-  $left: number;
-  $visible: boolean;
-  $size: TooltipSize;
-  $sx?: CSSObject;
-}
-
-const Container = styled.div(() => ({
-  display: "inline-block",
-}));
-
-const TooltipBase = styled.div<BaseProps>(
-  ({ theme, $top, $left, $visible, $size, $sx }) => ({
-    top: `${$top}px`,
-    left: `${$left}px`,
-    visibility: $visible ? "visible" : "hidden",
-    ...theme.components?.tooltip?.root,
-    ...theme.components?.tooltip?.size?.[$size],
-    ...$sx,
-  }),
-);
 
 const TooltipRoot: FC<TooltipRootProps> = ({
   children,
   targetRef,
   direction,
   size,
-  sx,
+  classes,
 }) => {
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
@@ -70,56 +48,32 @@ const TooltipRoot: FC<TooltipRootProps> = ({
         const tooltipRect = tooltipRef.current.getBoundingClientRect();
         const paddingFromObject = 4;
 
-        let top = rect.bottom + window.scrollY - 60;
+        let top = rect.top + window.scrollY;
         let left = rect.left + window.scrollX;
 
         if (direction === "left") {
-          top =
-            rect.bottom +
-            window.scrollY -
-            rect.height / 2 -
-            tooltipRect.height / 2;
-          left =
-            rect.left + window.scrollX - tooltipRect.width - paddingFromObject;
+          top += rect.height / 2 - tooltipRect.height / 2;
+          left -= tooltipRect.width + paddingFromObject;
         }
-
         if (direction === "top") {
-          top =
-            rect.bottom +
-            window.scrollY -
-            (rect.height + tooltipRect.height) -
-            paddingFromObject;
-          left =
-            rect.left + window.scrollX - tooltipRect.width / 2 + rect.width / 2;
+          top -= tooltipRect.height + paddingFromObject;
+          left += rect.width / 2 - tooltipRect.width / 2;
         }
-
         if (direction === "bottom") {
-          top = rect.bottom + window.scrollY + paddingFromObject;
-          left =
-            rect.left + window.scrollX - tooltipRect.width / 2 + rect.width / 2;
+          top += rect.height + paddingFromObject;
+          left += rect.width / 2 - tooltipRect.width / 2;
         }
-
         if (direction === "right") {
-          top =
-            rect.bottom +
-            window.scrollY -
-            rect.height / 2 -
-            tooltipRect.height / 2;
-          left = rect.left + window.scrollX + rect.width + paddingFromObject;
+          top += rect.height / 2 - tooltipRect.height / 2;
+          left += rect.width + paddingFromObject;
         }
 
-        setPosition({
-          top,
-          left,
-        });
-
+        setPosition({ top, left });
         setVisible(true);
       }
     };
 
-    const handleMouseLeave = () => {
-      setVisible(false);
-    };
+    const handleMouseLeave = () => setVisible(false);
 
     const targetElement = targetRef.current;
     if (targetElement) {
@@ -133,19 +87,23 @@ const TooltipRoot: FC<TooltipRootProps> = ({
         targetElement.removeEventListener("mouseleave", handleMouseLeave);
       }
     };
-  }, [targetRef, tooltipRef, direction]);
+  }, [targetRef, direction]);
 
-  return (
-    <TooltipBase
+  return createPortal(
+    <div
       ref={tooltipRef}
-      $visible={visible}
-      $top={position.top}
-      $left={position.left}
-      $size={size}
-      $sx={sx}
+      style={{
+        position: "absolute",
+        top: position.top,
+        left: position.left,
+        visibility: visible ? "visible" : "hidden",
+        zIndex: 9999,
+      }}
+      className={sx(`tooltip tooltip-${size}`, classes)}
     >
       {children}
-    </TooltipBase>
+    </div>,
+    document.body,
   );
 };
 
@@ -154,18 +112,23 @@ export const Tooltip: FC<TooltipProps> = ({
   label,
   direction = "right",
   size = "md",
-  sx,
+  classes,
 }) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <>
-      <Container ref={targetRef}>{children}</Container>
+      <div
+        className={sx("tooltip-container", classes?.container)}
+        ref={targetRef}
+      >
+        {children}
+      </div>
       <TooltipRoot
         targetRef={targetRef}
         direction={direction}
         size={size}
-        sx={sx}
+        classes={classes?.tooltip}
       >
         {label}
       </TooltipRoot>

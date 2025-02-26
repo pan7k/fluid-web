@@ -1,38 +1,28 @@
 import React, { FC } from "react";
-import styled, { CSSObject } from "styled-components";
 import { useDialogContext } from "./DialogContext";
-import { Theme } from "../theme/interfaces/theme";
 import { Button, ButtonColor, ButtonVariant } from "../buttons/Button";
 import { ComponentSize } from "../common/types";
+import { sx } from "../theme/utils/sx";
+import { Theme } from "../theme/interfaces";
 
 export interface DialogPanelProps {
   variant?: ButtonVariant;
   color?: ButtonColor;
   size?: ComponentSize;
-  sx?: CSSObject;
+  classes?: Theme["dialogPanel"];
 }
-
-interface BaseProps {
-  theme: Theme;
-  $sx?: CSSObject;
-}
-
-const Base = styled.div<BaseProps>(({ theme, $sx }) => ({
-  ...theme.components?.dialog?.panel,
-  ...$sx,
-}));
 
 export const DialogPanel: FC<DialogPanelProps> = ({
   variant = "light",
   color = "secondary",
   size = "sm",
-  sx,
+  classes,
 }) => {
   const { minimizedDialogs, removeMinimizedDialog } = useDialogContext();
   if (minimizedDialogs.length === 0) return null;
 
   return (
-    <Base $sx={sx}>
+    <div className={sx("dialogPanel", classes?.dialogPanel)}>
       {minimizedDialogs.map((dialog) => (
         <Button
           label={dialog.label}
@@ -44,8 +34,9 @@ export const DialogPanel: FC<DialogPanelProps> = ({
             dialog.restore();
             removeMinimizedDialog(dialog.id);
           }}
+          classes={classes?.button}
         />
       ))}
-    </Base>
+    </div>
   );
 };

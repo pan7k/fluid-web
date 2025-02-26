@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ESNext",
     "outDir": "dist",
     "lib": [
       "dom",
@@ -20,8 +20,11 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react"
+    "noEmit": false,
+    "jsx": "react",
+    "sourceMap": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
   "include": [
     "core"

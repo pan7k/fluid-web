@@ -14,21 +14,21 @@ export default {
 
 const LayerWithOutline: FC<LayerProps> = () => {
   return (
-    <Layer sx={{ border: "1px dashed red", marginTop: 0 }}>
+    <Layer classes="border border-dashed border-red-50 !mt-0">
       <Stack>
-        <Text sx={{ color: "darkred" }}>First layer</Text>
+        <Text classes="color-red-50">First layer</Text>
         <TextInput placeholder="Text input" />
         <Chip>Chip</Chip>
       </Stack>
-      <Layer sx={{ border: "1px dashed blue" }}>
+      <Layer classes="border border-dashed border-blue-50">
         <Stack>
-          <Text sx={{ color: "darkblue" }}>Second layer</Text>
+          <Text classes="color-blue-80">Second layer</Text>
           <TextInput placeholder="Text input" />
           <Chip>Chip</Chip>
         </Stack>
-        <Layer sx={{ border: "1px dashed green" }}>
+        <Layer classes="border border-dashed border-green-50">
           <Stack>
-            <Text sx={{ color: "darkgreen" }}>Last layer</Text>
+            <Text classes="color-green-80">Last layer</Text>
             <TextInput placeholder="Text input" />
             <Chip>Chip</Chip>
           </Stack>

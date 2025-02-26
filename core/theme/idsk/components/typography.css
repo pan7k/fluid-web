@@ -1,0 +1,55 @@
+[data-theme-name="idsk"] .typography {
+  @apply font-sans;
+}
+
+[data-theme-name="idsk"] .typography-body {
+  @apply text-body;
+}
+
+[data-theme-name="idsk"] .typography-caption {
+  @apply text-caption;
+}
+
+[data-theme-name="idsk"] .typography-h1 {
+  @apply text-h1;
+}
+
+[data-theme-name="idsk"] .typography-h2 {
+  @apply text-h2;
+}
+
+[data-theme-name="idsk"] .typography-h3 {
+  @apply text-h3;
+}
+
+[data-theme-name="idsk"] .typography-h4 {
+  @apply text-h4;
+}
+
+[data-theme-name="idsk"] .typography-h5 {
+  @apply text-h5;
+}
+
+[data-theme-name="idsk"] .typography-h6 {
+  @apply text-h6;
+}
+
+[data-theme-name="idsk"] .typography-primary {
+  @apply text-text-primary;
+}
+
+[data-theme-name="idsk"] .typography-secondary {
+  @apply text-text-secondary;
+}
+
+[data-theme-name="idsk"] .typography-inverted {
+  @apply text-text-inverted;
+}
+
+[data-theme-name="idsk"] .typography-success {
+  @apply text-text-success;
+}
+
+[data-theme-name="idsk"] .typography-danger {
+  @apply text-text-danger;
+}

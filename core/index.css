@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@import "./theme/definition.css";
+
+@import "./theme/fluid/root.css";
+@import "./theme/idsk/root.css";

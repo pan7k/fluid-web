@@ -1,22 +1,11 @@
-import React from "react";
-import styled, { CSSObject } from "styled-components";
-import { Theme } from "../theme/interfaces/theme";
+import React, { HTMLAttributes } from "react";
 import { FC } from "react";
+import { sx } from "../theme/utils/sx";
 
-export interface DividerProps {
-  sx?: CSSObject;
+export interface DividerProps extends HTMLAttributes<HTMLHRElement> {
+  classes?: string;
 }
 
-interface BaseProps {
-  theme: Theme;
-  $sx?: CSSObject;
-}
-
-const Base = styled.hr<BaseProps>(({ theme, $sx }) => ({
-  ...theme.components?.divider,
-  ...$sx,
-}));
-
-export const Divider: FC<DividerProps> = ({ sx }) => {
-  return <Base $sx={sx} />;
+export const Divider: FC<DividerProps> = ({ classes }) => {
+  return <hr className={sx("divider", classes)} />;
 };

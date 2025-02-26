@@ -13,6 +13,7 @@ export const Default: StoryObj<typeof Text> = {
     variant: "body",
     color: "primary",
     children: "Lorem ipsum dolor sit amet",
+    classes: "",
   },
   parameters: parameters(
     `<Text>Lorem ipsum dolor sit amet</Text>`,

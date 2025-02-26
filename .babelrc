@@ -6,9 +6,9 @@
     [
       "@babel/preset-env",
       {
-        "targets": {
-          "chrome": 100
-        }
+        "targets": "> 0.5%, not dead",
+        "modules": false,
+        "loose": true
       }
     ]
   ]

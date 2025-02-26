@@ -1,0 +1,39 @@
+[data-theme-name="fluid"] .checkbox {
+  @apply font-sans text-body text-text-primary inline-flex gap-2 cursor-pointer items-center w-fit select-none;
+}
+
+[data-theme-name="fluid"] .checkbox-input {
+  @apply cursor-pointer h-[18px] w-[18px] bg-surface-10 border border-surface-30 inline-block relative appearance-none m-0;
+}
+
+[data-theme-name="fluid"] .checkbox-input:checked {
+  @apply bg-text-primary border-text-primary;
+}
+
+[data-theme-name="fluid"] .checkbox-input:checked::after {
+  @apply content-[''] absolute left-[5px] top-[1.5px] w-[6px] h-[10px] border-solid border-text-inverted border-r-2 border-b-2 rotate-45;
+}
+
+[data-theme-name="fluid"] .checkbox-input:indeterminate {
+  @apply bg-text-primary border-text-primary;
+}
+
+[data-theme-name="fluid"] .checkbox-input:indeterminate::after {
+  @apply content-[''] absolute left-[3px] top-[7px] w-[10px] h-0 border-solid border-text-inverted border-r-2 border-b-2 rotate-0;
+}
+
+[data-theme-name="fluid"] .checkbox-disabled {
+  @apply text-surface-40;
+}
+
+[data-theme-name="fluid"] .checkbox-input:disabled {
+  @apply bg-surface-blank border-surface-40;
+}
+
+[data-theme-name="fluid"] .checkbox-input:focus {
+  @apply outline-[2px] outline-surface-focus outline-offset-1;
+}
+
+[data-theme-name="fluid"] .checkbox > span {
+  @apply truncate overflow-hidden flex-grow;
+}

@@ -1,14 +1,16 @@
+import React, { useState } from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 import { parameters } from "../../storybook/parameters";
 import { IconButton } from "../../buttons/IconButton";
 import { iconSymbolKeys, iconVariantKeys } from "../../icons/Icon";
+import { Snackbar } from "../../content/Snackbar";
 
 export default {
   title: "Buttons/Icon Button",
   component: IconButton,
   argTypes: {
     color: {
-      options: ["primary", "secondary", "success", "danger"],
+      options: ["primary", "secondary", "info", "success", "warning", "danger"],
       control: { type: "select" },
     },
     variant: {
@@ -16,7 +18,7 @@ export default {
       control: { type: "select" },
     },
     size: {
-      options: ["xs", "sm", "md"],
+      options: ["xs", "sm", "md", "lg", "xl"],
       control: { type: "select" },
     },
     icon: {
@@ -44,6 +46,22 @@ export const Default: StoryObj<typeof IconButton> = {
     iconVariant: "regular",
     tooltip: "Add",
     direction: "right",
+  },
+  render: (args) => {
+    const [open, setOpen] = useState(false);
+    return (
+      <>
+        <IconButton {...args} onClick={() => setOpen(true)} />
+        <Snackbar
+          open={open}
+          type="debug"
+          message="Icon button clicked"
+          duration={2000}
+          closeButton={false}
+          onClose={() => setOpen(false)}
+        />
+      </>
+    );
   },
   parameters: parameters(`<IconButton icon="plus" />`, "IconButton component"),
 };

@@ -1,0 +1,67 @@
+[data-theme-name="fluid"] .alert {
+  @apply flex items-center min-h-[46px] pl-4 gap-2;
+}
+
+[data-theme-name="fluid"] .alert-content {
+  @apply flex-grow mr-4;
+}
+
+[data-theme-name="fluid"] .alert-filled-info {
+  @apply bg-info-main border-transparent text-text-inverted;
+}
+
+[data-theme-name="fluid"] .alert-filled-success {
+  @apply bg-success-main border-transparent text-text-inverted;
+}
+
+[data-theme-name="fluid"] .alert-filled-warning {
+  @apply bg-warning-main border-transparent text-text-inverted;
+}
+
+[data-theme-name="fluid"] .alert-filled-danger {
+  @apply bg-danger-main border-transparent text-text-inverted;
+}
+
+[data-theme-name="fluid"] .alert-filled-debug {
+  @apply bg-debug-main border-transparent text-text-inverted;
+}
+
+[data-theme-name="fluid"] .alert-outline-info {
+  @apply bg-text-inverted outline outline-info-main text-info-main;
+}
+
+[data-theme-name="fluid"] .alert-outline-success {
+  @apply bg-text-inverted outline outline-success-main text-success-main;
+}
+
+[data-theme-name="fluid"] .alert-outline-warning {
+  @apply bg-text-inverted outline outline-warning-main text-warning-main;
+}
+
+[data-theme-name="fluid"] .alert-outline-danger {
+  @apply bg-text-inverted outline outline-danger-main text-danger-main;
+}
+
+[data-theme-name="fluid"] .alert-outline-debug {
+  @apply bg-text-inverted outline outline-debug-main text-debug-main;
+}
+
+[data-theme-name="fluid"] .alert-light-info {
+  @apply bg-surface-10 text-info-main;
+}
+
+[data-theme-name="fluid"] .alert-light-success {
+  @apply bg-surface-10 text-success-main;
+}
+
+[data-theme-name="fluid"] .alert-light-warning {
+  @apply bg-surface-10 text-warning-main;
+}
+
+[data-theme-name="fluid"] .alert-light-danger {
+  @apply bg-surface-10 text-danger-main;
+}
+
+[data-theme-name="fluid"] .alert-light-debug {
+  @apply bg-surface-10 text-debug-main;
+}

@@ -14,8 +14,8 @@ export const Default: StoryObj<typeof Grid> = {
   args: {
     children: [<Chip>Item 1</Chip>, <Chip>Item 2</Chip>],
     gridTemplateColumns: "repeat(2, 1fr)",
-    gridTemplateRows: "repeat(4, 1fr)",
-    sx: {},
+    gridTemplateRows: "repeat(6, 1fr)",
+    classes: "p-2 bg-surface-20",
   },
   parameters: parameters(`<Divider />`, "Divider"),
 };

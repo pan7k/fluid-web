@@ -4,9 +4,9 @@ import { App } from "../core/storybook/decorators";
 import { themes } from "../core/theme/themes";
 import { dark, light } from "./theme";
 
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
+import "@fontsource-variable/inter/index.css";
+import "@fontsource/poppins/500.css";
+import "../core/index.css";
 
 const preview: Preview = {
   globalTypes: {

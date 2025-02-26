@@ -1,0 +1,94 @@
+[data-theme-name="fluid"] .drawer {
+  @apply fixed inset-0 z-[1000] flex invisible;
+  visibility: hidden;
+  transition: visibility 0.2s ease-in-out;
+}
+
+[data-theme-name="fluid"] .drawer.drawer-open {
+  visibility: visible;
+}
+
+[data-theme-name="fluid"] .drawer-overlay {
+  @apply fixed inset-0 bg-black/80;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+[data-theme-name="fluid"] .drawer-overlay-visible {
+  opacity: 1;
+}
+
+[data-theme-name="fluid"] .drawer-content {
+  @apply relative flex flex-col bg-surface-10 min-w-[320px] max-w-[90%] h-full overflow-y-auto;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* position-specific animations */
+[data-theme-name="fluid"] .drawer-left {
+  transform: translateX(-100%);
+}
+
+[data-theme-name="fluid"] .drawer-right {
+  @apply ml-auto border-r-0 border-l;
+  transform: translateX(100%);
+}
+
+[data-theme-name="fluid"] .drawer-top {
+  @apply h-[90%] min-h-[150px] w-full max-w-full border-r-0 border-b;
+  transform: translateY(-100%);
+}
+
+[data-theme-name="fluid"] .drawer-bottom {
+  @apply mt-auto h-[90%] min-h-[150px] w-full max-w-full border-r-0 border-t;
+  transform: translateY(100%);
+}
+
+[data-theme-name="fluid"] .drawer-content-visible {
+  transform: translate(0);
+}
+
+[data-theme-name="fluid"] .drawer-header {
+  @apply sticky top-0 z-[1000] flex items-start gap-2 justify-between bg-surface-10 min-h-[47px] pl-[16px] select-none border-b border-surface-30 mb-[1px];
+}
+
+[data-theme-name="fluid"] .drawer-label {
+  @apply self-center font-sans text-h6 text-text-primary mt-2 mb-2;
+}
+
+[data-theme-name="fluid"] .drawer-body {
+  @apply flex-grow p-4;
+}
+
+[data-theme-name="fluid"] .drawer-footer {
+  @apply sticky bottom-0 flex justify-end gap-2 bg-surface-10 px-4 py-4 border-t border-surface-30;
+}
+
+.drawer-mounted {
+  @apply visible;
+}
+
+.drawer-open {
+  @apply visible;
+}
+
+/* scrollbar */
+[data-theme-name="fluid"] .drawer-content::-webkit-scrollbar {
+  @apply w-[8px];
+}
+
+[data-theme-name="fluid"] .drawer-content::-webkit-scrollbar-track {
+  @apply bg-none;
+}
+
+[data-theme-name="fluid"] .drawer-content::-webkit-scrollbar-thumb {
+  @apply bg-surface-focus border-1 border-surface-10 border-solid;
+  border-left-width: 4px;
+}
+
+[data-theme-name="fluid"] .drawer-content::-webkit-scrollbar-thumb:hover {
+  @apply bg-text-primary rounded-none border-surface-10;
+  border-left-width: 0px;
+  border-right-width: 1px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}

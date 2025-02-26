@@ -1,0 +1,55 @@
+[data-theme-name="fluid"][data-theme-variant="dark"] {
+  /* Colors */
+  --color-text-primary: var(--color-white);
+  --color-text-secondary: var(--color-gray-20);
+  --color-text-inverted: var(--color-black);
+
+  --color-primary-main: var(--color-blue-50);
+  --color-primary-lighter: var(--color-blue-40);
+  --color-primary-light: var(--color-blue-30);
+  --color-primary-darker: var(--color-blue-60);
+  --color-primary-dark: var(--color-blue-70);
+
+  --color-secondary-main: var(--color-gray-20);
+  --color-secondary-lighter: var(--color-gray-10);
+  --color-secondary-light: var(--color-gray-0);
+  --color-secondary-darker: var(--color-gray-30);
+  --color-secondary-dark: var(--color-gray-40);
+
+  --color-info-main: var(--color-blue-50);
+  --color-info-lighter: var(--color-blue-40);
+  --color-info-light: var(--color-blue-30);
+  --color-info-darker: var(--color-blue-60);
+  --color-info-dark: var(--color-blue-70);
+
+  --color-success-main: var(--color-green-40);
+  --color-success-lighter: var(--color-green-30);
+  --color-success-light: var(--color-green-20);
+  --color-success-darker: var(--color-green-50);
+  --color-success-dark: var(--color-green-60);
+
+  --color-warning-main: var(--color-orange-40);
+  --color-warning-lighter: var(--color-orange-30);
+  --color-warning-light: var(--color-orange-20);
+  --color-warning-darker: var(--color-orange-50);
+  --color-warning-dark: var(--color-orange-60);
+
+  --color-danger-main: var(--color-red-40);
+  --color-danger-lighter: var(--color-red-30);
+  --color-danger-light: var(--color-red-20);
+  --color-danger-darker: var(--color-red-50);
+  --color-danger-dark: var(--color-red-60);
+
+  --color-debug-main: var(--color-purple-40);
+  --color-debug-lighter: var(--color-purple-30);
+  --color-debug-light: var(--color-purple-20);
+  --color-debug-darker: var(--color-purple-50);
+  --color-debug-dark: var(--color-purple-60);
+
+  --color-surface-blank: var(--color-black);
+  --color-surface-focus: var(--color-gray-20);
+  --color-surface-10: var(--color-gray-100);
+  --color-surface-20: var(--color-gray-90);
+  --color-surface-30: var(--color-gray-80);
+  --color-surface-40: var(--color-gray-70);
+}

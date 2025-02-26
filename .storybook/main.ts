@@ -16,6 +16,17 @@ const config: StorybookConfig = {
     "@storybook/addon-themes",
     "@storybook/addon-viewport",
     "@storybook/addon-a11y",
+    {
+      name: "@storybook/addon-postcss",
+      options: {
+        cssLoaderOptions: {
+          importLoaders: 1,
+        },
+        postcssLoaderOptions: {
+          implementation: require("postcss"),
+        },
+      },
+    },
   ],
   core: {
     disableWhatsNewNotifications: true,

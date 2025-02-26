@@ -1,13 +1,13 @@
-import replace from "@rollup/plugin-replace";
-import resolve from "@rollup/plugin-node-resolve";
-import typescript from "@rollup/plugin-typescript";
+import autoprefixer from "autoprefixer";
 import commonjs from "@rollup/plugin-commonjs";
-import terser from "@rollup/plugin-terser";
+import dts from "rollup-plugin-dts";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import postcss from "rollup-plugin-postcss";
-import dts from "rollup-plugin-dts";
-import { visualizer } from "rollup-plugin-visualizer";
+import tailwindcss from "tailwindcss";
+import terser from "@rollup/plugin-terser";
+import typescript from "@rollup/plugin-typescript";
 import { createRequire } from "node:module";
+import { visualizer } from "rollup-plugin-visualizer";
 
 const requireFile = createRequire(import.meta.url);
 const packageJson = requireFile("./package.json");
@@ -27,32 +27,34 @@ export default [
         sourcemap: true,
       },
       {
-        file: "dist/fluid.js",
+        file: "dist/index.js",
         format: "umd",
         name: "Fluid",
         globals: {
+          clsx: "clsx",
           react: "React",
+          "react-dom": "ReactDOM",
+          "tailwind-merge": "twMerge",
+          "@phosphor-icons/react": "PhosphorIcons",
         },
-        plugins: [
-          replace({
-            "process.env.NODE_ENV": JSON.stringify("production"),
-          }),
-        ],
       },
     ],
     plugins: [
-      peerDepsExternal(),
-      resolve(),
       commonjs(),
+      peerDepsExternal(),
+      postcss({
+        plugins: [(tailwindcss, autoprefixer)],
+        inject: false,
+        minimize: true,
+        extract: "index.css",
+      }),
+      terser(),
       typescript({
         tsconfig: "tsconfig.build.json",
       }),
-      postcss({
-        extensions: [".css"],
-      }),
       visualizer({ template: "sunburst" }),
-      terser(),
     ],
+    external: ["react-router-dom"],
   },
   {
     input: "dist/index.d.ts",

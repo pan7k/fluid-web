@@ -1,5 +1,6 @@
 import React, {
   FC,
+  HTMLAttributes,
   KeyboardEvent,
   MouseEvent,
   ReactNode,
@@ -7,28 +8,14 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import styled, { CSSObject } from "styled-components";
-import { Theme } from "../theme/interfaces/theme";
 import { Icon, IconSymbol, IconVariant } from "../icons/Icon";
-import { EventProps } from "../common/interfaces";
 import { Text } from "../typography/Text";
+import { sx } from "../theme/utils/sx";
+import { Theme } from "../theme/interfaces";
 
 type AccordionSize = "xs" | "sm" | "md";
 
-interface SXProps {
-  root?: CSSObject;
-  panel?: CSSObject;
-  icon?: CSSObject;
-  content?: CSSObject;
-  opened?: {
-    root?: CSSObject;
-    panel?: CSSObject;
-    icon?: CSSObject;
-    content?: CSSObject;
-  };
-}
-
-export interface AccordionProps extends EventProps {
+export interface AccordionProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   label: ReactNode;
   icon?: IconSymbol;
@@ -36,41 +23,9 @@ export interface AccordionProps extends EventProps {
   expanded?: boolean;
   expandable?: boolean;
   size?: AccordionSize;
-  sx?: SXProps;
+  classes?: Theme["accordion"];
+  actions?: ReactNode;
 }
-
-interface BaseProps {
-  theme: Theme;
-  $open: boolean;
-  $size?: AccordionSize;
-  $sx?: CSSObject;
-}
-
-const Base = styled.div<BaseProps>(({ theme, $open, $sx }) => ({
-  ...theme.components?.accordion?.root,
-  ...($open ? theme.components?.accordion?.opened?.root : {}),
-  ...$sx,
-}));
-
-const Panel = styled.div<BaseProps>(({ theme, $open, $size = "md", $sx }) => ({
-  ...theme.components?.accordion?.panel,
-  ...($open ? theme.components?.accordion?.opened?.panel : {}),
-  ...theme.components?.accordion?.size?.[$size],
-  ...$sx,
-}));
-
-const Content = styled.div<BaseProps>(({ theme, $open, $sx }) => ({
-  ...theme.components?.accordion?.content,
-  ...($open ? theme.components?.accordion?.opened?.content : {}),
-  ...$sx,
-}));
-
-const IconBase = styled.div<BaseProps>(({ theme, $open, $sx }) => ({
-  height: "auto",
-  ...theme.components?.accordion?.icon,
-  ...($open ? theme.components?.accordion?.opened?.icon : {}),
-  ...$sx,
-}));
 
 export const Accordion: FC<AccordionProps> = ({
   children,
@@ -81,7 +36,8 @@ export const Accordion: FC<AccordionProps> = ({
   expandable = true,
   onClick,
   size = "md",
-  sx,
+  classes,
+  actions,
 }) => {
   const [open, setOpen] = useState(expanded);
 
@@ -95,6 +51,10 @@ export const Accordion: FC<AccordionProps> = ({
 
   const handleChange = useCallback(
     (event: MouseEvent<HTMLDivElement> | KeyboardEvent<HTMLDivElement>) => {
+      if ((event.target as HTMLElement).closest(".accordion-right")) {
+        return;
+      }
+
       onClick && onClick(event as any);
       if (expandable) {
         setOpen(!open);
@@ -113,42 +73,99 @@ export const Accordion: FC<AccordionProps> = ({
     [handleChange],
   );
 
+  const [isHoveringActions, setIsHoveringActions] = useState(false);
+
   return (
-    <Base $open={open} $sx={{ ...sx?.root, ...(open ? sx?.opened?.root : {}) }}>
-      <Panel
+    <div className={sx(classes?.stack)}>
+      <div
         onClick={handleChange}
         onKeyDown={handleKeyDown}
         tabIndex={0}
         aria-expanded={open}
-        $open={open}
-        $size={size}
-        $sx={{ ...sx?.panel, ...(open ? sx?.opened?.panel : {}) }}
-      >
-        {typeof label === "string" ? <Text>{label}</Text> : label}
-        {icon ? (
-          <IconBase
-            $open={open}
-            $sx={{ ...sx?.icon, ...(open ? sx?.opened?.icon : {}) }}
-          >
-            <Icon symbol={icon} variant={iconVariant} size="xs" />
-          </IconBase>
-        ) : (
-          <IconBase
-            $open={open}
-            $sx={{ ...sx?.icon, ...(open ? sx?.opened?.icon : {}) }}
-          >
-            <Icon symbol={open ? "caretUp" : "caretDown"} size="xs" />
-          </IconBase>
+        className={sx(
+          `accordion-panel accordion-${size}`,
+          {
+            "accordion-panel-opened": open,
+            "accordion-no-hover": isHoveringActions,
+          },
+          classes?.accordion,
         )}
-      </Panel>
+      >
+        <div className="accordion-left">
+          {icon ? (
+            <div
+              className={sx("accordion-icon", {
+                "accordion-icon-opened": open,
+              })}
+            >
+              <Icon
+                symbol={icon}
+                variant={iconVariant}
+                size="xs"
+                classes={classes?.icon}
+              />
+            </div>
+          ) : (
+            <div
+              className={sx("accordion-icon", {
+                "accordion-icon-opened": open,
+              })}
+            >
+              <Icon
+                symbol={open ? "caretUp" : "caretDown"}
+                size="xs"
+                classes={classes?.icon}
+              />
+            </div>
+          )}
+          {typeof label === "string" ? <Text>{label}</Text> : label}
+        </div>
+        {actions && (
+          <div
+            className="accordion-right"
+            onClick={(e) => e.stopPropagation()}
+            onMouseDown={(e) => {
+              if (e.button !== 0) return;
+              e.preventDefault();
+            }}
+            onKeyDown={(e) => {
+              if (
+                (e.key === " " || e.key === "Enter") &&
+                e.target instanceof HTMLButtonElement
+              ) {
+                e.preventDefault();
+                e.target.click();
+              }
+            }}
+          >
+            {React.Children.map(actions, (child) =>
+              React.isValidElement<{ onClick?: (event: MouseEvent) => void }>(
+                child,
+              )
+                ? React.cloneElement(child, {
+                    onClick: (event: MouseEvent) => {
+                      event.stopPropagation();
+                      child.props.onClick?.(event);
+                    },
+                  })
+                : child,
+            )}
+          </div>
+        )}
+      </div>
       {expandable && (
-        <Content
-          $open={open}
-          $sx={{ ...sx?.content, ...(open ? sx?.opened?.content : {}) }}
+        <div
+          className={sx(
+            "accordion-content",
+            {
+              "accordion-content-opened": open,
+            },
+            classes?.content,
+          )}
         >
           {children}
-        </Content>
+        </div>
       )}
-    </Base>
+    </div>
   );
 };

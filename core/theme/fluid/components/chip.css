@@ -1,0 +1,75 @@
+[data-theme-name="fluid"] .chip {
+  @apply flex items-center bg-surface-10 gap-1 w-fit cursor-default select-none;
+}
+
+[data-theme-name="fluid"] .chip-filled-primary {
+  @apply text-text-inverted bg-primary-main;
+}
+
+[data-theme-name="fluid"] .chip-filled-secondary {
+  @apply text-text-inverted bg-secondary-main;
+}
+
+[data-theme-name="fluid"] .chip-filled-success {
+  @apply text-text-inverted bg-success-main;
+}
+
+[data-theme-name="fluid"] .chip-filled-warning {
+  @apply text-text-inverted bg-warning-main;
+}
+
+[data-theme-name="fluid"] .chip-filled-danger {
+  @apply text-text-inverted bg-danger-main;
+}
+
+[data-theme-name="fluid"] .chip-filled-info {
+  @apply text-text-inverted bg-info-main;
+}
+
+[data-theme-name="fluid"] .chip-light-primary {
+  @apply text-text-primary;
+}
+
+[data-theme-name="fluid"] .chip-light-secondary {
+  @apply text-text-secondary;
+}
+
+[data-theme-name="fluid"] .chip-light-success {
+  @apply text-text-success;
+}
+
+[data-theme-name="fluid"] .chip-light-warning {
+  @apply text-text-warning;
+}
+
+[data-theme-name="fluid"] .chip-light-danger {
+  @apply text-text-danger;
+}
+
+[data-theme-name="fluid"] .chip-light-info {
+  @apply text-text-info;
+}
+
+[data-theme-name="fluid"] .chip-layer-1 {
+  @apply bg-surface-blank;
+}
+
+[data-theme-name="fluid"] .chip-layer-2 {
+  @apply bg-surface-10;
+}
+
+[data-theme-name="fluid"] .chip-xs {
+  @apply text-caption px-[4px] py-[2px];
+}
+
+[data-theme-name="fluid"] .chip-sm {
+  @apply text-caption px-[6px] py-[4px];
+}
+
+[data-theme-name="fluid"] .chip-md {
+  @apply text-body px-[6px] py-[4px];
+}
+
+[data-theme-name="fluid"] .chip-lg {
+  @apply text-body px-[10px] py-[6px];
+}

@@ -1,44 +1,19 @@
-import React, { FC } from "react";
-import styled, { CSSObject } from "styled-components";
-import { Theme } from "../theme/interfaces/theme";
-import { CSSRadio } from "../theme/interfaces/radio";
-import { Text } from "../typography/Text";
+import React, { ChangeEvent, FC, InputHTMLAttributes } from "react";
+import { sx } from "../theme/utils/sx";
+import { Theme } from "../theme/interfaces";
 
 export interface Option {
   label: string;
   value: string;
 }
 
-export interface RadioProps {
+export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   options: Option[];
   defaultValue?: string;
   disabled?: boolean;
-  onChange?: (value: string) => void;
-  sx?: CSSRadio;
+  classes?: Theme["radio"];
 }
-
-interface BaseProps {
-  theme?: Theme;
-  $disabled?: boolean;
-  $sx?: CSSObject;
-}
-
-const Base = styled.div<BaseProps>(({ theme, $sx }) => ({
-  ...theme.components?.radio?.root,
-  ...$sx,
-}));
-
-const Stack = styled.label<BaseProps>(({ theme, $sx }) => ({
-  ...theme.components?.radio?.stack,
-  ...$sx,
-  cursor: "pointer", // vizuálna indikácia, že je klikateľné
-}));
-
-const Input = styled.input<BaseProps>(({ theme, $sx }) => ({
-  ...theme.components?.radio?.input,
-  ...$sx,
-}));
 
 export const Radio: FC<RadioProps> = ({
   label,
@@ -46,32 +21,51 @@ export const Radio: FC<RadioProps> = ({
   defaultValue,
   disabled,
   onChange,
-  sx,
+  classes,
 }) => {
-  const handleChange = (value: string) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
-      onChange(value);
+      onChange(event);
     }
   };
 
   return (
-    <Base $sx={sx?.root}>
-      {label}
+    <div
+      className={sx("radio", { "radio-disabled": disabled }, classes?.radio)}
+    >
+      <span
+        className={sx(
+          "radio-label",
+          { "radio-label-disabled": disabled },
+          classes?.label,
+        )}
+      >
+        {label}
+      </span>
       {options &&
         options.map((option) => (
-          <Stack key={option.value} $sx={sx?.stack}>
-            <Input
+          <label
+            key={option.value}
+            className={sx(
+              "radio-stack",
+              { "radio-disabled-stack": disabled },
+              classes?.stack,
+            )}
+          >
+            <input
+              className={sx("radio-input", classes?.input)}
               type="radio"
               name={label}
               value={option.value}
               defaultChecked={defaultValue === option.value}
               disabled={disabled}
-              onChange={() => handleChange(option.value)}
-              $sx={sx?.input}
+              onChange={(e) => handleChange(e)}
             />
-            {option.label}
-          </Stack>
+            <span className={sx("radio-text", classes?.text)}>
+              {option.label}
+            </span>
+          </label>
         ))}
-    </Base>
+    </div>
   );
 };

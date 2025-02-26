@@ -5,13 +5,8 @@ import React, {
   useLayoutEffect,
   useState,
 } from "react";
-import { ThemeProvider } from "../theme/ThemeProvider";
 import { DialogProvider } from "../content/DialogContext";
 import { LayerProvider } from "../layout/LayerContext";
-import { Theme } from "../theme/interfaces/theme";
-import { defaultTheme } from "../theme/defaultTheme";
-import { darkTheme } from "../theme/darkTheme";
-import { themes } from "../theme/themes";
 import { addons } from "@storybook/preview-api";
 import { DARK_MODE_EVENT_NAME } from "storybook-dark-mode";
 import { StoryContext } from "storybook/internal/types";
@@ -23,21 +18,26 @@ interface AppProps {
 
 export const App: FC<AppProps> = ({ context, children }) => {
   const channel = addons.getChannel();
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
   const [isDark, setDark] = useState(context.globals.themeVariant === "dark");
 
-  const updateTheme = () => {
-    const theme = themes.find((t) => t.code === context.globals.theme);
-    setTheme(isDark ? theme?.dark || darkTheme : theme?.light || defaultTheme);
+  const updateThemeClasses = () => {
+    const root = document.documentElement;
+    root.setAttribute("data-theme-name", context.globals.theme);
+
+    if (isDark) {
+      root.setAttribute("data-theme-variant", "dark");
+    } else {
+      root.removeAttribute("data-theme-variant");
+    }
   };
 
-  const handleThemeVariantChange = (isDark: boolean) => {
-    document.body.style.backgroundColor = isDark ? "#000" : "#fff";
-    setDark(isDark);
+  const handleThemeVariantChange = (darkMode: boolean) => {
+    document.body.style.backgroundColor = darkMode ? "#000" : "#fff";
+    setDark(darkMode);
   };
 
   useLayoutEffect(() => {
-    updateTheme();
+    updateThemeClasses();
   }, []);
 
   useEffect(() => {
@@ -46,14 +46,12 @@ export const App: FC<AppProps> = ({ context, children }) => {
   }, [channel]);
 
   useEffect(() => {
-    updateTheme();
+    updateThemeClasses();
   }, [context.globals.theme, isDark]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <LayerProvider>
-        <DialogProvider>{children}</DialogProvider>
-      </LayerProvider>
-    </ThemeProvider>
+    <LayerProvider>
+      <DialogProvider>{children}</DialogProvider>
+    </LayerProvider>
   );
 };

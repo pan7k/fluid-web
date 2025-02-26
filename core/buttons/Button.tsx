@@ -1,82 +1,95 @@
-import React, { forwardRef, ReactNode } from "react";
-import styled, { CSSObject } from "styled-components";
-import { Theme } from "../theme/interfaces/theme";
-import { EventProps } from "../common/interfaces";
+import React, {
+  ButtonHTMLAttributes,
+  createRef,
+  forwardRef,
+  ReactNode,
+} from "react";
 import { ComponentSize } from "../common/types";
-import { Icon, IconSymbol } from "../icons/Icon";
+import { Icon, IconSymbol, IconVariant } from "../icons/Icon";
+import { Theme } from "../theme/interfaces";
+import { sx } from "../theme/utils/sx";
 
-export type ButtonColor = "primary" | "secondary" | "success" | "danger";
+export type ButtonColor =
+  | "primary"
+  | "secondary"
+  | "info"
+  | "success"
+  | "warning"
+  | "danger";
 export type ButtonVariant = "filled" | "outline" | "light" | "ghost";
+export type ButtonType = "button" | "submit" | "reset";
 
-export interface ButtonProps extends EventProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: ReactNode;
   icon?: IconSymbol;
+  type?: ButtonType;
+  iconVariant?: IconVariant;
   color?: ButtonColor;
   variant?: ButtonVariant;
   disabled?: boolean;
+  active?: boolean;
   size?: ComponentSize;
-  sx?: CSSObject;
+  classes?: Theme["button"];
 }
-
-interface BaseProps {
-  theme: Theme;
-  $color: ButtonColor;
-  $variant: ButtonVariant;
-  $size: ComponentSize;
-  $sx?: CSSObject;
-}
-
-interface IconProps extends Omit<BaseProps, "$color" | "$size"> {}
-
-const Base = styled.button<BaseProps>(
-  ({ theme, disabled, $color, $variant, $size, $sx }) => ({
-    ...theme.components?.button?.root,
-    ...theme.components?.button?.variant?.[$variant]?.root,
-    ...theme.components?.button?.variant?.[$variant]?.color?.[$color],
-    ...theme.components?.button?.size?.[$size],
-    ...(disabled ? { "&:disabled": theme.components?.button?.disabled } : {}),
-    ...$sx,
-  }),
-);
-
-const IconBase = styled.div<IconProps>(({ theme, $variant }) => ({
-  svg: {
-    ...theme.components?.button?.icon,
-    ...theme.components?.button?.variant?.[$variant]?.icon,
-  },
-}));
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       label,
+      icon,
+      type = "button",
+      iconVariant = "regular",
       color = "primary",
       variant = "filled",
       size = "md",
       disabled,
-      icon,
-      sx,
+      active,
+      classes,
+      onClick,
       ...rest
     },
     ref,
   ) => {
+    const buttonRef = ref || createRef<HTMLButtonElement>();
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (onClick) {
+        onClick(event);
+      }
+      if ("current" in buttonRef && buttonRef.current) {
+        buttonRef.current.focus();
+      }
+    };
+
     return (
-      <Base
-        ref={ref}
-        $color={color}
-        $variant={variant}
+      <button
+        ref={buttonRef}
+        type={type}
+        className={sx(
+          "button",
+          `button-${variant}-${color}`,
+          `button-${size}`,
+          {
+            "button-disabled": disabled,
+            [`button-${variant}-${color}-active`]: active,
+          },
+          classes?.button,
+        )}
         disabled={disabled}
-        $size={size}
-        $sx={sx}
+        onClick={handleClick}
         {...rest}
       >
-        {label}
+        <label className={sx("button-label", classes?.label)}>{label}</label>
         {icon && (
-          <IconBase $variant={variant}>
-            <Icon symbol={icon} variant="regular" size="xs" />
-          </IconBase>
+          <div className={sx("button-icon", classes?.stack)}>
+            <Icon
+              symbol={icon}
+              variant={iconVariant}
+              size="xs"
+              classes={classes?.icon}
+            />
+          </div>
         )}
-      </Base>
+      </button>
     );
   },
 );

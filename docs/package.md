@@ -26,4 +26,4 @@ Finally, add the **@pan7k/fluid** dependency to your `package.json` and run `bun
 
 #### License
 
-© 2024 Tomáš Pánik. All rights reserved.<br>
+© 2025 Tomáš Pánik. All rights reserved.<br>
