@@ -30,7 +30,7 @@ To publish the package, either manually trigger the [Publish](https://github.com
 [Storybook](https://storybook.js.org)<br>
 [React](https://react.dev)<br>
 [TypeScript](https://typescriptlang.org)<br>
-[Vanilla Extract](https://vanilla-extract.style)
+[Tailwind](https://tailwindcss.com)
 
 #### License
 

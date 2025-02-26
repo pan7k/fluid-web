@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, createRef, forwardRef } from "react";
 import { Icon, IconSymbol, IconVariant } from "../icons/Icon";
-import { Tooltip, TooltipDirection } from "../content/Tooltip";
+import { Tooltip, TooltipDirection, TooltipSize } from "../content/Tooltip";
 import { Theme } from "../theme/interfaces";
 import { sx } from "../theme/utils/sx";
 import { ButtonType } from "./Button";
@@ -24,6 +24,7 @@ export interface IconButtonProps
   variant?: IconButtonVariant;
   size?: ComponentSize;
   tooltip?: string;
+  tooltipSize?: TooltipSize;
   direction?: TooltipDirection;
   disabled?: boolean;
   active?: boolean;
@@ -39,6 +40,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       icon,
       iconVariant = "regular",
       tooltip,
+      tooltipSize = "md",
       direction = "bottom",
       disabled,
       active,
@@ -73,6 +75,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         label={tooltip}
         direction={direction}
         classes={{ container: classes?.tooltip }}
+        size={tooltipSize}
       >
         <button
           ref={buttonRef}
