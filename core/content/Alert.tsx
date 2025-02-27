@@ -32,7 +32,7 @@ const typeToIcon: Record<AlertType, IconSymbol> = {
   debug: "terminal",
 };
 
-const typeToColor: Record<AlertType, IconSymbol> = {
+const typeToColor: Record<AlertType, ButtonColor> = {
   info: "info",
   success: "success",
   warning: "warning",

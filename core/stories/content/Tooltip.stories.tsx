@@ -11,6 +11,9 @@ export default {
     label: {
       control: { type: "text" },
     },
+    direction: {
+      control: { type: "select", options: ["top", "right", "bottom", "left"] },
+    },
   },
 } satisfies Meta<typeof Tooltip>;
 
@@ -19,12 +22,14 @@ export const Default: StoryObj<typeof Tooltip> = {
   args: {
     label: "Tooltip",
     direction: "bottom",
+    delay: 500,
+    hideDelay: 200,
+    maxWidth: 180,
     size: "md",
     children: (
       <Button label="Button with tooltip" variant="light" color="secondary" />
     ),
   },
-
   parameters: parameters(
     `<Tooltip label="Tooltip">\n  <Button label="Button with tooltip" variant="light" color="secondary" />\n</Tooltip>`,
     "Tooltip component",

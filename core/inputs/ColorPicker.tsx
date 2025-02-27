@@ -3,6 +3,7 @@ import { Theme } from "../theme/interfaces";
 import { sx } from "../theme/utils/sx";
 import { Slider } from "./Slider";
 import { IconButton } from "../buttons/IconButton";
+import { Layer } from "../layout/Layer";
 
 interface HSVColor {
   h: number;

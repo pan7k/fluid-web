@@ -115,5 +115,3 @@ export const Drawer: FC<DrawerProps> = ({
 
   return createPortal(drawerContent, document.body);
 };
-
-export default Drawer;

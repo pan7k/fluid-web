@@ -8,7 +8,8 @@ export type TextColor =
   | "info"
   | "success"
   | "warning"
-  | "danger";
+  | "danger"
+  | "debug";
 export type TextType =
   | "body"
   | "caption"

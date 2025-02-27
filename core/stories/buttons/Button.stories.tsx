@@ -11,7 +11,15 @@ export default {
   argTypes: {
     color: {
       control: { type: "select" },
-      options: ["primary", "secondary", "info", "success", "warning", "danger"],
+      options: [
+        "primary",
+        "secondary",
+        "info",
+        "success",
+        "warning",
+        "danger",
+        "debug",
+      ],
     },
     variant: {
       control: { type: "select" },
@@ -25,6 +33,10 @@ export default {
       control: { type: "select" },
       options: iconSymbolKeys,
     },
+    iconVariant: {
+      control: { type: "select" },
+      options: ["thin", "light", "regular", "bold", "fill", "duotone"],
+    },
   },
 } satisfies Meta<typeof Button>;
 
@@ -36,6 +48,7 @@ export const Default: StoryObj<typeof Button> = {
     variant: "filled",
     size: "md",
     icon: "plus",
+    type: "button",
   },
   render: (args) => {
     const [open, setOpen] = useState(false);

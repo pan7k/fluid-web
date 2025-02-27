@@ -61,3 +61,7 @@
 [data-theme-name="fluid"] .typography-danger {
   @apply text-text-danger;
 }
+
+[data-theme-name="fluid"] .typography-debug {
+  @apply text-text-debug;
+}

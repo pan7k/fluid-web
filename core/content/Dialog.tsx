@@ -15,8 +15,6 @@ import { Stack } from "../layout/Stack";
 import { sx } from "../theme/utils/sx";
 import { Theme } from "../theme/interfaces";
 
-// TODO: REFACTOR
-
 type ActionsAlign = "flex-start" | "space-between" | "flex-end";
 
 export interface DialogProps extends HTMLAttributes<HTMLDialogElement> {

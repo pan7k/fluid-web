@@ -1,0 +1,15 @@
+[data-theme-name="fluid"] .textarea-xs-input {
+  @apply pt-[3px] min-h-[22px];
+}
+
+[data-theme-name="fluid"] .textarea-sm-input {
+  @apply pt-[1px] min-h-[26px];
+}
+
+[data-theme-name="fluid"] .textarea-md-input {
+  @apply pt-[3px] min-h-[29px];
+}
+
+[data-theme-name="fluid"] .textarea-lg-input {
+  @apply pt-[5px] min-h-[33px];
+}

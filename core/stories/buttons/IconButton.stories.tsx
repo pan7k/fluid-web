@@ -10,7 +10,15 @@ export default {
   component: IconButton,
   argTypes: {
     color: {
-      options: ["primary", "secondary", "info", "success", "warning", "danger"],
+      options: [
+        "primary",
+        "secondary",
+        "info",
+        "success",
+        "warning",
+        "danger",
+        "debug",
+      ],
       control: { type: "select" },
     },
     variant: {

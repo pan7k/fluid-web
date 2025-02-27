@@ -12,7 +12,8 @@ export type IconButtonColor =
   | "info"
   | "success"
   | "warning"
-  | "danger";
+  | "danger"
+  | "debug";
 export type IconButtonVariant = "filled" | "outline" | "light" | "ghost";
 
 export interface IconButtonProps

@@ -123,6 +123,7 @@
   --color-text-success: var(--blank);
   --color-text-warning: var(--blank);
   --color-text-danger: var(--blank);
+  --color-text-debug: var(--blank);
 
   --color-primary-main: var(--blank);
   --color-primary-lighter: var(--blank);

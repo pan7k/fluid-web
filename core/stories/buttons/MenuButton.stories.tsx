@@ -16,7 +16,15 @@ export default {
     },
     color: {
       control: { type: "select" },
-      options: ["primary", "secondary", "info", "success", "warning", "danger"],
+      options: [
+        "primary",
+        "secondary",
+        "info",
+        "success",
+        "warning",
+        "danger",
+        "debug",
+      ],
     },
     variant: {
       control: { type: "select" },
@@ -36,20 +44,38 @@ export const Default: StoryObj<typeof MenuButton> = {
     variant: "filled",
   },
   render: (args) => {
-    const [open, setOpen] = useState(false);
+    const [snackOpen, setSnackOpen] = useState(false);
+    const [snackMessage, setSnackMessage] = useState("");
+
+    const handleSnack = (message: string) => {
+      setSnackMessage(message);
+      setSnackOpen(true);
+    };
+
     return (
       <>
-        <MenuButton {...args} onClick={() => setOpen(true)}>
-          <MenuItem label="Add" icon="plus" onClick={() => setOpen(true)} />
-          <MenuItem label="Copy" onClick={() => setOpen(true)} />
+        <MenuButton
+          {...args}
+          onClick={() => handleSnack(`Button '${args.label}' clicked`)}
+        >
+          <MenuItem
+            label="Add"
+            icon="plus"
+            onClick={() => handleSnack("Menu item 'Add' clicked")}
+          />
+          <MenuItem
+            label="Copy"
+            onClick={() => handleSnack("Menu item 'Copy' clicked")}
+          />
         </MenuButton>
+
         <Snackbar
-          open={open}
+          open={snackOpen}
           type="debug"
-          message="Button clicked"
+          message={snackMessage}
           duration={2000}
           closeButton={false}
-          onClose={() => setOpen(false)}
+          onClose={() => setSnackOpen(false)}
         />
       </>
     );

@@ -15,7 +15,8 @@ export type ButtonColor =
   | "info"
   | "success"
   | "warning"
-  | "danger";
+  | "danger"
+  | "debug";
 export type ButtonVariant = "filled" | "outline" | "light" | "ghost";
 export type ButtonType = "button" | "submit" | "reset";
 

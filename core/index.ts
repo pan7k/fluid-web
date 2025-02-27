@@ -37,6 +37,7 @@ export { SearchInput, type SearchInputProps } from "./inputs/SearchInput";
 export { SelectInput, type SelectInputProps } from "./inputs/SelectInput";
 export { Slider, type SliderProps } from "./inputs/Slider";
 export { Switch, type SwitchProps } from "./inputs/Switch";
+export { TextArea, type TextAreaProps } from "./inputs/TextArea";
 export { TextInput, type TextInputProps } from "./inputs/TextInput";
 
 /* layout */

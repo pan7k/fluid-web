@@ -6,7 +6,6 @@ import { Text } from "../../typography/Text";
 import { Layer } from "../../layout/Layer";
 import { iconSymbolKeys, iconVariantKeys } from "../../icons/Icon";
 import { IconButton } from "../../buttons/IconButton";
-import { useArgs } from "storybook/internal/preview-api";
 import { Snackbar } from "../../content/Snackbar";
 
 export default {

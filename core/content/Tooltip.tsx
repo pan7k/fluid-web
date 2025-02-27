@@ -19,6 +19,9 @@ export interface TooltipProps {
   label: ReactNode;
   direction?: TooltipDirection;
   size?: TooltipSize;
+  delay?: number;
+  hideDelay?: number;
+  maxWidth?: number;
   classes?: Theme["tooltip"];
 }
 
@@ -27,6 +30,9 @@ interface TooltipRootProps {
   direction: TooltipDirection;
   targetRef: RefObject<HTMLDivElement | null>;
   size: TooltipSize;
+  delay: number;
+  hideDelay: number;
+  maxWidth: number;
   classes?: CSS;
 }
 
@@ -35,45 +41,60 @@ const TooltipRoot: FC<TooltipRootProps> = ({
   targetRef,
   direction,
   size,
+  delay,
+  hideDelay,
+  maxWidth,
   classes,
 }) => {
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
   const [position, setPosition] = useState({ top: 0, left: 0 });
+  const showTimeout = useRef<NodeJS.Timeout | null>(null);
+  const hideTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleMouseEnter = () => {
-      if (targetRef.current && tooltipRef.current) {
-        const rect = targetRef.current.getBoundingClientRect();
-        const tooltipRect = tooltipRef.current.getBoundingClientRect();
-        const paddingFromObject = 4;
+      if (hideTimeout.current) clearTimeout(hideTimeout.current);
 
-        let top = rect.top + window.scrollY;
-        let left = rect.left + window.scrollX;
+      showTimeout.current = setTimeout(() => {
+        if (targetRef.current && tooltipRef.current) {
+          const rect = targetRef.current.getBoundingClientRect();
+          const tooltipRect = tooltipRef.current.getBoundingClientRect();
+          const paddingFromObject = 4;
 
-        if (direction === "left") {
-          top += rect.height / 2 - tooltipRect.height / 2;
-          left -= tooltipRect.width + paddingFromObject;
-        }
-        if (direction === "top") {
-          top -= tooltipRect.height + paddingFromObject;
-          left += rect.width / 2 - tooltipRect.width / 2;
-        }
-        if (direction === "bottom") {
-          top += rect.height + paddingFromObject;
-          left += rect.width / 2 - tooltipRect.width / 2;
-        }
-        if (direction === "right") {
-          top += rect.height / 2 - tooltipRect.height / 2;
-          left += rect.width + paddingFromObject;
-        }
+          let top = rect.top + window.scrollY;
+          let left = rect.left + window.scrollX;
 
-        setPosition({ top, left });
-        setVisible(true);
-      }
+          if (direction === "left") {
+            top += rect.height / 2 - tooltipRect.height / 2;
+            left -= tooltipRect.width + paddingFromObject;
+          }
+          if (direction === "top") {
+            top -= tooltipRect.height + paddingFromObject;
+            left += rect.width / 2 - tooltipRect.width / 2;
+          }
+          if (direction === "bottom") {
+            top += rect.height + paddingFromObject;
+            left += rect.width / 2 - tooltipRect.width / 2;
+          }
+          if (direction === "right") {
+            top += rect.height / 2 - tooltipRect.height / 2;
+            left += rect.width + paddingFromObject;
+          }
+
+          setPosition({ top, left });
+          setVisible(true);
+        }
+      }, delay);
     };
 
-    const handleMouseLeave = () => setVisible(false);
+    const handleMouseLeave = () => {
+      if (showTimeout.current) clearTimeout(showTimeout.current);
+
+      hideTimeout.current = setTimeout(() => {
+        setVisible(false);
+      }, hideDelay);
+    };
 
     const targetElement = targetRef.current;
     if (targetElement) {
@@ -86,8 +107,10 @@ const TooltipRoot: FC<TooltipRootProps> = ({
         targetElement.removeEventListener("mouseenter", handleMouseEnter);
         targetElement.removeEventListener("mouseleave", handleMouseLeave);
       }
+      if (showTimeout.current) clearTimeout(showTimeout.current);
+      if (hideTimeout.current) clearTimeout(hideTimeout.current);
     };
-  }, [targetRef, direction]);
+  }, [targetRef, direction, delay, hideDelay]);
 
   return createPortal(
     <div
@@ -98,6 +121,10 @@ const TooltipRoot: FC<TooltipRootProps> = ({
         left: position.left,
         visibility: visible ? "visible" : "hidden",
         zIndex: 9999,
+        maxWidth: `${maxWidth}px`,
+        width: "max-content",
+        whiteSpace: "normal",
+        wordBreak: "break-word",
       }}
       className={sx(`tooltip tooltip-${size}`, classes)}
     >
@@ -112,6 +139,9 @@ export const Tooltip: FC<TooltipProps> = ({
   label,
   direction = "right",
   size = "md",
+  delay = 500,
+  hideDelay = 200,
+  maxWidth = 180,
   classes,
 }) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
@@ -128,6 +158,9 @@ export const Tooltip: FC<TooltipProps> = ({
         targetRef={targetRef}
         direction={direction}
         size={size}
+        delay={delay}
+        hideDelay={hideDelay}
+        maxWidth={maxWidth}
         classes={classes?.tooltip}
       >
         {label}

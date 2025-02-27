@@ -62,6 +62,14 @@
   @apply bg-danger-dark text-text-inverted;
 }
 
+[data-theme-name="fluid"] .iconButton-filled-debug {
+  @apply bg-debug-main text-text-inverted hover:bg-debug-darker active:bg-debug-dark;
+}
+
+[data-theme-name="fluid"] .iconButton-filled-debug-active {
+  @apply bg-debug-dark text-text-inverted;
+}
+
 [data-theme-name="fluid"] .iconButton-outline-primary {
   @apply border border-primary-main text-primary-main hover:bg-primary-main hover:text-text-inverted active:bg-primary-darker;
 }
@@ -108,6 +116,14 @@
 
 [data-theme-name="fluid"] .iconButton-outline-danger-active {
   @apply bg-danger-darker text-text-inverted border-danger-darker;
+}
+
+[data-theme-name="fluid"] .iconButton-outline-debug {
+  @apply border border-debug-main text-debug-main hover:bg-debug-main hover:text-text-inverted active:bg-debug-darker;
+}
+
+[data-theme-name="fluid"] .iconButton-outline-debug-active {
+  @apply bg-debug-darker text-text-inverted border-debug-darker;
 }
 
 [data-theme-name="fluid"] .iconButton-light-primary {
@@ -158,6 +174,14 @@
   @apply bg-surface-30 text-danger-main;
 }
 
+[data-theme-name="fluid"] .iconButton-light-debug {
+  @apply bg-surface-10 text-debug-main hover:bg-surface-20 active:bg-surface-30;
+}
+
+[data-theme-name="fluid"] .iconButton-light-debug-active {
+  @apply bg-surface-30 text-debug-main;
+}
+
 [data-theme-name="fluid"] .iconButton-ghost-primary {
   @apply bg-transparent text-primary-main hover:bg-surface-10 active:bg-surface-20;
 }
@@ -204,6 +228,14 @@
 
 [data-theme-name="fluid"] .iconButton-ghost-danger-active {
   @apply bg-surface-20 text-danger-main;
+}
+
+[data-theme-name="fluid"] .iconButton-ghost-debug {
+  @apply bg-transparent text-debug-main hover:bg-surface-10 active:bg-surface-20;
+}
+
+[data-theme-name="fluid"] .iconButton-ghost-debug-active {
+  @apply bg-surface-20 text-debug-main;
 }
 
 /* Sizes */

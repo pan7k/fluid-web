@@ -119,6 +119,7 @@
   --color-text-success: var(--color-success-darker);
   --color-text-warning: var(--color-warning-darker);
   --color-text-danger: var(--color-danger-darker);
+  --color-text-debug: var(--color-debug-darker);
 
   --color-primary-main: var(--color-blue-70);
   --color-primary-lighter: var(--color-blue-60);

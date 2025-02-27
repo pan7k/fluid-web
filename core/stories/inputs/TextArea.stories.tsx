@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { parameters } from "../../storybook/parameters";
-import { SelectInput } from "../../inputs/SelectInput";
-import { iconVariantKeys } from "../../icons/Icon";
+import { iconSymbolKeys, iconVariantKeys } from "../../icons/Icon";
+import { TextArea } from "../../inputs/TextArea";
 
 export default {
-  title: "Inputs/Select Input",
-  component: SelectInput,
+  title: "Inputs/TextArea",
+  component: TextArea,
   argTypes: {
     icon: {
       control: { type: "select" },
+      options: iconSymbolKeys,
     },
     iconVariant: {
       control: { type: "select" },
@@ -26,54 +27,29 @@ export default {
       control: { type: "select" },
       options: ["xs", "sm", "md", "lg"],
     },
-    options: { table: { disable: true } },
-    menuSize: {
-      control: { type: "select" },
-      options: ["xs", "sm", "md", "lg"],
-    },
-    chipColor: {
-      control: { type: "select" },
-      options: ["primary", "secondary", "success", "danger", "warning", "info"],
-    },
-    chipVariant: {
-      control: { type: "select" },
-      options: ["light", "filled"],
-    },
   },
-} satisfies Meta<typeof SelectInput>;
+} satisfies Meta<typeof TextArea>;
 
-export const Default: StoryObj<typeof SelectInput> = {
-  name: "Select Input",
+export const Default: StoryObj<typeof TextArea> = {
+  name: "Text Area",
   args: {
     label: "Label",
-    autocomplete: true,
-    multiple: true,
     placeholder: "Placeholder",
     icon: undefined,
     iconVariant: "regular",
     iconPosition: "end",
     description: "Description",
-    direction: "bottom-right",
     variant: "normal",
     size: "md",
-    menuSize: undefined,
-    chipColor: "primary",
-    chipVariant: "light",
+    rows: 2,
     width: 250,
     warning: false,
     warningText: "Warning text",
     invalid: false,
     invalidText: "Invalid text",
     disabled: false,
-    clearable: false,
-    value: 3,
-    defaultValue: 2,
-    options: [
-      { value: 1, label: "Option 1" },
-      { value: 2, label: "Option 2" },
-      { value: 3, label: "Option 3" },
-      { value: 4, label: "Option 4" },
-    ],
+    value: undefined,
+    defaultValue: undefined,
   },
   parameters: parameters(
     `<SelectInput
