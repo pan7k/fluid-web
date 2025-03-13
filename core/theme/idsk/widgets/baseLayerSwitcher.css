@@ -1,0 +1,7 @@
+[data-theme-name="idsk"] .base-layer-switcher {
+  @apply inline-flex gap-2;
+}
+
+[data-theme-name="idsk"] .base-layer-switcher-item {
+  @apply relative w-20 h-14 border-2 cursor-pointer rounded-[10px];
+}

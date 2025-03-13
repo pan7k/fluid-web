@@ -41,7 +41,7 @@ export const Default: StoryObj<typeof Drawer> = {
       <div className="flex gap-4">
         <Button
           label="Cancel"
-          variant="outline"
+          variant="outlined"
           color="secondary"
           onClick={(e) => {
             e.stopPropagation();

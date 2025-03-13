@@ -1,11 +1,11 @@
-[data-theme-name="fluid"] .layer {
-  @apply mt-4 p-4;
-}
-
-[data-theme-name="fluid"] .layer-level-1 {
-  @apply bg-surface-10;
-}
-
-[data-theme-name="fluid"] .layer-level-2 {
-  @apply bg-surface-blank;
+[data-theme-name="fluid"] {
+  .layer {
+    @apply mt-4 p-4;
+  }
+  .layer-level-1 {
+    @apply bg-surface-10;
+  }
+  .layer-level-2 {
+    @apply bg-surface-blank;
+  }
 }

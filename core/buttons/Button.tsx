@@ -3,6 +3,7 @@ import React, {
   createRef,
   forwardRef,
   ReactNode,
+  ElementType,
 } from "react";
 import { ComponentSize } from "../common/types";
 import { Icon, IconSymbol, IconVariant } from "../icons/Icon";
@@ -17,11 +18,11 @@ export type ButtonColor =
   | "warning"
   | "danger"
   | "debug";
-export type ButtonVariant = "filled" | "outline" | "light" | "ghost";
+export type ButtonVariant = "filled" | "outlined" | "light" | "ghost";
 export type ButtonType = "button" | "submit" | "reset";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  label: ReactNode;
+  label: ReactNode | string;
   icon?: IconSymbol;
   type?: ButtonType;
   iconVariant?: IconVariant;
@@ -31,6 +32,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   active?: boolean;
   size?: ComponentSize;
   classes?: Theme["button"];
+  component?: ElementType;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -47,6 +49,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       active,
       classes,
       onClick,
+      component: Component = "button",
       ...rest
     },
     ref,
@@ -62,19 +65,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     return (
-      <button
+      <Component
         ref={buttonRef}
-        type={type}
-        className={sx(
-          "button",
-          `button-${variant}-${color}`,
-          `button-${size}`,
-          {
-            "button-disabled": disabled,
-            [`button-${variant}-${color}-active`]: active,
-          },
-          classes?.button,
-        )}
+        type={Component === "button" ? type : undefined}
+        className={sx(`button ${variant} ${color} ${size}`, classes?.button)}
+        active={active}
         disabled={disabled}
         onClick={handleClick}
         {...rest}
@@ -85,7 +80,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <Icon symbol={icon} variant={iconVariant} size="xs" />
           </div>
         )}
-      </button>
+      </Component>
     );
   },
 );

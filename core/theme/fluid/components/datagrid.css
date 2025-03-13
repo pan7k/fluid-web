@@ -1,79 +1,62 @@
-[data-theme-name="fluid"] .datagrid {
-  @apply w-full overflow-hidden border border-surface-30;
-}
-
-[data-theme-name="fluid"] .datagrid-container {
-  @apply overflow-x-auto;
-}
-
-[data-theme-name="fluid"] .datagrid-table {
-  @apply w-full border-collapse;
-}
-
-[data-theme-name="fluid"] .datagrid-header {
-  @apply bg-surface-20;
-}
-
-[data-theme-name="fluid"] .datagrid-header-cell {
-  @apply p-3 text-left font-medium text-text-primary border-b border-surface-30;
-}
-
-[data-theme-name="fluid"] .datagrid-header-content {
-  @apply flex items-center gap-2;
-}
-
-[data-theme-name="fluid"] .datagrid-sort-button {
-  @apply flex items-center gap-1 focus:outline-none disabled:cursor-default;
-}
-
-[data-theme-name="fluid"] .datagrid-sort-icon {
-  @apply text-text-secondary;
-}
-
-[data-theme-name="fluid"] .datagrid-column-actions {
-  @apply ml-auto;
-}
-
-[data-theme-name="fluid"] .datagrid-body {
-  @apply divide-y divide-surface-30;
-}
-
-[data-theme-name="fluid"] .datagrid-row {
-  @apply hover:bg-surface-20;
-}
-
-[data-theme-name="fluid"] .datagrid-cell {
-  @apply p-3 text-text-primary;
-}
-
-[data-theme-name="fluid"] .datagrid-row-expanded {
-  @apply bg-surface-10 p-3;
-}
-
-[data-theme-name="fluid"] .datagrid-pagination {
-  @apply flex items-center justify-between p-3 border-t border-surface-30;
-}
-
-[data-theme-name="fluid"] .datagrid-row-selected {
-  @apply bg-primary-light;
-}
-
-[data-theme-name="fluid"] .datagrid-checkbox {
-  @apply h-4 w-4 rounded border-surface-30 text-primary-main focus:ring-primary-main;
-}
-
-/* Responsive */
-@media (max-width: 640px) {
-  [data-theme-name="fluid"] .datagrid-header-cell,
-  [data-theme-name="fluid"] .datagrid-cell {
-    @apply p-2;
+[data-theme-name="fluid"] {
+  .datagrid {
+    @apply w-full overflow-hidden border border-surface-30;
   }
-  
-  [data-theme-name="fluid"] .datagrid-pagination {
-    @apply flex-col gap-2;
+  .datagrid-container {
+    @apply overflow-x-auto;
   }
-}
-
-[data-theme-name="fluid"] .datagrid-page-size-select {
-  @apply px-2 py-1 text-sm border border-surface-30 rounded bg-white;
+  .datagrid-table {
+    @apply w-full border-collapse;
+  }
+  .datagrid-header {
+    @apply bg-surface-20;
+  }
+  .datagrid-header-cell {
+    @apply p-3 text-left font-medium text-text-primary border-b border-surface-30;
+  }
+  .datagrid-header-content {
+    @apply flex items-center gap-2;
+  }
+  .datagrid-sort-button {
+    @apply flex items-center gap-1 focus:outline-none disabled:cursor-default;
+  }
+  .datagrid-sort-icon {
+    @apply text-text-secondary;
+  }
+  .datagrid-column-actions {
+    @apply ml-auto;
+  }
+  .datagrid-body {
+    @apply divide-y divide-surface-30;
+  }
+  .datagrid-row {
+    @apply hover:bg-surface-20;
+  }
+  .datagrid-cell {
+    @apply p-3 text-text-primary;
+  }
+  .datagrid-row-expanded {
+    @apply bg-surface-10 p-3;
+  }
+  .datagrid-pagination {
+    @apply flex items-center justify-between p-3 border-t border-surface-30;
+  }
+  .datagrid-row-selected {
+    @apply bg-primary-light;
+  }
+  .datagrid-checkbox {
+    @apply h-4 w-4 rounded border-surface-30 text-primary-main focus:ring-primary-main;
+  }
+  .datagrid-page-size-select {
+    @apply px-2 py-1 text-sm border border-surface-30 rounded bg-white;
+  }
+  @media (max-width: 640px) {
+    .datagrid-header-cell,
+    .datagrid-cell {
+      @apply p-2;
+    }
+    .datagrid-pagination {
+      @apply flex-col gap-2;
+    }
+  }
 }

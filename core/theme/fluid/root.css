@@ -3,9 +3,9 @@
 @import "./main.css";
 @import "./dark.css";
 
+@import "./components/list.css";
 @import "./components/textarea.css";
 @import "./components/accordion.css";
-@import "./components/alert.css";
 @import "./components/button.css";
 @import "./components/dialog.css";
 @import "./components/dialogPanel.css";
@@ -26,6 +26,7 @@
 @import "./components/navigation.css";
 @import "./components/colorPicker.css";
 @import "./components/slider.css";
+@import "./components/alert.css";
 @import "./components/snackbar.css";
 @import "./components/spinner.css";
 @import "./components/datagrid.css";

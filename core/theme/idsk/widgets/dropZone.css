@@ -1,0 +1,23 @@
+[data-theme-name="idsk"] .dropZone {
+  @apply space-y-4 select-none;
+}
+
+[data-theme-name="idsk"] .dropZone-input {
+  @apply p-10 border-2 border-dashed text-center cursor-pointer rounded-[10px];
+}
+
+[data-theme-name="idsk"] .dropZone-textStack {
+  @apply flex flex-col gap-2;
+}
+
+[data-theme-name="idsk"] .dropZone-acceptStack {
+  @apply flex flex-col items-center gap-1;
+}
+
+[data-theme-name="idsk"] .dropZone-listItem {
+  @apply flex justify-between items-center !h-[46px] gap-4;
+}
+
+[data-theme-name="idsk"] .dropZone-actionStack {
+  @apply flex items-center gap-2;
+}

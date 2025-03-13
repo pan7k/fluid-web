@@ -1,0 +1,17 @@
+[data-theme-name="idsk"] {
+  .slider {
+    @apply relative h-6 w-full cursor-pointer;
+  }
+  .slider-track {
+    @apply absolute top-1/2 h-1 w-full -translate-y-1/2 rounded-full bg-surface-30;
+  }
+  .slider-fill {
+    @apply absolute h-full rounded-full bg-text-primary;
+  }
+  .slider-thumb {
+    @apply absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-text-primary;
+  }
+  .slider-disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+}

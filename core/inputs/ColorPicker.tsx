@@ -3,7 +3,6 @@ import { Theme } from "../theme/interfaces";
 import { sx } from "../theme/utils/sx";
 import { Slider } from "./Slider";
 import { IconButton } from "../buttons/IconButton";
-import { Layer } from "../layout/Layer";
 
 interface HSVColor {
   h: number;
@@ -198,7 +197,7 @@ export const ColorPicker: FC<ColorPickerProps> = ({
       ref={pickerRef}
       className={sx(
         "colorPicker",
-        { "colorPicker-disabled": disabled },
+        { disabled: disabled },
         classes?.colorPicker,
       )}
     >

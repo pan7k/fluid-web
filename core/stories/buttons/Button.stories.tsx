@@ -23,7 +23,7 @@ export default {
     },
     variant: {
       control: { type: "select" },
-      options: ["filled", "outline", "light", "ghost"],
+      options: ["filled", "outlined", "light", "ghost"],
     },
     size: {
       control: { type: "select" },

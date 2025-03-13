@@ -5,7 +5,7 @@ import { sx } from "../theme/utils/sx";
 export interface NavigationProps {
   children: ReactNode;
   variant?: "vertical" | "horizontal";
-  size?: "xs" | "sm" | "md";
+  size?: "sm" | "md" | "lg";
   classes?: Theme["navigation"];
 }
 

@@ -12,7 +12,7 @@ export type AlertType =
   | "error"
   | "bug"
   | "debug";
-export type AlertVariant = "filled" | "outline" | "light";
+export type AlertVariant = "filled" | "outlined" | "light";
 
 export interface AlertProps {
   children: ReactNode;
@@ -21,13 +21,14 @@ export interface AlertProps {
   showIcon?: boolean;
   onClose?: () => void;
   classes?: Theme["message"];
+  endButton?: ReactNode;
 }
 
 const typeToIcon: Record<AlertType, IconSymbol> = {
   info: "info",
   success: "check",
   warning: "warning",
-  error: "warningCircle",
+  error: "warning-circle",
   bug: "bug",
   debug: "terminal",
 };
@@ -47,15 +48,25 @@ export const Alert: FC<AlertProps> = ({
   variant = "light",
   showIcon = true,
   onClose,
+  endButton,
   classes,
 }) => {
+  const endContent = endButton ? (
+    endButton
+  ) : onClose ? (
+    <IconButton
+      classes={{ button: "alert-close" }}
+      color={typeToColor[type] as ButtonColor}
+      variant={variant === "outlined" ? "ghost" : variant}
+      onClick={onClose}
+      aria-label="Close alert"
+      icon="x"
+      size="md"
+    />
+  ) : null;
   return (
     <div
-      className={sx(
-        "alert",
-        `alert-${variant}-${typeToColor[type]}`,
-        classes?.message,
-      )}
+      className={sx(`alert ${variant} ${typeToColor[type]}`, classes?.message)}
       role="alert"
     >
       {showIcon && (
@@ -64,17 +75,7 @@ export const Alert: FC<AlertProps> = ({
         </div>
       )}
       <div className={sx("alert-content", classes?.content)}>{children}</div>
-      {onClose && (
-        <IconButton
-          classes={{ button: "alert-close" }}
-          color={typeToColor[type] as ButtonColor}
-          variant={variant === "outline" ? "ghost" : variant}
-          onClick={onClose}
-          aria-label="Close alert"
-          icon="x"
-          size="md"
-        />
-      )}
+      {endContent}
     </div>
   );
 };

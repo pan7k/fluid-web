@@ -1,0 +1,5 @@
+[data-theme-name="idsk"] {
+  .dialogPanel {
+    @apply absolute bottom-0 left-[3px] flex flex-wrap gap-[1px] select-none;
+  }
+}

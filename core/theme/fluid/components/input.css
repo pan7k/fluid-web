@@ -133,7 +133,7 @@
 }
 
 [data-theme-name="fluid"] .input-lg-input {
-  @apply h-[33px] text-base;
+  @apply h-[33px] text-md;
 }
 
 /* States */

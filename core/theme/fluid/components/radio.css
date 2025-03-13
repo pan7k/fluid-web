@@ -1,5 +1,5 @@
 [data-theme-name="fluid"] .radio {
-  @apply font-sans text-body text-text-secondary inline-flex flex-col gap-3 w-fit cursor-default select-none;
+  @apply font-sans text-body text-text-secondary inline-flex gap-3 w-fit cursor-default select-none;
 }
 
 [data-theme-name="fluid"] .radio-label {

@@ -1,0 +1,36 @@
+[data-theme-name="idsk"] {
+  .accordion {
+    @apply relative flex flex-shrink-0 justify-between text-start cursor-pointer bg-surface-10 select-none pl-4 rounded-[10px] outline outline-surface-20;
+    @variant hover {
+      @apply outline-3 outline-surface-hover rounded-[10px];
+    }
+    @variant xs {
+      @apply h-[31px];
+    }
+    @variant sm {
+      @apply h-[39px];
+    }
+    @variant md {
+      @apply h-[46px];
+    }
+  }
+  .accordion:focus::before {
+    @apply absolute top-0 right-0 bottom-0 left-0 outline-3 outline-offset-3 outline-surface-focus rounded-[10px];
+    content: "";
+  }
+  .accordion-content {
+    @apply hidden h-full max-h-0 overflow-y-auto;
+  }
+  .accordion-content-opened {
+    @apply block max-h-[800px] overflow-visible mt-[-10px];
+  }
+  .accordion-left {
+    @apply flex items-center gap-2;
+  }
+  .accordion-right {
+    @apply flex items-center;
+  }
+  .accordion-icon {
+    @apply flex flex-shrink-0 items-center h-[22px] text-text-secondary;
+  }
+}

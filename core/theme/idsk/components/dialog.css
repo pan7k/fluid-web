@@ -1,0 +1,36 @@
+[data-theme-name="idsk"] {
+  .dialog {
+    @apply fixed min-w-[320px] min-h-[150px] max-w-screen max-h-screen bg-surface-10 flex flex-col border border-text-inverted overflow-visible rounded-[10px];
+  }
+  .dialog-layer::-webkit-resizer {
+    @apply pointer-events-none absolute bg-transparent border-b-2 border-r-2 border-surface-20;
+  }
+  .dialog-layer::-webkit-resizer::before {
+    content: '';
+    @apply absolute bottom-0 right-0 w-[10px] h-[10px] bg-transparent border-b-2 border-r-2 border-surface-20 rotate-45;
+  }
+  .dialog-overlay {
+    @apply fixed inset-0 w-screen h-screen bg-black/80;
+  }
+  .dialog-header {
+    @apply flex items-center justify-between bg-surface-10 min-h-[48px] select-none gap-4 w-auto;
+  }
+  .dialog-label {
+    @apply ml-4 mt-3 mb-3 font-sans text-h6 text-text-primary;
+  }
+  .dialog-buttons {
+    @apply relative flex;
+  }
+  .dialog-layer {
+    @apply !flex !flex-col !flex-grow !mt-0 !pt-0 !pb-4 overflow-auto;
+  }
+  .dialog-content {
+    @apply flex-grow;
+  }
+  .dialog-stack {
+    @apply flex justify-between;
+  }
+  .dialog-actions {
+    @apply flex pt-0 pb-0 gap-4;
+  }
+}

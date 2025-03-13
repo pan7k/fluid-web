@@ -1,0 +1,62 @@
+[data-theme-name="idsk"] .chip {
+  @apply flex items-center bg-surface-10 gap-1 w-fit cursor-default select-none rounded-[10px];
+  @variant layer-1 {
+    @apply bg-surface-blank;
+  }
+  @variant layer-2 {
+    @apply bg-surface-10;
+  }
+  @variant filled {
+    @apply text-text-inverted;
+    @variant primary {
+      @apply bg-primary-main;
+    }
+    @variant secondary {
+      @apply bg-secondary-main;
+    }
+    @variant info {
+      @apply bg-info-main;
+    }
+    @variant success {
+      @apply bg-success-main;
+    }
+    @variant warning {
+      @apply bg-warning-main;
+    }
+    @variant danger {
+      @apply bg-danger-main;
+    }
+  }
+  @variant light {
+    @variant primary {
+      @apply text-text-primary;
+    }
+    @variant secondary {
+      @apply text-text-secondary;
+    }
+    @variant info {
+      @apply text-text-info;
+    }
+    @variant success {
+      @apply text-text-success;
+    }
+    @variant warning {
+      @apply text-text-warning;
+    }
+    @variant danger {
+      @apply text-text-danger;
+    }
+  }
+  @variant xs {
+    @apply text-caption px-[4px] py-[2px];
+  }
+  @variant sm {
+    @apply text-caption px-[6px] py-[4px];
+  }
+  @variant md {
+    @apply text-body px-[6px] py-[4px];
+  }
+  @variant lg {
+    @apply text-body px-[10px] py-[6px];
+  }
+}

@@ -1,0 +1,52 @@
+[data-theme-name="idsk"] .switch {
+  @apply flex items-center cursor-pointer gap-2 w-fit font-sans text-body text-text-primary select-none;
+}
+
+[data-theme-name="idsk"] .switch-label {
+  @apply cursor-pointer;
+}
+
+[data-theme-name="idsk"] .switch-stack {
+  @apply relative w-[38px] h-[22px] rounded-[12px] transition-colors duration-300 ease-in-out bg-surface-10 border border-surface-30;
+}
+
+[data-theme-name="idsk"] .switch-stack:focus-within {
+  @apply outline-[2px] outline-gray-80 outline-offset-1 border-b border-transparent;
+}
+
+[data-theme-name="idsk"] .switch-knob {
+  @apply absolute top-[1px] w-[18px] h-[18px] cursor-pointer rounded-full bg-text-primary transition-all duration-300 ease-in-out left-[1px];
+}
+
+[data-theme-name="idsk"] .switch-input {
+  @apply opacity-0 absolute w-full h-full cursor-pointer;
+}
+
+[data-theme-name="idsk"] .switch-checked-stack {
+  @apply bg-success-light border border-success-light;
+}
+
+[data-theme-name="idsk"][data-theme-variant="dark"] .switch-checked-stack {
+  @apply bg-success-dark border border-success-light;
+}
+
+[data-theme-name="idsk"] .switch-checked-knob {
+  @apply left-[17px];
+}
+
+[data-theme-name="idsk"] .switch-disabled {
+  @apply text-surface-40;
+}
+
+[data-theme-name="idsk"] .switch-disabled-stack {
+  @apply bg-surface-blank border border-surface-40;
+}
+
+[data-theme-name="idsk"] .switch-disabled-checked-stack {
+  @apply !bg-surface-blank !border-surface-40;
+}
+
+
+[data-theme-name="idsk"] .switch-disabled-knob {
+  @apply bg-surface-40;
+}

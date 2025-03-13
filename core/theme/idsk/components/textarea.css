@@ -1,0 +1,16 @@
+[data-theme-name="idsk"] {
+  .textarea-input {
+    @variant xs {
+      @apply pt-[3px] min-h-[22px];
+    }
+    @variant sm {
+      @apply pt-[1px] min-h-[26px];
+    }
+    @variant md {
+      @apply pt-[3px] min-h-[29px];
+    }
+    @variant lg {
+      @apply pt-[5px] min-h-[33px];
+    }
+  }
+}

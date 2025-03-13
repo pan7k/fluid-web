@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, forwardRef } from "react";
 import { BaseInput, BaseInputProps } from "./BaseInput";
 
 export interface NumberInputProps
@@ -14,6 +14,8 @@ export interface NumberInputProps
   value?: number;
 }
 
-export const NumberInput: FC<NumberInputProps> = (props) => {
-  return <BaseInput type="number" {...props} />;
-};
+export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
+  (props, ref) => {
+    return <BaseInput type="number" ref={ref} {...props} />;
+  },
+);

@@ -1,93 +1,265 @@
-[data-theme-name="idsk"] .iconButton {
-  @apply inline-flex cursor-pointer border border-transparent flex-shrink-0 relative select-none rounded-[6px];
+[data-theme-name="idsk"] {
+  .iconButton {
+    @apply inline-flex cursor-pointer border border-transparent flex-shrink-0 relative select-none rounded-[10px];
+    @variant hover {
+      @apply outline-3 outline-surface-hover rounded-[10px] z-1000;
+    }
+  }
+  .iconButton:active::before, [data-theme-name="idsk"] .iconButton:focus::before {
+    @apply absolute top-0 right-0 bottom-0 left-0 outline-3 outline-offset-4 outline-surface-focus rounded-[9px];
+    z-index: 1000;
+    content: "";
+  }
 }
-
-[data-theme-name="idsk"] .iconButton:focus {
-  @apply outline-offset-1 outline-2 outline-surface-focus;
-}
-
-/* Variants */
 
 [data-theme-name="idsk"] .iconButton-filled-primary {
   @apply bg-primary-main text-text-inverted hover:bg-primary-darker active:bg-primary-dark;
+}
+
+[data-theme-name="idsk"] .iconButton-filled-primary-active {
+  @apply bg-primary-dark text-text-inverted;
 }
 
 [data-theme-name="idsk"] .iconButton-filled-secondary {
   @apply bg-secondary-main text-text-inverted hover:bg-secondary-darker active:bg-secondary-dark;
 }
 
+[data-theme-name="idsk"] .iconButton-filled-secondary-active {
+  @apply bg-secondary-dark text-text-inverted;
+}
+
+[data-theme-name="idsk"] .iconButton-filled-info {
+  @apply bg-info-main text-text-inverted hover:bg-info-darker active:bg-info-dark;
+}
+
+[data-theme-name="idsk"] .iconButton-filled-info-active {
+  @apply bg-primary-dark text-text-inverted;
+}
+
 [data-theme-name="idsk"] .iconButton-filled-success {
   @apply bg-success-main text-text-inverted hover:bg-success-darker active:bg-success-dark;
+}
+
+[data-theme-name="idsk"] .iconButton-filled-success-active {
+  @apply bg-success-dark text-text-inverted;
+}
+
+[data-theme-name="idsk"] .iconButton-filled-warning {
+  @apply bg-warning-main text-text-inverted hover:bg-warning-darker active:bg-warning-dark;
+}
+
+[data-theme-name="idsk"] .iconButton-filled-warning-active {
+  @apply bg-warning-dark text-text-inverted;
 }
 
 [data-theme-name="idsk"] .iconButton-filled-danger {
   @apply bg-danger-main text-text-inverted hover:bg-danger-darker active:bg-danger-dark;
 }
 
+[data-theme-name="idsk"] .iconButton-filled-danger-active {
+  @apply bg-danger-dark text-text-inverted;
+}
+
+[data-theme-name="idsk"] .iconButton-filled-debug {
+  @apply bg-debug-main text-text-inverted hover:bg-debug-darker active:bg-debug-dark;
+}
+
+[data-theme-name="idsk"] .iconButton-filled-debug-active {
+  @apply bg-debug-dark text-text-inverted;
+}
+
 [data-theme-name="idsk"] .iconButton-outline-primary {
-  @apply border border-primary-main text-primary-main hover:bg-primary-main hover:text-white active:bg-primary-darker;
+  @apply border border-primary-main text-primary-main hover:bg-primary-main hover:text-text-inverted active:bg-primary-darker;
+}
+
+[data-theme-name="idsk"] .iconButton-outline-primary-active {
+  @apply bg-primary-darker text-text-inverted border-primary-darker;
 }
 
 [data-theme-name="idsk"] .iconButton-outline-secondary {
-  @apply border border-secondary-main text-secondary-main hover:bg-secondary-main hover:text-white active:bg-secondary-darker;
+  @apply border border-secondary-main text-secondary-main hover:bg-secondary-main hover:text-text-inverted active:bg-secondary-darker;
+}
+
+[data-theme-name="idsk"] .iconButton-outline-secondary-active {
+  @apply bg-secondary-darker text-text-inverted border-secondary-darker;
+}
+
+[data-theme-name="idsk"] .iconButton-outline-info {
+  @apply border border-info-main text-info-main hover:bg-info-main hover:text-text-inverted active:bg-info-darker;
+}
+
+[data-theme-name="idsk"] .iconButton-outline-info-active {
+  @apply bg-info-darker text-text-inverted border-info-darker;
 }
 
 [data-theme-name="idsk"] .iconButton-outline-success {
-  @apply border border-success-main text-success-main hover:bg-success-main hover:text-white active:bg-success-darker;
+  @apply border border-success-main text-success-main hover:bg-success-main hover:text-text-inverted active:bg-success-darker;
+}
+
+[data-theme-name="idsk"] .iconButton-outline-success-active {
+  @apply bg-success-darker text-text-inverted border-success-darker;
+}
+
+[data-theme-name="idsk"] .iconButton-outline-warning {
+  @apply border border-warning-main text-warning-main hover:bg-warning-main hover:text-text-inverted active:bg-warning-darker;
+}
+
+[data-theme-name="idsk"] .iconButton-outline-warning-active {
+  @apply bg-warning-darker text-text-inverted border-warning-darker;
 }
 
 [data-theme-name="idsk"] .iconButton-outline-danger {
-  @apply border border-danger-main text-danger-main hover:bg-danger-main hover:text-white active:bg-danger-darker;
+  @apply border border-danger-main text-danger-main hover:bg-danger-main hover:text-text-inverted active:bg-danger-darker;
+}
+
+[data-theme-name="idsk"] .iconButton-outline-danger-active {
+  @apply bg-danger-darker text-text-inverted border-danger-darker;
+}
+
+[data-theme-name="idsk"] .iconButton-outline-debug {
+  @apply border border-debug-main text-debug-main hover:bg-debug-main hover:text-text-inverted active:bg-debug-darker;
+}
+
+[data-theme-name="idsk"] .iconButton-outline-debug-active {
+  @apply bg-debug-darker text-text-inverted border-debug-darker;
 }
 
 [data-theme-name="idsk"] .iconButton-light-primary {
   @apply bg-surface-10 text-primary-main hover:bg-surface-20 active:bg-surface-30;
 }
 
+[data-theme-name="idsk"] .iconButton-light-primary-active {
+  @apply bg-surface-30 text-primary-main;
+}
+
 [data-theme-name="idsk"] .iconButton-light-secondary {
   @apply bg-surface-10 text-secondary-main hover:bg-surface-20 active:bg-surface-30;
+}
+
+[data-theme-name="idsk"] .iconButton-light-secondary-active {
+  @apply bg-surface-30 text-secondary-main;
+}
+
+[data-theme-name="idsk"] .iconButton-light-info {
+  @apply bg-surface-10 text-info-main hover:bg-surface-20 active:bg-surface-30;
+}
+
+[data-theme-name="idsk"] .iconButton-light-info-active {
+  @apply bg-surface-30 text-info-main;
 }
 
 [data-theme-name="idsk"] .iconButton-light-success {
   @apply bg-surface-10 text-success-main hover:bg-surface-20 active:bg-surface-30;
 }
 
+[data-theme-name="idsk"] .iconButton-light-success-active {
+  @apply bg-surface-30 text-success-main;
+}
+
+[data-theme-name="idsk"] .iconButton-light-warning {
+  @apply bg-surface-10 text-warning-main hover:bg-surface-20 active:bg-surface-30;
+}
+
+[data-theme-name="idsk"] .iconButton-light-warning-active {
+  @apply bg-surface-30 text-warning-main;
+}
+
 [data-theme-name="idsk"] .iconButton-light-danger {
   @apply bg-surface-10 text-danger-main hover:bg-surface-20 active:bg-surface-30;
+}
+
+[data-theme-name="idsk"] .iconButton-light-danger-active {
+  @apply bg-surface-30 text-danger-main;
+}
+
+[data-theme-name="idsk"] .iconButton-light-debug {
+  @apply bg-surface-10 text-debug-main hover:bg-surface-20 active:bg-surface-30;
+}
+
+[data-theme-name="idsk"] .iconButton-light-debug-active {
+  @apply bg-surface-30 text-debug-main;
 }
 
 [data-theme-name="idsk"] .iconButton-ghost-primary {
   @apply bg-transparent text-primary-main hover:bg-surface-10 active:bg-surface-20;
 }
 
+[data-theme-name="idsk"] .iconButton-ghost-primary-active {
+  @apply bg-surface-20 text-primary-main;
+}
+
 [data-theme-name="idsk"] .iconButton-ghost-secondary {
   @apply bg-transparent text-secondary-main hover:bg-surface-10 active:bg-surface-20;
+}
+
+[data-theme-name="idsk"] .iconButton-ghost-secondary-active {
+  @apply bg-surface-20 text-secondary-main;
+}
+
+[data-theme-name="idsk"] .iconButton-ghost-info {
+  @apply bg-transparent text-info-main hover:bg-surface-10 active:bg-surface-20;
+}
+
+[data-theme-name="idsk"] .iconButton-ghost-info-active {
+  @apply bg-surface-20 text-info-main;
 }
 
 [data-theme-name="idsk"] .iconButton-ghost-success {
   @apply bg-transparent text-success-main hover:bg-surface-10 active:bg-surface-20;
 }
 
+[data-theme-name="idsk"] .iconButton-ghost-success-active {
+  @apply bg-surface-20 text-success-main;
+}
+
+[data-theme-name="idsk"] .iconButton-ghost-warning {
+  @apply bg-transparent text-warning-main hover:bg-surface-10 active:bg-surface-20;
+}
+
+[data-theme-name="idsk"] .iconButton-ghost-warning-active {
+  @apply bg-surface-20 text-warning-main;
+}
+
 [data-theme-name="idsk"] .iconButton-ghost-danger {
   @apply bg-transparent text-danger-main hover:bg-surface-10 active:bg-surface-20;
 }
 
+[data-theme-name="idsk"] .iconButton-ghost-danger-active {
+  @apply bg-surface-20 text-danger-main;
+}
+
+[data-theme-name="idsk"] .iconButton-ghost-debug {
+  @apply bg-transparent text-debug-main hover:bg-surface-10 active:bg-surface-20;
+}
+
+[data-theme-name="idsk"] .iconButton-ghost-debug-active {
+  @apply bg-surface-20 text-debug-main;
+}
+
 /* Sizes */
 
-.iconButton-xs {
-  padding: 8.5px;
+[data-theme-name="idsk"] .iconButton-xs {
+  padding: 6.5px;
 }
 
-.iconButton-sm {
+[data-theme-name="idsk"] .iconButton-sm {
+  padding: 10.5px;
+}
+
+[data-theme-name="idsk"] .iconButton-md {
+  padding: 14px;
+}
+
+[data-theme-name="idsk"] .iconButton-lg {
+  padding: 14.5px;
+}
+
+[data-theme-name="idsk"] .iconButton-xl {
   padding: 12.5px;
-}
-
-.iconButton-md {
-  padding: 16.5px;
 }
 
 /* States */
 
-.iconButton-disabled {
-  @apply bg-surface-10 text-gray-400 cursor-not-allowed opacity-50;
+[data-theme-name="idsk"] .iconButton-disabled {
+  @apply bg-surface-10 text-gray-40 cursor-not-allowed opacity-50;
 }

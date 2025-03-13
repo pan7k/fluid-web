@@ -1,0 +1,62 @@
+[data-theme-name="idsk"] {
+  .alert {
+    @apply flex items-center min-h-[46px] pl-4 gap-2 outline outline-surface-20 rounded-[10px];
+    @variant filled {
+      @apply border-transparent text-text-inverted;
+      @variant info {
+        @apply bg-info-main;
+      }
+      @variant success {
+        @apply bg-success-main;
+      }
+      @variant warning {
+        @apply bg-warning-main;
+      }
+      @variant danger {
+        @apply bg-danger-main;
+      }
+      @variant debug {
+        @apply bg-debug-main;
+      }
+    }
+    @variant outlined {
+      @apply bg-text-inverted outline;
+      @variant info {
+        @apply outline-info-main text-info-main;
+      }
+      @variant success {
+        @apply outline-success-main text-success-main;
+      }
+      @variant warning {
+        @apply outline-warning-main text-warning-main;
+      }
+      @variant danger {
+        @apply outline-danger-main text-danger-main;
+      }
+      @variant debug {
+        @apply outline-debug-main text-debug-main;
+      }
+    }
+    @variant light {
+      @apply bg-surface-10;
+      @variant info {
+        @apply text-info-main;
+      }
+      @variant success {
+        @apply text-success-main;
+      }
+      @variant warning {
+        @apply text-warning-main;
+      }
+      @variant danger {
+        @apply text-danger-main;
+      }
+      @variant debug {
+        @apply text-debug-main;
+      }
+    }
+  }
+  .alert-content {
+    @apply flex-grow mr-4;
+  }
+}

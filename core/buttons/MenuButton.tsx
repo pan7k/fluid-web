@@ -36,14 +36,14 @@ export const MenuButton: FC<MenuButtonProps> = ({
         label ? (
           <Button
             label={label}
-            icon={icon || (open ? "caretUp" : "caretDown")}
+            icon={icon || (open ? "caret-up" : "caret-down")}
             onClick={toggleMenu}
             ref={buttonRef}
             {...rest}
           />
         ) : (
           <IconButton
-            icon={icon || (open ? "caretUp" : "caretDown")}
+            icon={icon || (open ? "caret-up" : "caret-down")}
             onClick={toggleMenu}
             ref={buttonRef}
             {...rest}
@@ -53,7 +53,7 @@ export const MenuButton: FC<MenuButtonProps> = ({
         <div className={sx("menuButton-stack")}>
           {label && <Button label={label} onClick={onClick} {...rest} />}
           <IconButton
-            icon={icon || (open ? "caretUp" : "caretDown")}
+            icon={icon || (open ? "caret-up" : "caret-down")}
             onClick={toggleMenu}
             ref={buttonRef}
             {...rest}

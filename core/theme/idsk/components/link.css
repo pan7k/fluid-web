@@ -1,0 +1,68 @@
+[data-theme-name="idsk"] {
+  .link {
+    @apply font-sans inline-block;
+    text-decoration: none;
+    transition: color 0.2s ease, text-decoration 0.2s ease;
+    @variant primary {
+      @apply text-text-primary;
+      @variant hover {
+        @apply text-primary-darker;
+      }
+    }
+    @variant secondary {
+      @apply text-text-secondary;
+      @variant hover {
+        @apply text-secondary-darker;
+      }
+    }
+    @variant inverted {
+      @apply text-text-inverted;
+      @variant hover {
+        @apply text-text-inverted;
+      }
+    }
+    @variant info {
+      @apply text-text-info;
+      @variant hover {
+        @apply text-info-darker;
+      }
+    }
+    @variant success {
+      @apply text-text-success;
+      @variant hover {
+        @apply text-success-darker;
+      }
+    }
+    @variant warning {
+      @apply text-text-warning;
+      @variant hover {
+        @apply text-warning-darker;
+      }
+    }
+    @variant danger {
+      @apply text-text-danger;
+      @variant hover {
+        @apply text-danger-darker;
+      }
+    }
+    @variant debug {
+      @apply text-text-debug;
+      @variant hover {
+        @apply text-debug-darker;
+      }
+    }
+  }
+  .link-default {
+    @apply text-body;
+  }
+  .link-underlined {
+    @apply text-body;
+    text-decoration: underline;
+  }
+  .link-bold {
+    @apply text-body font-bold;
+  }
+  .link-subtle {
+    @apply text-caption opacity-90;
+  }
+}

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, forwardRef } from "react";
 import { BaseInput, BaseInputProps } from "./BaseInput";
 
 export interface SearchInputProps
@@ -15,6 +15,15 @@ export interface SearchInputProps
     | "iconPosition"
   > {}
 
-export const SearchInput: FC<SearchInputProps> = (props) => {
-  return <BaseInput icon="magnifyingGlass" iconPosition="start" {...props} />;
-};
+export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
+  (props, ref) => {
+    return (
+      <BaseInput
+        icon="magnifying-glass"
+        iconPosition="start"
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);

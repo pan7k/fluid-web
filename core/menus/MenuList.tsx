@@ -28,7 +28,7 @@ export type MenuDirection =
   | "bottom-right"
   | "bottom-center";
 
-export interface MenuListProps extends BaseHTMLAttributes<HTMLDivElement> {
+export interface MenuListProps extends BaseHTMLAttributes<HTMLMenuElement> {
   children?: ReactElement | ReactElement[];
   width?: number;
   minWidth?: number;
@@ -65,8 +65,8 @@ export const MenuList: FC<MenuListProps> = ({
     if (!parentRef.current) return;
 
     const rect = parentRef.current.getBoundingClientRect();
-    const parentWidth = offset === 0 ? rect.width : rect.width + offset + 2;
-    const margin = offset === 0 ? 0 : offset - 1;
+    const parentWidth = offset === 0 ? rect.width : rect.width + offset - 4;
+    const margin = offset === 0 ? 0 : offset - 4;
 
     let x = rect.left;
     let y = rect.top;
@@ -172,7 +172,7 @@ export const MenuList: FC<MenuListProps> = ({
   }
 
   return createPortal(
-    <div
+    <menu
       ref={menuRef}
       onClick={onClick}
       style={{
@@ -206,7 +206,7 @@ export const MenuList: FC<MenuListProps> = ({
             });
           })
         : children}
-    </div>,
+    </menu>,
     document.body,
   );
 };

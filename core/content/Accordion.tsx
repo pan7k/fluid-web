@@ -81,8 +81,8 @@ export const Accordion: FC<AccordionProps> = ({
         tabIndex={0}
         aria-expanded={open}
         className={sx(
-          `accordion-panel accordion-${size}`,
-          { "accordion-panel-opened": open },
+          `accordion ${size}`,
+          { "accordion-opened": open },
           classes?.accordion,
         )}
       >
@@ -101,7 +101,7 @@ export const Accordion: FC<AccordionProps> = ({
                 "accordion-icon-opened": open,
               })}
             >
-              <Icon symbol={open ? "caretUp" : "caretDown"} size="xs" />
+              <Icon symbol={open ? "caret-up" : "caret-down"} size="xs" />
             </div>
           )}
           {typeof label === "string" ? <Text>{label}</Text> : label}

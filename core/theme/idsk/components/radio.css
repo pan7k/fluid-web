@@ -1,0 +1,42 @@
+[data-theme-name="idsk"] .radio {
+  @apply font-sans text-body text-text-secondary inline-flex gap-3 w-fit cursor-default select-none;
+}
+
+[data-theme-name="idsk"] .radio-label {
+  @apply text-caption text-text-secondary;
+}
+
+[data-theme-name="idsk"] .radio-label-disabled {
+  @apply text-surface-40;
+}
+
+[data-theme-name="idsk"] .radio-stack {
+  @apply flex flex-row text-text-primary text-body gap-2 cursor-pointer;
+}
+
+[data-theme-name="idsk"] .radio-input {
+  @apply h-[18px] w-[18px] bg-surface-10 border border-surface-30 inline-block relative appearance-none m-0 rounded-full cursor-pointer;
+  @variant hover {
+    @apply outline-3 outline-surface-hover z-1000;
+  }
+}
+
+[data-theme-name="idsk"] .radio-input:checked::after {
+  @apply content-[''] absolute left-[3px] top-[3px] w-[10px] h-[10px] rounded-full bg-text-primary;
+}
+
+[data-theme-name="idsk"] .radio-disabled {
+  @apply text-surface-40;
+}
+
+[data-theme-name="idsk"] .radio-disabled-stack {
+  @apply text-surface-40;
+}
+
+[data-theme-name="idsk"] .radio-input:disabled {
+  @apply bg-surface-blank;
+}
+
+[data-theme-name="idsk"] .radio-input:disabled:checked::after {
+  @apply bg-surface-40;
+}

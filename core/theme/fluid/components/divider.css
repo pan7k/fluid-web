@@ -1,3 +1,5 @@
-[data-theme-name="fluid"] .divider {
-  @apply border border-surface-40;
+[data-theme-name="fluid"] {
+  .divider {
+    @apply border border-surface-40;
+  }
 }

@@ -1,39 +1,56 @@
-[data-theme-name="idsk"] .menuItem {
-  @apply cursor-pointer bg-surface-blank flex items-center justify-between gap-4 hover:bg-surface-10 active:bg-surface-20 rounded-[6px];
-}
-
-[data-theme-name="idsk"] .menuItem-primary {
-  @apply text-text-primary;
-}
-
-[data-theme-name="idsk"] .menuItem-secondary {
-  @apply text-text-secondary;
-}
-
-[data-theme-name="idsk"] .menuItem-success {
-  @apply text-success-darker;
-}
-
-[data-theme-name="idsk"] .menuItem-danger {
-  @apply text-danger-darker;
-}
-
-[data-theme-name="idsk"] .menuItem-xs {
-  @apply pt-[6px] pr-[16px] pb-[6px] pl-[16px];
-}
-
-[data-theme-name="idsk"] .menuItem-sm {
-  @apply pt-[10px] pr-[16px] pb-[10px] pl-[16px];
-}
-
-[data-theme-name="idsk"] .menuItem-md {
-  @apply pt-[14px] pr-[16px] pb-[14px] pl-[16px];
-}
-
-[data-theme-name="idsk"] .menuItem-lg {
-  @apply pt-[14px] pr-[16px] pb-[14px] pl-[16px];
-}
-
-[data-theme-name="idsk"] .menuItem-xl {
-  @apply pt-[14px] pr-[16px] pb-[14px] pl-[16px];
+[data-theme-name="idsk"] {
+  .menuItem {
+    @apply cursor-pointer select-none bg-surface-blank flex items-center justify-between gap-4 hover:bg-surface-10 active:bg-surface-20 rounded-[9px];
+    @variant primary {
+      @apply text-text-primary;
+    }
+    @variant secondary {
+      @apply text-text-secondary;
+    }
+    @variant info {
+      @apply text-text-info;
+    }
+    @variant success {
+      @apply text-text-success;
+    }
+    @variant warning {
+      @apply text-text-warning;
+    }
+    @variant danger {
+      @apply text-text-danger;
+    }
+    @variant debug {
+      @apply text-text-debug;
+    }
+    @variant xs {
+      @apply pt-[5px] pr-[16px] pb-[5px] pl-[16px];
+    }
+    @variant sm {
+      @apply pt-[9px] pr-[16px] pb-[9px] pl-[16px];
+    }
+    @variant md {
+      @apply pt-[12.5px] pr-[16px] pb-[12.5px] pl-[16px];
+    }
+    @variant lg {
+      @apply pt-[14.5px] pr-[16px] pb-[14.5px] pl-[16px];
+    }
+    @variant xl {
+      @apply pt-[14px] pr-[16px] pb-[14px] pl-[16px];
+    }
+  }
+  .menuItem-highlighted {
+    @apply bg-surface-10;
+  }
+  .menuItem-selected {
+    @apply bg-surface-10;
+  }
+  .menuItem-disabled {
+    @apply cursor-not-allowed;
+    @variant hover {
+      @apply bg-surface-blank;
+    }
+    @variant active {
+      @apply bg-surface-blank;
+    }
+  }
 }

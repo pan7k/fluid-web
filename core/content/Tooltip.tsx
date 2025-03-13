@@ -126,7 +126,7 @@ const TooltipRoot: FC<TooltipRootProps> = ({
         whiteSpace: "normal",
         wordBreak: "break-word",
       }}
-      className={sx(`tooltip tooltip-${size}`, classes)}
+      className={sx(`tooltip ${size}`, classes)}
     >
       {children}
     </div>,
@@ -139,8 +139,8 @@ export const Tooltip: FC<TooltipProps> = ({
   label,
   direction = "right",
   size = "md",
-  delay = 500,
-  hideDelay = 200,
+  delay = 200,
+  hideDelay = 500,
   maxWidth = 180,
   classes,
 }) => {

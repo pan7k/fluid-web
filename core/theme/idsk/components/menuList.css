@@ -1,3 +1,25 @@
-[data-theme-name="idsk"] .menuList {
-  @apply z-[1000] fixed outline-2 outline-surface-focus m-0.5 p-px bg-surface-blank max-h-[200px] overflow-y-auto select-none rounded-[6px];
+[data-theme-name="idsk"] {
+  .menuList {
+    @apply z-[1000] fixed border-1 border-surface-20 p-px bg-surface-blank max-h-[300px] overflow-y-auto rounded-[10px];
+  }
+  .menuList-scrollbar {
+    @apply overflow-y-auto;
+  }
+  .menuList-scrollbar::-webkit-scrollbar {
+    @apply w-[8px];
+  }
+  .menuList-scrollbar::-webkit-scrollbar-track {  
+    @apply bg-none;
+  }
+  .menuList-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-surface-focus border-1 border-solid border-text-inverted;
+    border-left-width: 4px;
+  }
+  .menuList-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-text-primary rounded-none;
+    border-left-width: 0px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+  }
 }

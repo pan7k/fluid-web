@@ -1,0 +1,107 @@
+/* Tabs container */
+[data-theme-name="idsk"] .tabs {
+  @apply w-full;
+}
+
+/* Tabs list */
+[data-theme-name="idsk"] .tabs-list {
+  @apply flex relative border-b border-surface-30;
+}
+
+[data-theme-name="idsk"] .tabs-fullWidth .tabs-list {
+  @apply w-full;
+}
+
+/* Tabs content */
+[data-theme-name="idsk"] .tabs-content {
+  @apply mt-4;
+}
+
+/* Tab variants */
+[data-theme-name="idsk"] .tabs-underline .tabs-list {
+  @apply border-b border-surface-30;
+}
+
+[data-theme-name="idsk"] .tabs-contained .tabs-list {
+  @apply bg-surface-10 p-1 rounded-md border-none;
+}
+
+[data-theme-name="idsk"] .tabs-pills .tabs-list {
+  @apply gap-2 border-none;
+}
+
+/* Tab button */
+[data-theme-name="idsk"] .tab {
+  @apply flex items-center gap-2 px-4 py-2 font-medium text-text-secondary transition-all outline-none cursor-pointer font-display;
+}
+
+/* Tab variants */
+[data-theme-name="idsk"] .tabs-underline .tab {
+  @apply border-b-2 border-transparent -mb-[1px];
+}
+
+[data-theme-name="idsk"] .tabs-underline .tab-active {
+  @apply border-b-2 text-text-primary border-primary-main;
+}
+
+[data-theme-name="idsk"] .tabs-contained .tab {
+  @apply rounded;
+}
+
+[data-theme-name="idsk"] .tabs-contained .tab-active {
+  @apply bg-surface-20 text-text-primary;
+}
+
+[data-theme-name="idsk"] .tabs-pills .tab {
+  @apply rounded-full;
+}
+
+[data-theme-name="idsk"] .tabs-pills .tab-active {
+  @apply text-text-inverted;
+}
+
+/* Tab states */
+[data-theme-name="idsk"] .tab:hover:not(.tab-active):not(.tab-disabled) {
+  @apply text-text-primary bg-surface-10;
+}
+
+[data-theme-name="idsk"] .tab:focus-visible {
+  @apply ring-2 ring-primary-light ring-offset-1;
+}
+
+[data-theme-name="idsk"] .tab-disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Tab sizes */
+[data-theme-name="idsk"] .tabs-sm .tab {
+  @apply text-sm px-3 py-1.5;
+}
+
+[data-theme-name="idsk"] .tabs-md .tab {
+  @apply text-base px-4 py-2;
+}
+
+[data-theme-name="idsk"] .tabs-lg .tab {
+  @apply text-lg px-5 py-2.5;
+}
+
+/* Tab fullWidth */
+[data-theme-name="idsk"] .tabs-fullWidth .tab {
+  @apply flex-1 justify-center;
+}
+
+/* Tab icon */
+[data-theme-name="idsk"] .tab-icon {
+  @apply flex items-center justify-center text-current;
+}
+
+/* Tab label */
+[data-theme-name="idsk"] .tab-label {
+  @apply text-current;
+}
+
+/* Tab panel */
+[data-theme-name="idsk"] .tab-panel {
+  @apply py-4
+} 

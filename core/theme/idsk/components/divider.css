@@ -1,0 +1,5 @@
+[data-theme-name="idsk"] {
+  .divider {
+    @apply border border-surface-40;
+  }
+}

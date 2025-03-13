@@ -1,0 +1,17 @@
+[data-theme-name="idsk"] {
+  .snackbar {
+    @apply fixed z-50 max-w-md;
+  }
+  .snackbar-top-left {
+    @apply top-4 left-4;
+  }
+  .snackbar-top-right {
+    @apply top-4 right-4;
+  }
+  .snackbar-bottom-left {
+    @apply bottom-4 left-4;
+  }
+  .snackbar-bottom-right {
+    @apply bottom-4 right-4;
+  }
+}

@@ -1,3 +1,5 @@
-[data-theme-name="idsk"] .menuButton-stack {
-  @apply inline-flex items-center gap-px;
+[data-theme-name="idsk"] {
+  .menuButton-stack {
+    @apply inline-flex items-center gap-px;
+  }
 }

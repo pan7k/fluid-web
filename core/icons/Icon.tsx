@@ -1,6 +1,7 @@
 import React, { ElementType, FC, HTMLAttributes } from "react";
 import * as Icons from "@phosphor-icons/react";
 import { ComponentSize } from "../common/types";
+import { sx } from "../theme/utils/sx";
 
 export const iconSymbolKeys = Object.keys(Icons)
   .filter((name) => !["IconContext", "IconBase", "SSR"].includes(name))
@@ -31,6 +32,7 @@ export interface IconProps extends HTMLAttributes<SVGSVGElement> {
   variant?: IconVariant;
   color?: string;
   cursor?: string;
+  classes?: string;
 }
 
 const getSize = (size: IconSize): number => {
@@ -58,6 +60,7 @@ export const Icon: FC<IconProps> = ({
   variant = "regular",
   color = "currentColor",
   cursor,
+  classes,
   onClick,
 }) => {
   const resolvedSize = typeof size === "number" ? size : getSize(size);
@@ -78,6 +81,7 @@ export const Icon: FC<IconProps> = ({
       color={color}
       cursor={cursor}
       onClick={onClick}
+      className={sx("flex-shrink-0", classes)}
     />
   );
 };

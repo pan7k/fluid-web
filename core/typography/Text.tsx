@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from "react";
+import React, { FC, HTMLAttributes, ElementType, ReactNode } from "react";
 import { sx } from "../theme/utils/sx";
 
 export type TextColor =
@@ -22,10 +22,11 @@ export type TextType =
 
 export interface TextProps
   extends HTMLAttributes<HTMLParagraphElement | HTMLSpanElement> {
-  children: string;
+  children: string | number | ReactNode;
   variant?: TextType;
   color?: TextColor;
   classes?: string;
+  component?: ElementType;
 }
 
 export const Text: FC<TextProps> = ({
@@ -33,28 +34,22 @@ export const Text: FC<TextProps> = ({
   color = "primary",
   children,
   classes,
+  component,
+  ...rest
 }) => {
-  if (variant === "body" || variant === "caption") {
-    return (
-      <span
-        className={sx(
-          `typography typography-${variant} typography-${color}`,
-          classes,
-        )}
-      >
-        {children}
-      </span>
-    );
-  } else {
-    return (
-      <p
-        className={sx(
-          `typography typography-${variant} typography-${color}`,
-          classes,
-        )}
-      >
-        {children}
-      </p>
-    );
-  }
+  const Component =
+    component ||
+    (variant === "body" || variant === "caption" ? "span" : variant);
+
+  return (
+    <Component
+      className={sx(
+        `typography typography-${variant} typography-${color}`,
+        classes,
+      )}
+      {...rest}
+    >
+      {children}
+    </Component>
+  );
 };

@@ -16,6 +16,8 @@ export { Drawer, type DrawerProps } from "./content/Drawer";
 export { Alert, type AlertProps } from "./content/Alert";
 export { Snackbar, type SnackbarProps } from "./content/Snackbar";
 export { Tooltip, type TooltipProps } from "./content/Tooltip";
+export { List, type ListProps } from "./content/List";
+export { ListItem, type ListItemProps } from "./content/ListItem";
 
 /* fields */
 export { Chip, type ChipProps } from "./fields/Chip";

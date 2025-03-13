@@ -1,61 +1,47 @@
-[data-theme-name="fluid"] .navigation {
-  @apply w-full;
-}
-
-[data-theme-name="fluid"] .navigation-vertical {
-  @apply flex flex-col;
-}
-
-[data-theme-name="fluid"] .navigation-horizontal {
-  @apply flex flex-row;
-}
-
-[data-theme-name="fluid"] .navigation-list {
-  @apply flex w-full list-none p-0 m-0;
-}
-
-[data-theme-name="fluid"] .navigation-vertical .navigation-list {
-  @apply flex-col;
-}
-
-[data-theme-name="fluid"] .navigation-horizontal .navigation-list {
-  @apply flex-row;
-}
-
-[data-theme-name="fluid"] .navigation-item {
-  @apply w-full;
-}
-
-/* navigation item */
-
-[data-theme-name="fluid"] .navigationItem {
-  @apply flex cursor-pointer items-center gap-3 px-4 py-2 w-full text-text-secondary hover:bg-text-inverted hover:text-text-primary focus:bg-surface-20 outline-none font-display;
-}
-
-[data-theme-name="fluid"] .navigationItem-active {
-  @apply bg-surface-20 text-text-primary hover:bg-surface-30;
-}
-
-[data-theme-name="fluid"] .navigationItem-disabled {
-  @apply opacity-50 pointer-events-none;
-}
-
-[data-theme-name="fluid"] .navigationItem-icon {
-  @apply flex items-center justify-center text-current;
-}
-
-[data-theme-name="fluid"] .navigationItem-label {
-  @apply text-current;
-}
-
-[data-theme-name="fluid"] .navigation-xs .navigationItem {
-  @apply text-caption py-1.5;
-}
-
-[data-theme-name="fluid"] .navigation-sm .navigationItem {
-  @apply text-[1rem] py-2;
-}
-
-[data-theme-name="fluid"] .navigation-md .navigationItem {
-  @apply text-[1rem] py-2.5;
+[data-theme-name="fluid"] {
+  .navigation {
+    @apply w-full;
+  }
+  .navigation-vertical {
+    @apply flex flex-col;
+  }
+  .navigation-horizontal {
+    @apply flex flex-row;
+  }
+  .navigation-list {
+    @apply flex w-full list-none p-0 m-0;
+  }
+  .navigation-vertical .navigation-list {
+    @apply flex-col;
+  }
+  .navigation-horizontal .navigation-list {
+    @apply flex-row;
+  }
+  .navigation-item {
+    @apply w-full;
+  }
+  .navigationItem-active {
+    @apply bg-surface-20 text-text-primary hover:bg-surface-30;
+  }
+  .navigation-xs .navigationItem {
+    @apply text-caption py-1.5;
+  }
+  .navigation-sm .navigationItem {
+    @apply text-[1rem] py-2;
+  }
+  .navigation-md .navigationItem {
+    @apply text-[1rem] py-2.5;
+  }
+  .navigationItem {
+    @apply flex cursor-pointer items-center gap-3 px-4 py-2 w-full text-text-secondary hover:bg-text-inverted hover:text-text-primary focus:bg-surface-20 outline-none font-display;
+  }
+  .navigationItem-disabled {
+    @apply opacity-50 pointer-events-none;
+  }
+  .navigationItem-icon {
+    @apply flex items-center justify-center text-current;
+  }
+  .navigationItem-label {
+    @apply text-current;
+  }
 }

@@ -1,0 +1,8 @@
+[data-theme-name="fluid"] {
+  .list {
+    @apply list-none p-0 m-0;
+  }
+  .listItem {
+    @apply list-none px-4 py-2 border-b border-surface-20 text-text-primary;
+  }
+}

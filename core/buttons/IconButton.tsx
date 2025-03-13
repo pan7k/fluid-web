@@ -14,7 +14,7 @@ export type IconButtonColor =
   | "warning"
   | "danger"
   | "debug";
-export type IconButtonVariant = "filled" | "outline" | "light" | "ghost";
+export type IconButtonVariant = "filled" | "outlined" | "light" | "ghost";
 
 export interface IconButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -30,6 +30,7 @@ export interface IconButtonProps
   disabled?: boolean;
   active?: boolean;
   classes?: Theme["iconButton"];
+  component?: React.ElementType;
 }
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
@@ -47,6 +48,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       active,
       classes,
       onClick,
+      component: Component = "button",
       ...rest
     },
     ref,
@@ -61,13 +63,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       }
     };
     const buttonClassName = sx(
-      "iconButton",
-      `iconButton-${variant}-${color}`,
-      `iconButton-${size}`,
-      {
-        "iconButton-disabled": disabled,
-        [`iconButton-${variant}-${color}-active`]: active,
-      },
+      `iconButton ${variant} ${color} ${size}`,
       classes?.button,
     );
 
@@ -78,10 +74,11 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         classes={{ container: classes?.tooltip }}
         size={tooltipSize}
       >
-        <button
+        <Component
           ref={buttonRef}
           className={buttonClassName}
           disabled={disabled}
+          active={active}
           onClick={handleClick}
           {...rest}
         >
@@ -92,10 +89,10 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
               size={size === "lg" ? "sm" : size === "xl" ? "md" : "xs"}
             />
           </div>
-        </button>
+        </Component>
       </Tooltip>
     ) : (
-      <button
+      <Component
         ref={buttonRef}
         className={buttonClassName}
         disabled={disabled}
@@ -109,7 +106,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
             size={size === "lg" ? "sm" : size === "xl" ? "md" : "xs"}
           />
         </div>
-      </button>
+      </Component>
     );
   },
 );
