@@ -1,4 +1,4 @@
-import React, { FC, forwardRef } from "react";
+import React, { forwardRef } from "react";
 import { BaseInput, BaseInputProps } from "./BaseInput";
 
 export interface NumberInputProps

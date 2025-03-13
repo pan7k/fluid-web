@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect, forwardRef } from "react";
+import React, { useRef, useEffect, forwardRef } from "react";
 import { BaseInput, BaseInputProps } from "./BaseInput";
 import { Layer } from "../layout/Layer";
 import { sx } from "../theme/utils/sx";

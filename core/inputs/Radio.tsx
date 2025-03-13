@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  FC,
-  InputHTMLAttributes,
-  forwardRef,
-  Ref,
-} from "react";
+import React, { ChangeEvent, InputHTMLAttributes, forwardRef } from "react";
 import { sx } from "../theme/utils/sx";
 import { Theme } from "../theme/interfaces";
 

@@ -2,7 +2,7 @@ import React, { FC, HTMLAttributes, ReactNode } from "react";
 import { useLayerContext } from "../layout/LayerContext";
 import { sx } from "../theme/utils/sx";
 import { CSS } from "../common/types";
-import { Icon } from "../icons/types";
+import { Icon, IconSymbol } from "../icons/Icon";
 
 type ChipSize = "xs" | "sm" | "md" | "lg";
 export type ChipColor =
@@ -19,7 +19,7 @@ export interface ChipProps extends HTMLAttributes<HTMLDivElement> {
   color?: ChipColor;
   variant?: ChipVariant;
   size?: ChipSize;
-  icon?: Icon;
+  icon?: IconSymbol;
   iconPosition?: "start" | "end";
   classes?: CSS;
 }
@@ -29,7 +29,7 @@ export const Chip: FC<ChipProps> = ({
   color = "secondary",
   variant = "light",
   size = "md",
-  icon: IconComponent,
+  icon,
   iconPosition = "start",
   classes,
 }) => {
@@ -41,13 +41,11 @@ export const Chip: FC<ChipProps> = ({
         classes,
       )}
     >
-      {iconPosition === "start" && IconComponent && (
-        <IconComponent weight="bold" />
+      {icon && iconPosition === "start" && (
+        <Icon variant="bold" symbol={icon} />
       )}
       {children}
-      {iconPosition === "end" && IconComponent && (
-        <IconComponent weight="bold" />
-      )}
+      {icon && iconPosition === "end" && <Icon variant="bold" symbol={icon} />}
     </div>
   );
 };

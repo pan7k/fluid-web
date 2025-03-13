@@ -1,5 +1,4 @@
 import React, {
-  FC,
   HTMLAttributes,
   MouseEvent,
   useCallback,
@@ -7,7 +6,6 @@ import React, {
   useRef,
   useState,
   forwardRef,
-  Ref,
 } from "react";
 import { sx } from "../theme/utils/sx";
 import { Theme } from "../theme/interfaces";
